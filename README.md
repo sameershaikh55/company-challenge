@@ -10,8 +10,8 @@ The purpose of the Company Challenges dashboard is to increasingly support and u
 
 ## Hi-fi Prototype
 
-Admin View `https://xd.adobe.com/view/b19dfa92-3437-49e4-9559-e0031c51c04f-e4ce/?fullscreen&hints=off`
-User View `https://xd.adobe.com/view/80f8d12f-d58f-44c7-84ab-7ab769992b00-d5ab/?fullscreen&hints=off`
+Admin `https://xd.adobe.com/view/b19dfa92-3437-49e4-9559-e0031c51c04f-e4ce/?fullscreen&hints=off`
+User `https://xd.adobe.com/view/80f8d12f-d58f-44c7-84ab-7ab769992b00-d5ab/?fullscreen&hints=off`
 
 ## Coding guidelines
 
