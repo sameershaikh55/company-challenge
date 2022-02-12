@@ -1,8 +1,8 @@
-<h1 align="center">Hi 👋, Welcome at Challenge Website</h1>
+<h1 align="center">Hi 👋, Welcome at Company Challenges</h1>
 
-## Challenge Website
+## Company Challenges
 
-The purpose of the Challenge Website dashboard is to increasingly support and unburden Admin in viewing clients and creating challenges and assignments. In addition, it is important that users can easily choose assignments in an overview.
+The purpose of the Company Challenges dashboard is to increasingly support and unburden Admin in viewing clients and creating challenges and assignments. In addition, it is important that users can easily choose assignments in an overview.
 
 ## Project API
 
@@ -10,8 +10,8 @@ The purpose of the Challenge Website dashboard is to increasingly support and un
 
 ## Hi-fi Prototype
 
-Admin `https://xd.adobe.com/view/b19dfa92-3437-49e4-9559-e0031c51c04f-e4ce/?fullscreen&hints=off`
-User `https://xd.adobe.com/view/80f8d12f-d58f-44c7-84ab-7ab769992b00-d5ab/?fullscreen&hints=off`
+Admin View `https://xd.adobe.com/view/b19dfa92-3437-49e4-9559-e0031c51c04f-e4ce/?fullscreen&hints=off`
+User View `https://xd.adobe.com/view/80f8d12f-d58f-44c7-84ab-7ab769992b00-d5ab/?fullscreen&hints=off`
 
 ## Coding guidelines
 
