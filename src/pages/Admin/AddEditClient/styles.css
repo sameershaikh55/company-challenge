@@ -1,0 +1,133 @@
+.client__information {
+	background: #ffffff;
+	border-radius: 10px;
+	padding: 25px;
+	height: calc(100vh - 110px);
+	box-shadow: 1px 2px 4px #1f1d5936;
+}
+
+.client__information__header {
+	display: flex;
+	justify-content: space-between;
+}
+
+.client__information ul {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	list-style: none;
+}
+
+.client__information ul li {
+	margin: 0px 10px;
+}
+
+.client__information ul li:nth-last-child(1) {
+	margin: 0px;
+}
+
+.client__information ul li button {
+	height: 40px;
+}
+
+.client__information ul li:nth-child(1) button {
+	background: transparent;
+	border: none;
+	text-decoration: underline;
+}
+
+.client__information ul li:nth-child(2) button {
+	background: #22ad7a;
+	border-radius: 6px;
+	border: none;
+	padding: 0rem 1.5rem;
+	color: #fff;
+}
+
+.client__information ul li:nth-child(3) button {
+	background: #ce5252;
+	border-radius: 6px;
+	border: none;
+	padding: 0rem 0.7rem;
+	color: #fff;
+}
+
+.client__information__input {
+	margin-top: 1rem;
+}
+
+.client__information__input input {
+	background: #e9edf2;
+	border: none;
+	height: 38px;
+	width: 100%;
+	border-radius: 6px;
+	margin-top: 0.5rem;
+	padding: 0rem 1rem;
+}
+
+.client__information__input input:focus {
+	outline: none;
+}
+
+.client__information__uploader {
+	display: flex;
+	align-items: center;
+	margin-top: 2.5rem;
+}
+
+.client__information__uploader img {
+	height: 100px;
+	width: 100px;
+	padding: 1rem;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+}
+
+.client__information__uploader__right {
+	margin-left: 1rem;
+}
+
+.client__information__uploader__right p {
+	margin-top: 0.4rem;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.client__information__uploader__right button {
+	background-color: #1c395c;
+	font-size: 14px;
+	color: #fff;
+	border-radius: 6px;
+	height: 30px;
+	padding: 0rem 1rem;
+	border: none;
+	cursor: pointer;
+}
+
+@media screen and (max-width: 992px) {
+}
+
+@media screen and (max-width: 768px) {
+	.client__information {
+		padding: 15px;
+	}
+	.client__information__header {
+		gap: 0.6rem;
+		flex-direction: column;
+	}
+	.client__information ul {
+		justify-content: end;
+	}
+	.client__information__input {
+		margin-top: 1.5rem;
+	}
+	.client__information__uploader img {
+		height: 80px;
+		width: 80px;
+	}
+}
+
+@media screen and (max-width: 575px) {
+}

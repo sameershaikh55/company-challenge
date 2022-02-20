@@ -1,0 +1,67 @@
+.single__challenge {
+	flex: 0 0 auto;
+	width: 50%;
+}
+
+.single__challenge__inner {
+	box-shadow: 1px 1px 10px #e1e1ef;
+	padding: 12px;
+	border-radius: 8px;
+}
+
+.single__challenge ul {
+	list-style: none;
+	display: flex;
+	padding: 2rem 0rem;
+}
+
+.single__challenge ul li {
+	border: 1px solid #000;
+	padding: 4px 12px;
+	border-radius: 6px;
+}
+
+.single__challenge__header {
+	display: flex;
+	justify-content: space-between;
+}
+
+.single__challenge__body {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.single__challenge__body__number {
+	margin-left: 8px;
+	background-color: rgba(0, 0, 0, 0.089);
+	padding: 0.4rem 0.6rem;
+	border-radius: 6px;
+}
+
+.single__challenge__body__url {
+	font-weight: bold;
+}
+
+.single__challenge__body a {
+	border: none;
+	background-color: #a9dcf2;
+	border-radius: 8px;
+	padding: 0.4rem 0.8rem;
+	text-decoration: none;
+	color: #000;
+	font-weight: 500;
+}
+
+@media screen and (max-width: 992px) {
+	.single__challenge {
+		flex: 0 0 auto;
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 768px) {
+}
+
+@media screen and (max-width: 575px) {
+}

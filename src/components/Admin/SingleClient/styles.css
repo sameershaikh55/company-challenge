@@ -1,0 +1,41 @@
+.client {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	padding: 0.6rem 0rem;
+	margin: 0.6rem 0rem;
+	box-shadow: 1px 4px 10px #1f1d5923;
+	padding: 0.8rem;
+	border-radius: 8px;
+	background-color: #fff;
+	cursor: pointer;
+}
+
+.client__left {
+	display: flex;
+}
+
+.client__left .client__left__text {
+	margin-left: 1rem;
+}
+
+.client__left img {
+	box-shadow: 1px 4px 5px #1f1d5934;
+	background-color: #fff;
+	padding: 0.5rem;
+	border-radius: 8px;
+	height: 45px;
+	width: 45px;
+}
+
+.client__left h3 {
+	margin-bottom: 0px;
+	font-weight: bold;
+}
+
+.client__left p {
+	margin-bottom: 0px;
+	color: #555555;
+	font-size: 14px;
+}

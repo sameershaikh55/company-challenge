@@ -1,0 +1,138 @@
+.user__dashboard {
+	padding: 0rem 1rem;
+}
+
+.user__dashboard__header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	height: 110px;
+}
+
+.user__dashboard__header img {
+	background: #fff;
+	border-radius: 6px;
+	padding: 0.5rem;
+	height: 70px;
+	width: 70px;
+}
+
+.user__dashboard__header button {
+	background: #ffc65a;
+	height: 46px;
+	width: 46px;
+	border-radius: 6px;
+	border: none;
+	cursor: pointer;
+}
+
+.user__dashboard__header button img {
+	background: #ffc65a;
+	height: 46px;
+	width: 46px;
+}
+
+.user__dashboard__body__inner {
+	--bs-gutter-x: 1rem;
+	--bs-gutter-y: 1rem;
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: calc(var(--bs-gutter-y) * -1);
+	margin-right: calc(var(--bs-gutter-x) * -0.5);
+	margin-left: calc(var(--bs-gutter-x) * -0.5);
+	height: calc(100vh - 170px);
+	overflow-y: auto;
+	padding-bottom: 1rem;
+}
+
+.user__dashboard__body__inner::-webkit-scrollbar {
+	width: 7px;
+}
+.user__dashboard__body__inner::-webkit-scrollbar-track {
+	background: #e2e6eb;
+}
+.user__dashboard__body__inner::-webkit-scrollbar-thumb {
+	background: #1c395c;
+	border-radius: 10px;
+}
+
+.user__dashboard__body__inner > * {
+	flex-shrink: 0;
+	width: 100%;
+	max-width: 100%;
+	padding-right: calc(var(--bs-gutter-x) * 0.5);
+	padding-left: calc(var(--bs-gutter-x) * 0.5);
+	margin-top: var(--bs-gutter-y);
+}
+
+.password__assignment {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 1.2rem 0rem;
+}
+
+.password__assignment img {
+	padding: 0.4rem;
+	background-color: #ffc65a;
+	border-radius: 6px;
+	height: 50px;
+	width: 50px;
+	cursor: pointer;
+}
+
+.password__assignment p {
+	background: #e9edf2;
+	height: 38px;
+	border-radius: 6px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 1.6rem 0rem;
+	font-weight: 500;
+}
+
+.password__assignment button {
+	background: #22ad7a;
+	border-radius: 6px;
+	height: 38px;
+	padding: 0rem 1.6rem;
+	color: #fff;
+	border: none;
+	font-weight: 600;
+}
+
+.password__instruction__assignment {
+	padding: 1.5rem 0rem;
+}
+
+.support__instruction__assignment {
+	padding: 1.2rem 0rem;
+}
+
+.support__instruction__assignment .support__instruction__assignment__header {
+	font-weight: 600;
+}
+
+.support__instruction__assignment .support__instruction__assignment__body {
+	margin-top: 0.6rem;
+	max-height: 300px;
+	overflow: auto;
+}
+
+.support__instruction__assignment
+	.support__instruction__assignment__body::-webkit-scrollbar {
+	width: 7px;
+}
+.support__instruction__assignment
+	.support__instruction__assignment__body::-webkit-scrollbar-track {
+	background: #e2e6eb;
+}
+.support__instruction__assignment
+	.support__instruction__assignment__body::-webkit-scrollbar-thumb {
+	background: #1c395c;
+	border-radius: 10px;
+}

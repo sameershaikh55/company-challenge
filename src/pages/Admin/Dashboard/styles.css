@@ -1,0 +1,174 @@
+.dashboard {
+	--bs-gutter-x: 1.5rem;
+	--bs-gutter-y: 0rem;
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: calc(var(--bs-gutter-y) * -1);
+	margin-right: calc(var(--bs-gutter-x) * -0.5);
+	margin-left: calc(var(--bs-gutter-x) * -0.5);
+	height: calc(100vh - 100px);
+}
+
+.dashboard > * {
+	flex-shrink: 0;
+	width: 100%;
+	max-width: 100%;
+	padding-right: calc(var(--bs-gutter-x) * 0.5);
+	padding-left: calc(var(--bs-gutter-x) * 0.5);
+	margin-top: var(--bs-gutter-y);
+}
+
+.dashboard__clients {
+	flex: 0 0 auto;
+	width: 30%;
+}
+
+.dashboard__challenges {
+	flex: 0 0 auto;
+	width: 70%;
+}
+
+.dashboard__clients__inner,
+.dashboard__challenges__inner {
+	background-color: #fff;
+	box-shadow: 1px 1px 10px #1f1d5921;
+	min-height: 1px;
+	height: 100%;
+	border-radius: 10px;
+	padding: 25px;
+}
+
+.dashboard__clients__inner button {
+	position: relative;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	background-color: #22ad7a;
+	color: #fff;
+	border-radius: 6px;
+	border: none;
+	height: 40px;
+	padding: 0rem 1rem;
+	font-weight: bold;
+}
+
+.dashboard__clients__inner button span {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.dashboard__clients__header {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	margin-top: 2rem;
+}
+
+.dashboard__clients__body {
+	margin-top: 1.2rem;
+	display: flex;
+	flex-direction: column;
+}
+
+.dashboard__challenges__header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+}
+
+.dashboard__challenges__header a {
+	color: #000000;
+	font-weight: 600;
+}
+
+.dashboard__challenges__header a span {
+	font-weight: 800;
+}
+
+.dashboard__challenges__header button {
+	position: relative;
+	display: flex;
+	align-items: center;
+	background-color: #1c395c;
+	color: #fff;
+	border-radius: 6px;
+	border: none;
+	height: 40px;
+	padding: 0rem 1rem;
+	font-weight: bold;
+	width: 246px;
+}
+
+.dashboard__challenges__header button span {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.dashboard__challenges__body {
+	margin-top: 3rem;
+}
+
+.dashboard__challenges__body__inner {
+	max-height: calc(100vh - 270px);
+	overflow: auto;
+	overflow-x: hidden;
+	padding-bottom: 2rem;
+
+	--bs-gutter-x: 1.5rem;
+	--bs-gutter-y: 1.5rem;
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: calc(var(--bs-gutter-y) * -1);
+	margin-right: calc(var(--bs-gutter-x) * -0.5);
+	margin-left: calc(var(--bs-gutter-x) * -0.5);
+}
+
+.dashboard__challenges__body__inner::-webkit-scrollbar {
+	width: 7px;
+}
+.dashboard__challenges__body__inner::-webkit-scrollbar-track {
+	background: #e2e6eb;
+}
+.dashboard__challenges__body__inner::-webkit-scrollbar-thumb {
+	background: #1c395c;
+	border-radius: 10px;
+}
+
+.dashboard__challenges__body__inner > * {
+	flex-shrink: 0;
+	width: 100%;
+	max-width: 100%;
+	padding-right: calc(var(--bs-gutter-x) * 0.5);
+	padding-left: calc(var(--bs-gutter-x) * 0.5);
+	margin-top: var(--bs-gutter-y);
+}
+
+@media screen and (max-width: 992px) {
+	.dashboard {
+		--bs-gutter-y: 1.5rem;
+	}
+	.dashboard__clients {
+		flex: 0 0 auto;
+		width: 100%;
+	}
+	.dashboard__challenges {
+		flex: 0 0 auto;
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.dashboard__challenges__header {
+		gap: 1rem;
+		flex-direction: column;
+		align-items: unset;
+	}
+}
+
+@media screen and (max-width: 575px) {
+}

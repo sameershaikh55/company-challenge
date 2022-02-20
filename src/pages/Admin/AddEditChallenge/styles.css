@@ -1,0 +1,193 @@
+textarea {
+	resize: none;
+}
+
+.add_edit_challenge {
+	background: #ffffff;
+	border-radius: 10px;
+	padding: 25px;
+	height: calc(100vh - 110px);
+	overflow: auto;
+	box-shadow: 1px 2px 4px #1f1d5936;
+}
+.add_edit_challenge {
+	background: #ffffff;
+	border-radius: 10px;
+	padding: 25px;
+	height: calc(100vh - 110px);
+	box-shadow: 1px 2px 4px #1f1d5936;
+}
+
+.add_edit_challenge__header {
+	display: flex;
+	justify-content: space-between;
+}
+
+.add_edit_challenge ul {
+	display: flex;
+	align-items: center;
+	list-style: none;
+	gap: 1rem;
+}
+
+.add_edit_challenge ul li:nth-last-child(1) {
+	margin: 0px;
+}
+
+.add_edit_challenge ul li button {
+	height: 40px;
+}
+
+.add_edit_challenge ul li:nth-child(1) button {
+	background: transparent;
+	border: none;
+	text-decoration: underline;
+}
+
+.add_edit_challenge ul li:nth-child(2) button {
+	background: #22ad7a;
+	border-radius: 6px;
+	border: none;
+	padding: 0rem 1.5rem;
+	color: #fff;
+}
+
+.add_edit_challenge ul li:nth-child(3) button {
+	background: #ce5252;
+	border-radius: 6px;
+	border: none;
+	padding: 0rem 0.7rem;
+	color: #fff;
+}
+
+.add_edit_challenge ul li:nth-child(4) button {
+	background-color: #d2e7ef;
+	font-size: 14px;
+	color: #fff;
+	border-radius: 6px;
+	padding: 0rem 0.6rem;
+	border: none;
+	cursor: pointer;
+}
+
+.add_edit_challenge__body {
+	margin-top: 1.5rem;
+	display: flex;
+	flex-direction: column;
+}
+
+.add_edit_challenge__body_row_one,
+.add_edit_challenge__body_row_two,
+.add_edit_challenge__body_row_three,
+.add_edit_challenge__body_row_four {
+	--bs-gutter-x: 1rem;
+	--bs-gutter-y: 1rem;
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: calc(var(--bs-gutter-y) * -1);
+	margin-right: calc(var(--bs-gutter-x) * -0.5);
+	margin-left: calc(var(--bs-gutter-x) * -0.5);
+	height: 100%;
+	width: 100%;
+}
+
+.add_edit_challenge__body_row_one > *,
+.add_edit_challenge__body_row_two > *,
+.add_edit_challenge__body_row_three > *,
+.add_edit_challenge__body_row_four > * {
+	flex-shrink: 0;
+	width: 100%;
+	max-width: 100%;
+	padding-right: calc(var(--bs-gutter-x) * 0.5);
+	padding-left: calc(var(--bs-gutter-x) * 0.5);
+	margin-top: var(--bs-gutter-y);
+}
+
+.add_edit_challenge__body_row_one div {
+	flex: 0 0 auto;
+	width: 33.33333333333333333333%;
+}
+
+.add_edit_challenge__body_row_two div {
+	flex: 0 0 auto;
+	width: 50%;
+}
+
+.add_edit_challenge__body_row_one div label,
+.add_edit_challenge__body_row_two div label,
+.add_edit_challenge__body_row_three div label,
+.add_edit_challenge__body_row_four div label {
+	font-weight: 500;
+}
+
+.add_edit_challenge__body_row_one div input,
+.add_edit_challenge__body_row_two div textarea,
+.add_edit_challenge__body_row_three div textarea,
+.add_edit_challenge__body_row_four div textarea {
+	margin-top: 0.2rem;
+	width: 100%;
+	background-color: #e9edf2;
+	height: 40px;
+	border: none;
+	border-radius: 6px;
+	padding: 1rem;
+}
+
+.add_edit_challenge__body_row_two,
+.add_edit_challenge__body_row_three,
+.add_edit_challenge__body_row_four {
+	margin-top: 0.4rem;
+}
+
+.add_edit_challenge__body_row_two div textarea,
+.add_edit_challenge__body_row_four div textarea {
+	min-height: 150px;
+	max-height: 150px;
+}
+
+.add_edit_challenge__body_row_three div textarea {
+	min-height: 70px;
+	max-height: 70px;
+}
+
+@media screen and (max-width: 992px) {
+}
+
+@media screen and (max-width: 768px) {
+	.add_edit_challenge {
+		padding: 15px;
+	}
+	.add_edit_challenge__header {
+		gap: 0.6rem;
+		flex-direction: column;
+	}
+	.add_edit_challenge ul {
+		justify-content: end;
+	}
+	.add_edit_challenge__body_row_one,
+	.add_edit_challenge__body_row_two,
+	.add_edit_challenge__body_row_three,
+	.add_edit_challenge__body_row_four {
+		--bs-gutter-x: 0rem;
+		--bs-gutter-y: 1rem;
+		display: flex;
+		flex-wrap: wrap;
+		margin-top: calc(var(--bs-gutter-y) * -1);
+		margin-right: calc(var(--bs-gutter-x) * -0.5);
+		margin-left: calc(var(--bs-gutter-x) * -0.5);
+		height: 100%;
+		width: 100%;
+	}
+	.add_edit_challenge__body_row_one div,
+	.add_edit_challenge__body_row_two div {
+		width: 100%;
+	}
+	.add_edit_challenge__body_row_two,
+	.add_edit_challenge__body_row_three,
+	.add_edit_challenge__body_row_four {
+		margin-top: 0rem;
+	}
+}
+
+@media screen and (max-width: 575px) {
+}
