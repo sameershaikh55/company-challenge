@@ -1,36 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles.css";
 import clientIcon from "../../../assets/images/clientIcon.svg";
 import info from "../../../assets/images/info.svg";
 import UserDashboard from "../../../components/User/UserDashboard";
 import Popup from "../../../components/Popup";
+import { useHistory } from "react-router-dom";
+import { storingRoute } from "../../../utils/storingRoute";
+import { allDataApi } from "../../../redux/action";
+import { connect } from "react-redux";
+import { useParams } from "react-router-dom";
+import { filterActiveClient } from "../../../utils/filterActiveClient";
+import Loader from "../../../components/Loader";
 
-const Dashboard = () => {
-	const [popUp, setPopUp] = useState(false);
-	const [popUp2, setPopUp2] = useState(false);
+const Dashboard = ({ allData, allDataApi }) => {
+	const { client_id, challenge_id } = useParams();
+
 	const [popUp3, setPopUp3] = useState(false);
+	const history = useHistory();
 
-	const children = (
-		<div className="password__assignment">
-			<img onClick={() => setPopUp2(true)} src={info} alt="" />
-			<p>Pitza</p>
-			<button>Start</button>
-		</div>
-	);
+	useEffect(() => {
+		storingRoute(history);
+		allDataApi();
+	}, [allDataApi, history]);
 
-	const children1 = (
-		<div className="password__instruction__assignment">
-			<p>
-				NL: Mauris gravida sapien quis risus ultricies condimentum. Cras eu
-				lacus nunc.
-			</p>
-			<br />
-			<p>
-				EN: Proin congue mi tortor, eu vehicula nisl suscipit quis. Quisque a
-				metus commodo, volutpat risus ut, iaculis elit.
-			</p>
-		</div>
-	);
+	// FILTER TO GET ACTIVE CLIENT
+	const activeClient = filterActiveClient(allData, client_id, "id");
+	const activeClientChallenges =
+		activeClient.length &&
+		filterActiveClient(
+			activeClient[0].challenges,
+			challenge_id,
+			"challenge_id"
+		);
 
 	const children2 = (
 		<div className="support__instruction__assignment">
@@ -56,37 +57,30 @@ const Dashboard = () => {
 		</div>
 	);
 
+	// LOADER
+	if (!allData.length) {
+		return <Loader />;
+	}
+
 	return (
 		<div className="user__dashboard">
-			{popUp && (
-				<Popup title="Password" setPopUp={setPopUp} children={children} />
-			)}
-			{popUp2 && (
-				<Popup
-					title="[PasswordInstruction]"
-					setPopUp={setPopUp2}
-					children={children1}
-				/>
-			)}
 			{popUp3 && (
 				<Popup title="[support]" setPopUp={setPopUp3} children={children2} />
 			)}
 
 			<div className="user__dashboard__header">
-				<img src={clientIcon} alt="" />
-				<button onClick={() => setPopUp(true)}>
-					<img src={info} alt="" />
-				</button>
+				<img className="client_img" src={clientIcon} alt="" />
+				<div className="assignment_right">
+					<h2>Assignments</h2>
+					<button onClick={() => setPopUp3(true)}>
+						<img src={info} alt="" />
+					</button>
+				</div>
 			</div>
 			<div className="user__dashboard__body">
-				<h2>Assignments</h2>
-				<br />
 				<div className="user__dashboard__body__inner">
-					{[
-						1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-						1, 1, 1,
-					].map(() => {
-						return <UserDashboard setPopUp3={setPopUp3} />;
+					{activeClientChallenges[0].assignments.map((item, i) => {
+						return <UserDashboard item={item} key={i} />;
 					})}
 				</div>
 			</div>
@@ -94,4 +88,17 @@ const Dashboard = () => {
 	);
 };
 
-export default Dashboard;
+const mapStatetoProps = (state) => {
+	return {
+		allData: state.allDataRed.allData,
+	};
+};
+const mapDispatchtoProps = (dispatch) => {
+	return {
+		allDataApi: function () {
+			dispatch(allDataApi());
+		},
+	};
+};
+
+export default connect(mapStatetoProps, mapDispatchtoProps)(Dashboard);

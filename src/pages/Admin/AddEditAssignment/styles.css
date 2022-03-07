@@ -30,10 +30,6 @@ textarea {
 	gap: 1rem;
 }
 
-.add_edit_assignment ul li button {
-	cursor: pointer;
-}
-
 .add_edit_assignment ul li:nth-last-child(1) {
 	margin: 0px;
 }
@@ -71,7 +67,6 @@ textarea {
 	border-radius: 6px;
 	padding: 0rem 0.6rem;
 	border: none;
-	cursor: pointer;
 }
 
 .add_edit_assignment__body {
@@ -152,6 +147,16 @@ textarea {
 	padding: 1rem;
 }
 
+.add_edit_assignment__body_row_four div input[type="file"] {
+	margin-top: 0rem;
+	width: 100%;
+	background-color: transparent;
+	height: 36px;
+	border: none;
+	border-radius: 0px;
+	padding: 0px;
+}
+
 .add_edit_assignment__body_row_four button {
 	background-color: #1c395c;
 	font-size: 14px;
@@ -159,7 +164,6 @@ textarea {
 	border-radius: 6px;
 	padding: 0rem 1rem;
 	border: none;
-	cursor: pointer;
 	height: 36px;
 	margin-bottom: 0.5rem;
 }
@@ -224,6 +228,23 @@ textarea {
 	background: transparent;
 	border: none;
 	font-weight: 500;
+}
+
+.pass_inp {
+	position: relative;
+}
+
+.pass_info_tooltip {
+	position: absolute !important;
+	bottom: 105%;
+	right: 0%;
+	background: #ce5252;
+	border-radius: 6px;
+	padding: 0.6rem;
+	max-width: 130px;
+	float: right;
+	color: #fff;
+	font-size: 13px;
 }
 
 @media screen and (max-width: 992px) {

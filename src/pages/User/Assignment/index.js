@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./styles.css";
 import clientIcon from "../../../assets/images/clientIcon.svg";
+import { useHistory } from "react-router-dom";
+import { storingRoute } from "../../../utils/storingRoute";
 
 const Assignment = () => {
+	const history = useHistory();
+
+	useEffect(() => {
+		storingRoute(history);
+	}, [history]);
+
 	return (
 		<div className="user__assignment">
 			<div className="user__assignment__header">

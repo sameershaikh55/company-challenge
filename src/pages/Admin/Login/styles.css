@@ -61,6 +61,18 @@
 	object-fit: cover;
 }
 
+.login_along_error {
+	margin-top: 15px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.login_along_error p {
+	color: rgb(255, 56, 56);
+	font-weight: 600;
+}
+
 .login__form__inner img {
 	max-width: 150px;
 }
@@ -76,6 +88,7 @@
 	border: none;
 	border-radius: 6px;
 	padding: 0rem 1rem;
+	margin-top: 4px;
 }
 
 .login__form__inner input:focus {
@@ -86,12 +99,34 @@
 	float: right;
 	background-color: #22ad7a;
 	border-radius: 10px;
-	margin-top: 15px;
 	border: none;
 	color: #fff;
 	height: 40px;
 	width: 85px;
 	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.login__btn.login__disabled {
+	background-color: #22ad7a8c !important;
+}
+
+.login__inp__handle {
+	position: relative;
+}
+
+.login__error__message {
+	position: absolute;
+	right: 0%;
+	font-size: 12px;
+	color: rgb(255, 56, 56);
+	font-weight: 600;
+}
+
+.error_field {
+	border: 2px solid rgb(255, 56, 56) !important;
 }
 
 @media screen and (max-width: 992px) {

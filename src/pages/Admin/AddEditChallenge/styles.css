@@ -67,7 +67,6 @@ textarea {
 	border-radius: 6px;
 	padding: 0rem 0.6rem;
 	border: none;
-	cursor: pointer;
 }
 
 .add_edit_challenge__body {
@@ -87,6 +86,7 @@ textarea {
 	margin-top: calc(var(--bs-gutter-y) * -1);
 	margin-right: calc(var(--bs-gutter-x) * -0.5);
 	margin-left: calc(var(--bs-gutter-x) * -0.5);
+	margin-left: 0px;
 	height: 100%;
 	width: 100%;
 }

@@ -24,6 +24,12 @@
 	cursor: pointer;
 }
 
+.header__option a {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+
 .header__option_outline {
 	padding: 5px 5px 5px 10px;
 	border-radius: 5px;

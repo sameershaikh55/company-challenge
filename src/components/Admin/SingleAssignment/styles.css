@@ -41,6 +41,12 @@
 	height: 30px;
 }
 
+.single__assignment__right button {
+	border: none;
+	cursor: pointer;
+	background: transparent;
+}
+
 @media screen and (max-width: 992px) {
 }
 

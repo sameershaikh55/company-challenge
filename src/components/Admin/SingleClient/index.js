@@ -1,16 +1,23 @@
 import React from "react";
 import "./styles.css";
-import clientIcon from "../../../assets/images/clientIcon.svg";
 import arrow from "../../../assets/images/arrow.svg";
 
-const SingleClient = () => {
+const SingleClient = ({ activeClient, item, activeClientFunc }) => {
+	const { logo, client_name, challenges, id } = item;
+
 	return (
-		<div className="client">
+		<div
+			style={{
+				background: (activeClient && activeClient.id === id && "#ECEEF2") || "",
+			}}
+			onClick={() => activeClientFunc(item)}
+			className="client"
+		>
 			<div className="client__left">
-				<img src={clientIcon} alt="" />
+				<img src={logo} alt="" />
 				<div className="client__left__text">
-					<h3>KPN</h3>
-					<p>6 challenges</p>
+					<h3>{client_name}</h3>
+					<p>{challenges.length} challenges</p>
 				</div>
 			</div>
 			<img src={arrow} alt="" />

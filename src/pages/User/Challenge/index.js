@@ -1,14 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./styles.css";
-import clientIcon from "../../../assets/images/clientIcon.svg";
 import info from "../../../assets/images/info.svg";
+import { useHistory } from "react-router-dom";
+import { storingRoute } from "../../../utils/storingRoute";
+import { connect } from "react-redux";
 
-const Challenge = () => {
+const Challenge = ({ challengePreview }) => {
+	const history = useHistory();
+	const challengePreviewStorage = JSON.parse(
+		localStorage.getItem("challengePreview")
+	);
+
+	useEffect(() => {
+		storingRoute(history);
+	}, [history]);
+
 	return (
 		<div className="user__challenge">
 			<div className="user__challenge__inner">
 				<div className="user__challenge__header">
-					<img className="user__challenge__icon" src={clientIcon} alt="" />
+					<img
+						className="user__challenge__icon"
+						src={challengePreviewStorage.picture}
+						alt=""
+					/>
 					<ul>
 						<li>
 							<button>Start</button>
@@ -21,77 +36,20 @@ const Challenge = () => {
 					</ul>
 				</div>
 
-				<h3>ChallengeTitel</h3>
+				<h3>{challengePreviewStorage.title}</h3>
 
 				<div className="user__challenge__body">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-					tempor, neque vel euismod finibus, enim mauris viverra nibh, id
-					finibus nulla neque sed diam. Donec ut iaculis odio. Phasellus quis
-					urna sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Etiam vel blandit sem. Lorem ipsum dolor sit amet, consectetur
-					adipiscing elit. Aliquam tempor, neque vel euismod finibus, enim
-					mauris viverra nibh, id finibus nulla neque sed diam. Donec ut iaculis
-					odio. Phasellus quis urna sapien. Lorem ipsum dolor sit amet,
-					consectetur adipiscing elit. Etiam vel blandit sem.
-					<br />
-					<br />
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-					tempor, neque vel euismod finibus, enim mauris viverra nibh, id
-					finibus nulla neque sed diam. Donec ut iaculis odio. Phasellus quis
-					urna sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Etiam vel blandit sem.
-					<br />
-					<br />
-					Aliquam tempor, neque vel euismod finibus, enim mauris viverra nibh,
-					id finibus nulla neque sed diam. Donec ut iaculis odio. Phasellus quis
-					urna sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Etiam vel blandit sem. Lorem ipsum dolor sit amet, consectetur
-					adipiscing elit. Aliquam tempor, neque vel euismod finibus, enim
-					mauris viverra nibh, id finibus nulla neque sed diam. Donec ut iaculis
-					odio. Phasellus quis urna sapien. Lorem ipsum dolor sit amet,
-					consectetur adipiscing elit. Etiam vel blandit sem. Lorem ipsum dolor
-					sit amet, consectetur adipiscing elit. Aliquam tempor, neque vel
-					euismod finibus, enim mauris viverra nibh, id finibus nulla neque sed
-					diam. Donec ut iaculis odio. Phasellus quis urna sapien. Lorem ipsum
-					dolor sit amet, consectetur adipiscing elit. Etiam vel blandit sem.
-					<br />
-					<br />
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-					tempor, neque vel euismod finibus, enim mauris viverra nibh, id
-					finibus nulla neque sed diam. Donec ut iaculis odio. Phasellus quis
-					urna sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Etiam vel blandit sem.
-					<br />
-					<br />
-					Aliquam tempor, neque vel euismod finibus, enim mauris viverra nibh,
-					id finibus nulla neque sed diam. Donec ut iaculis odio. Phasellus quis
-					urna sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Etiam vel blandit sem. Lorem ipsum dolor sit amet, consectetur
-					adipiscing elit. Aliquam tempor, neque vel euismod finibus, enim
-					mauris viverra nibh, id finibus nulla neque sed diam. Donec ut iaculis
-					odio. Phasellus quis urna sapien. Lorem ipsum dolor sit amet,
-					consectetur adipiscing elit. Etiam vel blandit sem. Lorem ipsum dolor
-					sit amet, consectetur adipiscing elit. Aliquam tempor, neque vel
-					euismod finibus, enim mauris viverra nibh, id finibus nulla neque sed
-					diam. Donec ut iaculis odio. Phasellus quis urna sapien. Lorem ipsum
-					dolor sit amet, consectetur adipiscing elit. Etiam vel blandit sem.
-					<br />
-					<br />
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-					tempor, neque vel euismod finibus, enim mauris viverra nibh, id
-					finibus nulla neque sed diam. Donec ut iaculis odio. Phasellus quis
-					urna sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Etiam vel blandit sem.
-					<br />
-					<br />
-					Aliquam tempor, neque vel euismod finibus, enim mauris viverra nibh,
-					id finibus nulla neque sed diam. Donec ut iaculis odio. Phasellus quis
-					urna sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Etiam vel blandit sem.
+					{challengePreviewStorage.description}
 				</div>
 			</div>
 		</div>
 	);
 };
 
-export default Challenge;
+const mapStatetoProps = (state) => {
+	return {
+		challengePreview: state.allDataRed.challengePreview,
+	};
+};
+
+export default connect(mapStatetoProps, null)(Challenge);
