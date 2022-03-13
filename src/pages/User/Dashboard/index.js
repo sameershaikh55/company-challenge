@@ -6,13 +6,12 @@ import UserDashboard from "../../../components/User/UserDashboard";
 import Popup from "../../../components/Popup";
 import { useHistory } from "react-router-dom";
 import { storingRoute } from "../../../utils/storingRoute";
-import { allDataApi } from "../../../redux/action";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import { filterActiveClient } from "../../../utils/filterActiveClient";
 import Loader from "../../../components/Loader";
 
-const Dashboard = ({ allData, allDataApi }) => {
+const Dashboard = ({ allData }) => {
 	const { client_id, challenge_id } = useParams();
 
 	const [popUp3, setPopUp3] = useState(false);
@@ -20,8 +19,7 @@ const Dashboard = ({ allData, allDataApi }) => {
 
 	useEffect(() => {
 		storingRoute(history);
-		allDataApi();
-	}, [allDataApi, history]);
+	}, [history]);
 
 	// FILTER TO GET ACTIVE CLIENT
 	const activeClient = filterActiveClient(allData, client_id, "id");
@@ -36,23 +34,19 @@ const Dashboard = ({ allData, allDataApi }) => {
 	const children2 = (
 		<div className="support__instruction__assignment">
 			<p className="support__instruction__assignment__header">
-				Afdeling HR: +31 (0) 6 123 456 78
+				Afdeling HR:{" "}
+				{activeClientChallenges && activeClientChallenges[0].challenge_contact}
 				<br />
-				Mail naar: challenge@hr.nl
+				Mail naar:{" "}
+				{activeClientChallenges && activeClientChallenges[0].challenge_title}
 			</p>
 			<br />
-			<p>Info</p>
+			<p>
+				{activeClientChallenges && activeClientChallenges[0].challenge_info}
+			</p>
 			<p className="support__instruction__assignment__body">
-				Mauris gravida sapien quis risus ultricies condimentum. Cras eu lacus
-				nunc. Proin congue mi tortor, eu vehicula nisl suscipit quis. Quisque a
-				metus commodo, volutpat risus ut, iaculis elit.
-				<br />
-				<br />
-				Vestibulum convallis vestibulum ante. Curabitur sagittis mollis mi ac
-				cursus.
-				<br />
-				<br />
-				Fusce massa diam, tincidunt eget arcu eu, convallis vehicula ipsum.
+				{activeClientChallenges &&
+					activeClientChallenges[0].challenge_description}
 			</p>
 		</div>
 	);
@@ -65,11 +59,20 @@ const Dashboard = ({ allData, allDataApi }) => {
 	return (
 		<div className="user__dashboard">
 			{popUp3 && (
-				<Popup title="[support]" setPopUp={setPopUp3} children={children2} />
+				<Popup
+					title={activeClientChallenges[0].challenge_support}
+					setPopUp={setPopUp3}
+					children={children2}
+				/>
 			)}
 
 			<div className="user__dashboard__header">
-				<img className="client_img" src={clientIcon} alt="" />
+				<img
+					onClick={() => history.goBack()}
+					className="client_img pointer"
+					src={clientIcon}
+					alt=""
+				/>
 				<div className="assignment_right">
 					<h2>Assignments</h2>
 					<button onClick={() => setPopUp3(true)}>
@@ -80,7 +83,14 @@ const Dashboard = ({ allData, allDataApi }) => {
 			<div className="user__dashboard__body">
 				<div className="user__dashboard__body__inner">
 					{activeClientChallenges[0].assignments.map((item, i) => {
-						return <UserDashboard item={item} key={i} />;
+						return (
+							<UserDashboard
+								activeClient={activeClient}
+								activeClientChallenges={activeClientChallenges}
+								item={item}
+								key={i}
+							/>
+						);
 					})}
 				</div>
 			</div>
@@ -93,12 +103,5 @@ const mapStatetoProps = (state) => {
 		allData: state.allDataRed.allData,
 	};
 };
-const mapDispatchtoProps = (dispatch) => {
-	return {
-		allDataApi: function () {
-			dispatch(allDataApi());
-		},
-	};
-};
 
-export default connect(mapStatetoProps, mapDispatchtoProps)(Dashboard);
+export default connect(mapStatetoProps, null)(Dashboard);

@@ -1,4 +1,4 @@
-import { ALL_DATA, ACTIVE_CLIENT, CHALLENGE_VIEW } from "./type";
+import { ALL_DATA, CHALLENGE_VIEW } from "./type";
 
 // IMPORTING FIREBASE
 import { database } from "../firebase";
@@ -20,14 +20,6 @@ export const allDataApi = () => {
 			}));
 			dispatch(allDataFunc(mapingData));
 		});
-	};
-};
-
-// ACTIVE CLIENT DATA
-export const activeClientFunc = (data) => {
-	return {
-		type: ACTIVE_CLIENT,
-		payload: data,
 	};
 };
 

@@ -1,16 +1,20 @@
 import React from "react";
 import "./styles.css";
 import arrow from "../../../assets/images/arrow.svg";
+import { useHistory, useParams } from "react-router-dom";
 
-const SingleClient = ({ activeClient, item, activeClientFunc }) => {
+const SingleClient = ({ item }) => {
+	const history = useHistory();
+	const { client_id } = useParams();
+
 	const { logo, client_name, challenges, id } = item;
 
 	return (
 		<div
 			style={{
-				background: (activeClient && activeClient.id === id && "#ECEEF2") || "",
+				background: (client_id === id && "#ECEEF2") || "",
 			}}
-			onClick={() => activeClientFunc(item)}
+			onClick={() => history.push(`/dashboard/${id}`)}
 			className="client"
 		>
 			<div className="client__left">

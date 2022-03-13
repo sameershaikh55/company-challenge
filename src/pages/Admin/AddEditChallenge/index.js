@@ -11,13 +11,14 @@ import { filterActiveClient } from "../../../utils/filterActiveClient";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
-import { allDataApi, challengePreview } from "../../../redux/action";
+import { challengePreview } from "../../../redux/action";
 import { doc, updateDoc } from "firebase/firestore";
 import { database } from "../../../firebase";
 import { dateTime } from "../../../utils/gettingTime";
 import Popup from "../../../components/Popup";
+import UserChallenge from "../../User/Challenge";
 
-const AddEditChallenge = ({ allData, allDataApi, challengePreview }) => {
+const AddEditChallenge = ({ allData, challengePreview }) => {
 	const history = useHistory();
 
 	// GETTING PARAMS
@@ -25,9 +26,8 @@ const AddEditChallenge = ({ allData, allDataApi, challengePreview }) => {
 
 	// STORING ROUTES
 	useEffect(() => {
-		allDataApi();
 		storingRoute(history);
-	}, [allDataApi, history]);
+	}, [history]);
 
 	// STATES
 	const [inpChange, setInpChange] = useState({
@@ -40,6 +40,7 @@ const AddEditChallenge = ({ allData, allDataApi, challengePreview }) => {
 		challenge_title: "",
 	});
 	const [popUp, setPopUp] = useState(false);
+	const [viewScreen, setViewScreen] = useState(false);
 
 	// FILTER TO GET ACTIVE CLIENT
 	const activeClient = filterActiveClient(allData, client_id, "id");
@@ -82,7 +83,6 @@ const AddEditChallenge = ({ allData, allDataApi, challengePreview }) => {
 		activeClientChallenges.length,
 		allData,
 		challengePreview,
-		inpChange,
 	]);
 
 	// HANDLE CHANGE FOR INPUTS
@@ -129,7 +129,7 @@ const AddEditChallenge = ({ allData, allDataApi, challengePreview }) => {
 			});
 		}
 
-		history.push("/");
+		history.goBack();
 	};
 
 	// CLIENT DELETE FUNCTION
@@ -145,7 +145,7 @@ const AddEditChallenge = ({ allData, allDataApi, challengePreview }) => {
 			),
 		});
 
-		history.push("/");
+		history.goBack();
 	};
 
 	// DELETE POPUP
@@ -164,6 +164,17 @@ const AddEditChallenge = ({ allData, allDataApi, challengePreview }) => {
 		return <Loader />;
 	}
 
+	if (viewScreen) {
+		return (
+			<UserChallenge
+				activeClient={activeClient}
+				activeClientChallenges={activeClientChallenges}
+				inpChange={inpChange}
+				setViewScreen={setViewScreen}
+			/>
+		);
+	}
+
 	return (
 		<Layout>
 			{popUp && (
@@ -175,9 +186,7 @@ const AddEditChallenge = ({ allData, allDataApi, challengePreview }) => {
 					<h2>Challenge information</h2>
 					<ul>
 						<li>
-							<Link to="/">
-								<button>Cancel</button>
-							</Link>
+							<button onClick={() => history.goBack()}>Cancel</button>
 						</li>
 						<li>
 							<button
@@ -206,7 +215,7 @@ const AddEditChallenge = ({ allData, allDataApi, challengePreview }) => {
 										? false
 										: true
 								}
-								onClick={() => history.push("/challenge")}
+								onClick={() => setViewScreen(true)}
 							>
 								<img src={eye} alt="" />
 							</button>
@@ -313,9 +322,6 @@ const mapStatetoProps = (state) => {
 };
 const mapDispatchtoProps = (dispatch) => {
 	return {
-		allDataApi: function () {
-			dispatch(allDataApi());
-		},
 		challengePreview: function (data) {
 			dispatch(challengePreview(data));
 		},

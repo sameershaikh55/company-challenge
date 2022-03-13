@@ -12,13 +12,13 @@ function Header() {
 
 	return (
 		<div className="header">
-			<Link to="/">
+			<Link to="/dashboard">
 				<img src={logo} alt="Logo" className="header__logo" />
 			</Link>
 
 			<div className="header__nav">
 				<div className="header__option">
-					<Link to="/">Dashboard</Link>
+					<Link to="/dashboard">Dashboard</Link>
 				</div>
 				<div
 					onClick={() => logout()}

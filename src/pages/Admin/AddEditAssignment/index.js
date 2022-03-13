@@ -3,13 +3,12 @@ import "./styles.css";
 import Layout from "../../../layout";
 import deleteIcon from "../../../assets/images/delete.svg";
 import eye from "../../../assets/images/eye.svg";
-import info from "../../../assets/images/info.svg";
 import Popup from "../../../components/Popup";
+import AssignmentView from "../../User/Assignment";
 import { useHistory } from "react-router-dom";
 import { storingRoute } from "../../../utils/storingRoute";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
-import { allDataApi } from "../../../redux/action";
 import Loader from "../../../components/Loader";
 import { filterActiveClient } from "../../../utils/filterActiveClient";
 import { doc, updateDoc } from "firebase/firestore";
@@ -18,15 +17,15 @@ import { dateTime } from "../../../utils/gettingTime";
 import { generateID } from "../../../utils/generatingID";
 import { ref, getDownloadURL, uploadBytesResumable } from "@firebase/storage";
 
-const AddEditAssignment = ({ allData, allDataApi }) => {
+const AddEditAssignment = ({ allData }) => {
 	const history = useHistory();
+
 	// URL PARAMS
 	const { client_id, challenge_id, assignment_id } = useParams();
 
 	useEffect(() => {
 		storingRoute(history);
-		allDataApi();
-	}, [allDataApi, history]);
+	}, [history]);
 
 	// STATES
 	const [inpChange, setInpChange] = useState({
@@ -39,7 +38,7 @@ const AddEditAssignment = ({ allData, allDataApi }) => {
 		video_url: "",
 	});
 	const [popUp, setPopUp] = useState(false);
-	const [passInfo, setPassInfo] = useState(false);
+	const [viewScreen, setViewScreen] = useState(false);
 
 	// FILTER TO GET ACTIVE CLIENT
 	const activeClient = filterActiveClient(allData, client_id, "id");
@@ -163,7 +162,7 @@ const AddEditAssignment = ({ allData, allDataApi }) => {
 			});
 		}
 
-		history.push("/");
+		history.goBack();
 	};
 
 	// CLIENT DELETE FUNCTION
@@ -186,7 +185,7 @@ const AddEditAssignment = ({ allData, allDataApi }) => {
 			),
 		});
 
-		history.push("/");
+		history.goBack();
 	};
 
 	const children = (
@@ -204,6 +203,17 @@ const AddEditAssignment = ({ allData, allDataApi }) => {
 		return <Loader />;
 	}
 
+	// VIEW SCREEN
+	if (viewScreen) {
+		return (
+			<AssignmentView
+				inpChange={inpChange}
+				setViewScreen={setViewScreen}
+				viewScreen={viewScreen}
+			/>
+		);
+	}
+
 	return (
 		<Layout>
 			{popUp && (
@@ -215,7 +225,7 @@ const AddEditAssignment = ({ allData, allDataApi }) => {
 					<h2>Assignment information</h2>
 					<ul>
 						<li>
-							<button onClick={() => history.push("/")}>Cancel</button>
+							<button onClick={() => history.goBack()}>Cancel</button>
 						</li>
 						<li>
 							<button
@@ -238,7 +248,14 @@ const AddEditAssignment = ({ allData, allDataApi }) => {
 							</button>
 						</li>
 						<li>
-							<button onClick={() => history.push()}>
+							<button
+								disabled={
+									inpChange.assignment_title && inpChange.assignment_subtitle
+										? false
+										: true
+								}
+								onClick={() => setViewScreen(true)}
+							>
 								<img src={eye} alt="" />
 							</button>
 						</li>
@@ -321,26 +338,12 @@ const AddEditAssignment = ({ allData, allDataApi }) => {
 						<div className="col-2">
 							<label htmlFor="Password">Password</label>
 							<br />
-							<div
-								onMouseLeave={() => setPassInfo(false)}
-								onMouseOut={() => setPassInfo(true)}
-								className="pass_inp"
-							>
-								<input
-									onChange={handleChange}
-									value={inpChange.assignment_password}
-									type="text"
-									name="assignment_password"
-								/>
-								<img src={info} alt="" />
-
-								{/* INFO */}
-								{passInfo && (
-									<div className="pass_info_tooltip">
-										if empty = hide modal password
-									</div>
-								)}
-							</div>
+							<input
+								onChange={handleChange}
+								value={inpChange.assignment_password}
+								type="text"
+								name="assignment_password"
+							/>
 						</div>
 					</div>
 				</div>
@@ -354,12 +357,5 @@ const mapStatetoProps = (state) => {
 		allData: state.allDataRed.allData,
 	};
 };
-const mapDispatchtoProps = (dispatch) => {
-	return {
-		allDataApi: function () {
-			dispatch(allDataApi());
-		},
-	};
-};
 
-export default connect(mapStatetoProps, mapDispatchtoProps)(AddEditAssignment);
+export default connect(mapStatetoProps, null)(AddEditAssignment);

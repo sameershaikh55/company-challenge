@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // This is a React Router v6 app
 import { Switch, Route } from "react-router-dom";
@@ -17,13 +17,16 @@ import ProtectedRoute from "./Authentication/ProtectedRoute";
 
 // PAGES USER
 import UserDashboard from "./pages/User/Dashboard";
-import UseerChallenge from "./pages/User/Challenge";
+import UserChallenge from "./pages/User/Challenge";
 import UseerAssignment from "./pages/User/Assignment";
+import { connect } from "react-redux";
+import { allDataApi } from "./redux/action";
+import Loader from "./components/Loader";
 
-function App() {
+function App({ allData, allDataApi }) {
 	const routes = [
 		{
-			route: "/",
+			route: ["/", "/dashboard", "/dashboard/:client_id"],
 			page: AdminDashboard,
 		},
 		{
@@ -50,14 +53,29 @@ function App() {
 			page: UserDashboard,
 		},
 		{
-			route: "/challenge",
-			page: UseerChallenge,
-		},
-		{
-			route: "/assignment",
+			route: ["/assignment_view/:client_id/:challenge_id/:assignment_id"],
 			page: UseerAssignment,
 		},
 	];
+
+	useEffect(() => {
+		allDataApi();
+	}, []);
+
+	const fetchingChallengeRoutes = allData
+		.map((item) => {
+			const fetchingChallenges = item.challenges.map((item2) => {
+				return `/${item2.challenge_url}`;
+			});
+
+			return fetchingChallenges;
+		})
+		.flat(10);
+
+	// LOADER
+	if (!allData.length) {
+		return <Loader />;
+	}
 
 	return (
 		<div className="app">
@@ -75,9 +93,29 @@ function App() {
 						/>
 					);
 				})}
+
+				{fetchingChallengeRoutes.length &&
+					fetchingChallengeRoutes.map((item, i) => {
+						return (
+							<Route exact path={item} component={UserChallenge} key={i} />
+						);
+					})}
 			</Switch>
 		</div>
 	);
 }
 
-export default App;
+const mapStatetoProps = (state) => {
+	return {
+		allData: state.allDataRed.allData,
+	};
+};
+const mapDispatchtoProps = (dispatch) => {
+	return {
+		allDataApi: function () {
+			dispatch(allDataApi());
+		},
+	};
+};
+
+export default connect(mapStatetoProps, mapDispatchtoProps)(App);

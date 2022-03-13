@@ -6,13 +6,19 @@ import SingleAssignment from "../../../components/Admin/SingleAssignment";
 import plus from "../../../assets/images/plus.svg";
 import eye from "../../../assets/images/eye.svg";
 import cloud from "../../../assets/images/cloud.svg";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { allDataApi } from "../../../redux/action";
 import { useHistory } from "react-router-dom";
 import { storingRoute } from "../../../utils/storingRoute";
 import { filterActiveClient } from "../../../utils/filterActiveClient";
+import { doc, updateDoc } from "firebase/firestore";
 import Loader from "../../../components/Loader";
+import ExportExcelTable from "../../../components/ExportExcelTable";
+import readXlsxFile from "read-excel-file";
+import { dateTime } from "../../../utils/gettingTime";
+import { database } from "../../../firebase";
+import { generateID } from "../../../utils/generatingID";
 
 const Assignments = ({ allData, allDataApi }) => {
 	const { client_id, challenge_id } = useParams();
@@ -20,10 +26,10 @@ const Assignments = ({ allData, allDataApi }) => {
 
 	useEffect(() => {
 		storingRoute(history);
-		allDataApi();
-	}, [allDataApi, history]);
+	}, [history]);
 
 	const [popUp, setPopUp] = useState(false);
+	const [uploadedFileData, setUploadedFileData] = useState();
 
 	// FILTER TO GET ACTIVE CLIENT
 	const activeClient = filterActiveClient(allData, client_id, "id");
@@ -35,13 +41,68 @@ const Assignments = ({ allData, allDataApi }) => {
 			"challenge_id"
 		);
 
+	// FILE UPLOAD API CALL
+	const fileUploadToDatabase = async (uploadedFileData) => {
+		// MAKING SEND ARRAY
+		let assignments = [];
+		for (let i = 1; i < uploadedFileData[0].length - 1; i++) {
+			assignments.push({
+				assignment_title: uploadedFileData[i][0],
+				assignment_subtitle: uploadedFileData[i][1],
+				assignment_description: uploadedFileData[i][2],
+				assignment: uploadedFileData[i][3],
+				video_url: uploadedFileData[i][4],
+				assignment_password: uploadedFileData[i][5],
+				media: "",
+				assignment_created_at: dateTime(),
+				assignment_id: generateID(25),
+			});
+		}
+
+		// FIREBASE ADD FUNCTION
+		await updateDoc(doc(database, "clients", client_id), {
+			...activeClient[0],
+			created_at: dateTime(),
+			challenges: activeClient[0].challenges.map((content, i) =>
+				content.challenge_id === activeClientChallenges[0].challenge_id
+					? (content = {
+							...activeClientChallenges[0],
+							assignments: [
+								...activeClientChallenges[0].assignments,
+								...assignments,
+							],
+					  })
+					: content
+			),
+		});
+
+		setPopUp(false);
+		allDataApi();
+	};
+
 	const children = (
 		<div className="upload__assignment">
 			<img src={cloud} alt="" />
-			<p>Select file (.xls)</p>
-			<button>Upload Assignments</button>
+			<input
+				type="file"
+				id="input"
+				className="custom-file-input-upload"
+				onChange={(e) => fileUpload(e.target.files[0])}
+			/>
+			<button
+				disabled={(!uploadedFileData && true) || false}
+				onClick={() => fileUploadToDatabase(uploadedFileData)}
+			>
+				Upload File
+			</button>
 		</div>
 	);
+
+	function fileUpload(file) {
+		readXlsxFile(file).then((rows) => {
+			setUploadedFileData(rows);
+		});
+	}
 
 	// LOADER
 	if (!allData.length) {
@@ -60,9 +121,9 @@ const Assignments = ({ allData, allDataApi }) => {
 
 			<div className="assignment">
 				<div className="assignment__header">
-					<Link to={`/challenge/${client_id}/${challenge_id}`}>
-						→ Edit challenge
-					</Link>
+					<button onClick={() => history.goBack()} className="go_back">
+						← Go Back
+					</button>
 					<ul>
 						<li>
 							<button
@@ -75,6 +136,16 @@ const Assignments = ({ allData, allDataApi }) => {
 						</li>
 						<li>
 							<button onClick={() => setPopUp(true)}>Upload Assignments</button>
+						</li>
+						<li>
+							<ExportExcelTable
+								clientName={activeClient[0].client_name}
+								challengeName={activeClientChallenges[0].challenge_name}
+								assignmentList={
+									activeClientChallenges[0].assignments.length &&
+									activeClientChallenges[0].assignments
+								}
+							/>
 						</li>
 						<li>
 							<button
@@ -93,10 +164,20 @@ const Assignments = ({ allData, allDataApi }) => {
 
 				<div className="assignment__title">
 					<p>
-						Client: <span>{activeClient[0].client_name}</span>
+						Client:{" "}
+						<button onClick={() => history.push(`/client/${client_id}`)}>
+							{activeClient[0].client_name}
+						</button>
 					</p>
 					<p>
-						Challenge: <span>{activeClientChallenges[0].challenge_name}</span>
+						Challenge:{" "}
+						<button
+							onClick={() =>
+								history.push(`/challenge/${client_id}/${challenge_id}`)
+							}
+						>
+							{activeClientChallenges[0].challenge_name}
+						</button>
 					</p>
 				</div>
 

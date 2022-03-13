@@ -7,7 +7,6 @@ import Popup from "../../../components/Popup";
 import { useHistory } from "react-router-dom";
 import { storingRoute } from "../../../utils/storingRoute";
 import { filterActiveClient } from "../../../utils/filterActiveClient";
-import { Link } from "react-router-dom";
 import { ref, getDownloadURL, uploadBytesResumable } from "@firebase/storage";
 import {
 	collection,
@@ -20,16 +19,14 @@ import { storage, database } from "../../../firebase";
 import { dateTime } from "../../../utils/gettingTime";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
-import { allDataApi } from "../../../redux/action";
 
-const AddEditClient = ({ allData, allDataApi }) => {
+const AddEditClient = ({ allData }) => {
 	const { client_id } = useParams();
 	const history = useHistory();
 
 	useEffect(() => {
-		allDataApi();
 		storingRoute(history);
-	}, [allDataApi, history]);
+	}, [history]);
 
 	// FILTER TO GET ACTIVE CLIENT
 	const activeClient = filterActiveClient(allData, client_id, "id");
@@ -95,13 +92,13 @@ const AddEditClient = ({ allData, allDataApi }) => {
 			});
 		}
 
-		history.push("/");
+		history.goBack();
 	};
 
 	// CLIENT DELETE FUNCTION
 	const deleteClient = async () => {
 		await deleteDoc(doc(database, "clients", client_id));
-		history.push("/");
+		history.push("/dashboard");
 	};
 
 	// DELETE POPUP
@@ -131,9 +128,7 @@ const AddEditClient = ({ allData, allDataApi }) => {
 					<h2>Client information</h2>
 					<ul>
 						<li>
-							<Link to="/">
-								<button>Cancel</button>
-							</Link>
+							<button onClick={() => history.goBack()}>Cancel</button>
 						</li>
 						<li>
 							<button
@@ -203,12 +198,5 @@ const mapStatetoProps = (state) => {
 		allData: state.allDataRed.allData,
 	};
 };
-const mapDispatchtoProps = (dispatch) => {
-	return {
-		allDataApi: function () {
-			dispatch(allDataApi());
-		},
-	};
-};
 
-export default connect(mapStatetoProps, mapDispatchtoProps)(AddEditClient);
+export default connect(mapStatetoProps, null)(AddEditClient);

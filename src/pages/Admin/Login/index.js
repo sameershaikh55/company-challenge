@@ -31,8 +31,8 @@ const Login = () => {
 		signInWithEmailAndPassword(auth, data.email, data.password)
 			.then(() => {
 				setLoginLoading(false);
-				history.push("/");
-				localStorage.setItem("login", "/");
+				history.push("/dashboard");
+				localStorage.setItem("login", "/dashboard");
 				reset();
 			})
 			.catch((error) => {
@@ -49,7 +49,7 @@ const Login = () => {
 			setLoading(true);
 			if (user) {
 				setLoading(false);
-				history.push((active_url && active_url) || "/");
+				history.push((active_url && active_url) || "/dashboard");
 			}
 		}
 	}, [user, history, isLogin]);

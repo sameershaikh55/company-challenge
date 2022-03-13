@@ -26,13 +26,18 @@
 	height: 40px;
 }
 
+.assignment__header button {
+	height: 40px;
+	background: transparent;
+	border: none;
+}
+
 .assignment__header ul li:nth-child(1) button {
 	background: #22ad7a;
 	border-radius: 8px;
 	border: none;
 	padding: 0rem 0.8rem;
 	color: #fff;
-	cursor: pointer;
 }
 
 .assignment__header ul li:nth-child(2) button {
@@ -42,10 +47,22 @@
 	border-radius: 6px;
 	padding: 0rem 1rem;
 	border: none;
-	cursor: pointer;
 }
 
 .assignment__header ul li:nth-child(3) button {
+	background-color: #e9d8ff;
+	font-size: 14px;
+	color: #fff;
+	border-radius: 6px;
+	padding: 0rem 0.6rem;
+	border: none;
+}
+
+.assignment__header ul li:nth-child(3) button img {
+	height: 25px;
+}
+
+.assignment__header ul li:nth-child(4) button {
 	background-color: #d2e7ef;
 	font-size: 14px;
 	color: #fff;
@@ -58,6 +75,12 @@
 .assignment__title {
 	display: flex;
 	gap: 4rem;
+}
+
+.assignment__title button {
+	background: transparent;
+	border: none;
+	text-decoration: underline;
 }
 
 .assignment__title p {
@@ -123,11 +146,47 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-top: 1.2rem;
 	color: #fff;
 	border: none;
 	max-width: 220px;
 	width: 100%;
+}
+
+.custom-file-input-upload {
+	color: transparent;
+	width: 100%;
+	height: 52px;
+}
+
+.custom-file-input-upload::-webkit-file-upload-button {
+	visibility: hidden;
+}
+.custom-file-input-upload::before {
+	content: "Select file (.xlsx)";
+	display: inline-block;
+	background-color: #e9edf2;
+	outline: none;
+	white-space: nowrap;
+	-webkit-user-select: none;
+	cursor: pointer;
+	font-size: 14px;
+	color: #000;
+	border-radius: 6px;
+	width: 100%;
+	height: 38px;
+	border: none;
+	cursor: pointer;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 500;
+}
+.custom-file-input-upload:hover::before {
+	border-color: none;
+}
+.custom-file-input-upload:active::before {
+	background-color: #e9edf2;
 }
 
 @media screen and (max-width: 992px) {

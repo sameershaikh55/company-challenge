@@ -1,30 +1,65 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import info from "../../../assets/images/info.svg";
 import Popup from "../../Popup";
 import "./styles.css";
 
-const SingleAssignment = ({ item }) => {
-	const {
-		assignment_title,
-		assignment_subtitle,
-		challenge_password_instruction,
-	} = item;
+const SingleAssignment = ({ activeClient, activeClientChallenges, item }) => {
+	const history = useHistory();
+
+	const { assignment_title, assignment_subtitle, assignment_password } = item;
 	const [popUp, setPopUp] = useState(false);
 	const [popUp2, setPopUp2] = useState(false);
+	const [passInpHandle, setPassInpHandle] = useState("");
+	const [passSubmit, setPassSubmit] = useState();
+
+	function passwordSubmit() {
+		if (passInpHandle === assignment_password) {
+			setPassSubmit("correct");
+			history.push(
+				`/assignment_view/${activeClient[0].id}/${activeClientChallenges[0].challenge_id}/${item.assignment_id}`
+			);
+		} else {
+			setPassSubmit("wrong");
+		}
+	}
+
+	function assignmentStart() {
+		if (assignment_password === "") {
+			history.push(
+				`/assignment_view/${activeClient[0].id}/${activeClientChallenges[0].challenge_id}/${item.assignment_id}`
+			);
+		} else {
+			setPopUp(true);
+		}
+	}
 
 	const children = (
 		<div className="password__assignment">
 			<img onClick={() => setPopUp2(true)} src={info} alt="" />
-			<input type="text" placeholder="Password" />
-			<button>Start</button>
+			<div className="inp_container">
+				<input
+					value={passInpHandle}
+					onChange={(e) => setPassInpHandle(e.target.value)}
+					type="text"
+					placeholder="Password"
+				/>
+				{passSubmit === "wrong" && passInpHandle !== "" ? (
+					<p className="error_message">wrong password</p>
+				) : (
+					""
+				)}
+			</div>
+			<button onClick={passwordSubmit}>Start</button>
 		</div>
 	);
+	// assignment_password
 
 	const children1 = (
 		<div className="password__instruction__assignment">
-			<p>NL: {challenge_password_instruction}</p>
+			<p>NL: {activeClientChallenges[0].challenge_password_instruction}</p>
 			<br />
-			<p>EN: {challenge_password_instruction}</p>
+			<p>EN: {activeClientChallenges[0].challenge_password_instruction}</p>
 		</div>
 	);
 
@@ -43,7 +78,9 @@ const SingleAssignment = ({ item }) => {
 
 			<div className="single__assignment__user">
 				<div className="single__assignment__user__inner">
-					<div className="single__assignment__user__image"></div>
+					<div className="single__assignment__user__image">
+						<img src={activeClient[0].logo} alt="" />
+					</div>
 
 					<p>{assignment_title}</p>
 
@@ -51,7 +88,7 @@ const SingleAssignment = ({ item }) => {
 						<li>{assignment_subtitle}</li>
 					</ul>
 
-					<button onClick={() => setPopUp(true)}>Start</button>
+					<button onClick={assignmentStart}>Start</button>
 				</div>
 			</div>
 		</>

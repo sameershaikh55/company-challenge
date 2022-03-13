@@ -17,7 +17,18 @@
 	box-shadow: 1px 1px 4px #1f1d5921;
 }
 
-.user__assignment__header button {
+.user__assignment__header .user__btn__container button:nth-child(1) {
+	height: 40px;
+	padding: 0rem 1.5rem;
+	background: #d2e7ef;
+	border: none;
+	border-radius: 6px;
+	color: #000;
+	font-weight: 700;
+}
+
+.user__assignment__header .user__btn__container button:nth-child(2) {
+	margin-left: 1rem;
 	height: 40px;
 	padding: 0rem 1.5rem;
 	background: #1c395c;
@@ -70,8 +81,6 @@
 }
 
 .user__assignment__body__right__inner__img {
-	height: 296px;
-	background-color: #ebebeb;
 	border-radius: 6px;
 }
 

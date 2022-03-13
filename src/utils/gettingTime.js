@@ -21,8 +21,8 @@ export function dateTime() {
 		(currentdate.getHours() < 10 && `0${currentdate.getHours()}`) ||
 		currentdate.getHours()
 	}:${
-		(currentdate.getHours() < 10 && `0${currentdate.getHours()}`) ||
-		currentdate.getHours()
+		(currentdate.getMinutes() < 10 && `0${currentdate.getMinutes()}`) ||
+		currentdate.getMinutes()
 	}:${
 		(currentdate.getSeconds() < 10 && `0${currentdate.getSeconds()}`) ||
 		currentdate.getSeconds()

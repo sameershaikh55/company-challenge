@@ -8,18 +8,23 @@ import cross from "../../../assets/images/cross.svg";
 import SingleClient from "../../../components/Admin/SingleClient";
 import SingleChallenge from "../../../components/Admin/SingleChallenge";
 import { Link, useHistory } from "react-router-dom";
-import { allDataApi, activeClientFunc } from "../../../redux/action";
 import { connect } from "react-redux";
 import { storingRoute } from "../../../utils/storingRoute";
+import { filterActiveClient } from "../../../utils/filterActiveClient";
+import { useParams } from "react-router-dom";
 
-const Dashboard = ({ allData, allDataApi, activeClient, activeClientFunc }) => {
+const Dashboard = ({ allData }) => {
 	const history = useHistory();
+	const { client_id } = useParams();
 
 	// API CALL
 	useEffect(() => {
-		allDataApi();
 		storingRoute(history);
-	}, [allDataApi, history]);
+	}, [history]);
+
+	// FILTER TO GET ACTIVE CLIENT
+	const activeClient =
+		client_id && filterActiveClient(allData, client_id, "id");
 
 	// STATES
 	const [searchActive, setSearchActive] = useState(false);
@@ -43,6 +48,17 @@ const Dashboard = ({ allData, allDataApi, activeClient, activeClientFunc }) => {
 			return el.client_name.toLowerCase().includes(inpChange);
 		}
 	});
+
+	filteredData.sort(
+		(date1, date2) => new Date(date2.created_at) - new Date(date1.created_at)
+	);
+
+	// CLIENT ID PUSHING
+	useEffect(() => {
+		if (!client_id && filteredData.length) {
+			history.push(`dashboard/${filteredData[0].id}`);
+		}
+	}, [allData]);
 
 	// INACTIVE SEARCH
 	const inActiveSearch = () => {
@@ -97,28 +113,22 @@ const Dashboard = ({ allData, allDataApi, activeClient, activeClientFunc }) => {
 							}}
 							className="dashboard__clients__body"
 						>
-							{(allData.length &&
-								filteredData.map((item, i) => {
-									return (
-										<SingleClient
-											activeClient={activeClient}
-											activeClientFunc={activeClientFunc}
-											item={item}
-											key={i}
-										/>
-									);
-								})) || <p>No data</p>}
+							{filteredData.map((item, i) => {
+								return <SingleClient item={item} key={i} />;
+							}) || <p>No data</p>}
 						</div>
 					</div>
 				</div>
 				<div className="dashboard__challenges">
 					<div className="dashboard__challenges__inner">
 						<div className="dashboard__challenges__header">
-							<Link to={`/client/${activeClient.id}`}>
+							<Link to={`/client/${client_id && activeClient[0].id}`}>
 								→ Edit client (<span>KPN</span>)
 							</Link>
 							<button
-								onClick={() => history.push(`/challenge/${activeClient.id}`)}
+								onClick={() =>
+									history.push(`/challenge/${client_id && activeClient[0].id}`)
+								}
 							>
 								<img src={plus} alt="" /> <span>Add challenge</span>
 							</button>
@@ -128,12 +138,13 @@ const Dashboard = ({ allData, allDataApi, activeClient, activeClientFunc }) => {
 							<h1>Challenges</h1>
 							<br />
 							<div className="dashboard__challenges__body__inner">
-								{(activeClient.challenges.length &&
-									activeClient.challenges.map((item, i) => {
+								{(client_id &&
+									activeClient[0].challenges.length &&
+									activeClient[0].challenges.map((item, i) => {
 										return (
 											<SingleChallenge
 												item={item}
-												activeClientId={activeClient.id}
+												activeClientId={activeClient[0].id}
 												key={i}
 											/>
 										);
@@ -150,18 +161,7 @@ const Dashboard = ({ allData, allDataApi, activeClient, activeClientFunc }) => {
 const mapStatetoProps = (state) => {
 	return {
 		allData: state.allDataRed.allData,
-		activeClient: state.allDataRed.activeClient,
-	};
-};
-const mapDispatchtoProps = (dispatch) => {
-	return {
-		allDataApi: function () {
-			dispatch(allDataApi());
-		},
-		activeClientFunc: function (data) {
-			dispatch(activeClientFunc(data));
-		},
 	};
 };
 
-export default connect(mapStatetoProps, mapDispatchtoProps)(Dashboard);
+export default connect(mapStatetoProps, null)(Dashboard);

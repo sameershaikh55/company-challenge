@@ -111,18 +111,6 @@
 	cursor: pointer;
 }
 
-.password__assignment p {
-	background: #e9edf2;
-	height: 38px;
-	border-radius: 6px;
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin: 1.6rem 0rem;
-	font-weight: 500;
-}
-
 .password__assignment button {
 	background: #22ad7a;
 	border-radius: 6px;

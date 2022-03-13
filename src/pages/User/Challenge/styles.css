@@ -31,7 +31,7 @@
 }
 
 .user__challenge__inner .user__challenge__header ul li:nth-child(1) button {
-	background: #22ad7a;
+	background: #ce5252;
 	border: 6px;
 	height: 38px;
 	border: none;
@@ -42,6 +42,17 @@
 }
 
 .user__challenge__inner .user__challenge__header ul li:nth-child(2) button {
+	background: #22ad7a;
+	border: 6px;
+	height: 38px;
+	border: none;
+	padding: 0rem 1.2rem;
+	border-radius: 6px;
+	color: #fff;
+	cursor: pointer;
+}
+
+.user__challenge__inner .user__challenge__header ul li:nth-child(3) button {
 	background: #ffc65a;
 	border: 6px;
 	height: 38px;
