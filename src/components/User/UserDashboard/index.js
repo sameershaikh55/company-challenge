@@ -3,11 +3,13 @@ import { useHistory } from "react-router-dom";
 import info from "../../../assets/images/info.svg";
 import Popup from "../../Popup";
 import "./styles.css";
+import clientIcon from "../../../assets/images/clientIcon.svg";
 
 const SingleAssignment = ({ activeClient, activeClientChallenges, item }) => {
 	const history = useHistory();
 
-	const { assignment_title, assignment_subtitle, assignment_password } = item;
+	const { assignment_title, assignment_subtitle, assignment_password, media } =
+		item;
 	const [popUp, setPopUp] = useState(false);
 	const [popUp2, setPopUp2] = useState(false);
 	const [passInpHandle, setPassInpHandle] = useState("");
@@ -79,7 +81,7 @@ const SingleAssignment = ({ activeClient, activeClientChallenges, item }) => {
 			<div className="single__assignment__user">
 				<div className="single__assignment__user__inner">
 					<div className="single__assignment__user__image">
-						<img src={activeClient[0].logo} alt="" />
+						<img src={(media === "" && activeClient[0].logo) || media} alt="" />
 					</div>
 
 					<p>{assignment_title}</p>

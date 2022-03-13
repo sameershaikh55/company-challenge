@@ -8,7 +8,7 @@ import eye from "../../../assets/images/eye.svg";
 import cloud from "../../../assets/images/cloud.svg";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
-import { allDataApi } from "../../../redux/action";
+import { allDataApi, dragDropChangeHandle } from "../../../redux/action";
 import { useHistory } from "react-router-dom";
 import { storingRoute } from "../../../utils/storingRoute";
 import { filterActiveClient } from "../../../utils/filterActiveClient";
@@ -19,8 +19,9 @@ import readXlsxFile from "read-excel-file";
 import { dateTime } from "../../../utils/gettingTime";
 import { database } from "../../../firebase";
 import { generateID } from "../../../utils/generatingID";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
-const Assignments = ({ allData, allDataApi }) => {
+const Assignments = ({ allData, allDataApi, dragDropChangeHandle }) => {
 	const { client_id, challenge_id } = useParams();
 	const history = useHistory();
 
@@ -104,6 +105,46 @@ const Assignments = ({ allData, allDataApi }) => {
 		});
 	}
 
+	// DRAG CHANGE HANDLE
+	const handleDragEnd = async (e) => {
+		if (!e.destination) return;
+		let tempData = Array.from(
+			activeClientChallenges &&
+				activeClientChallenges[0].assignments.length &&
+				activeClientChallenges[0].assignments
+		);
+		let [source_data] = tempData.splice(e.source.index, 1);
+		tempData.splice(e.destination.index, 0, source_data);
+
+		// LOCAL CHANGE HANDLE
+		dragDropChangeHandle({
+			...activeClient[0],
+			created_at: dateTime(),
+			challenges: activeClient[0].challenges.map((content, i) =>
+				content.challenge_id === activeClientChallenges[0].challenge_id
+					? (content = {
+							...activeClientChallenges[0],
+							assignments: tempData,
+					  })
+					: content
+			),
+		});
+
+		// FIREBASE UPDATE FUNCTION
+		await updateDoc(doc(database, "clients", client_id), {
+			...activeClient[0],
+			created_at: dateTime(),
+			challenges: activeClient[0].challenges.map((content, i) =>
+				content.challenge_id === activeClientChallenges[0].challenge_id
+					? (content = {
+							...activeClientChallenges[0],
+							assignments: tempData,
+					  })
+					: content
+			),
+		});
+	};
+
 	// LOADER
 	if (!allData.length) {
 		return <Loader />;
@@ -181,32 +222,53 @@ const Assignments = ({ allData, allDataApi }) => {
 					</p>
 				</div>
 
-				<div className="assignment__list">
-					<h1>Assignments</h1>
-					<br />
-					<div
-						style={{
-							justifyContent:
-								!activeClientChallenges[0].assignments.length && "center",
-							alignItems:
-								!activeClientChallenges[0].assignments.length && "center",
-						}}
-						className="assignment__list__inner"
-					>
-						{(activeClientChallenges[0].assignments.length &&
-							activeClientChallenges[0].assignments.map((item, i) => {
-								return (
-									<SingleAssignment
-										item={item}
-										index={i}
-										key={i}
-										client_id={client_id}
-										challenge_id={challenge_id}
-									/>
-								);
-							})) || <p>No Data</p>}
+				<DragDropContext onDragEnd={handleDragEnd}>
+					<div className="assignment__list">
+						<h1>Assignments</h1>
+						<br />
+						<Droppable droppableId="droppable-1">
+							{(provider) => (
+								<div
+									ref={provider.innerRef}
+									{...provider.droppableProps}
+									style={{
+										justifyContent:
+											!activeClientChallenges[0].assignments.length && "center",
+										alignItems:
+											!activeClientChallenges[0].assignments.length && "center",
+									}}
+									className="assignment__list__inner"
+								>
+									{activeClientChallenges[0].assignments.length &&
+										activeClientChallenges[0].assignments.map((item, i) => (
+											<Draggable
+												key={item.assignment_id}
+												draggableId={item.assignment_id}
+												index={i}
+											>
+												{(provider) => (
+													<div
+														{...provider.draggableProps}
+														ref={provider.innerRef}
+													>
+														<SingleAssignment
+															providerProp={{ ...provider.dragHandleProps }}
+															item={item}
+															index={i}
+															key={i}
+															client_id={client_id}
+															challenge_id={challenge_id}
+														/>
+													</div>
+												)}
+											</Draggable>
+										))}
+									{provider.placeholder}
+								</div>
+							)}
+						</Droppable>
 					</div>
-				</div>
+				</DragDropContext>
 			</div>
 		</Layout>
 	);
@@ -221,6 +283,9 @@ const mapDispatchtoProps = (dispatch) => {
 	return {
 		allDataApi: function () {
 			dispatch(allDataApi());
+		},
+		dragDropChangeHandle: function (data) {
+			dispatch(dragDropChangeHandle(data));
 		},
 	};
 };

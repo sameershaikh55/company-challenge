@@ -16,8 +16,9 @@ import { database, storage } from "../../../firebase";
 import { dateTime } from "../../../utils/gettingTime";
 import { generateID } from "../../../utils/generatingID";
 import { ref, getDownloadURL, uploadBytesResumable } from "@firebase/storage";
+import { allDataApi } from "../../../redux/action";
 
-const AddEditAssignment = ({ allData }) => {
+const AddEditAssignment = ({ allData, allDataApi }) => {
 	const history = useHistory();
 
 	// URL PARAMS
@@ -163,6 +164,7 @@ const AddEditAssignment = ({ allData }) => {
 		}
 
 		history.goBack();
+		allDataApi();
 	};
 
 	// CLIENT DELETE FUNCTION
@@ -186,6 +188,7 @@ const AddEditAssignment = ({ allData }) => {
 		});
 
 		history.goBack();
+		allDataApi();
 	};
 
 	const children = (
@@ -357,5 +360,12 @@ const mapStatetoProps = (state) => {
 		allData: state.allDataRed.allData,
 	};
 };
+const mapDispatchtoProps = (dispatch) => {
+	return {
+		allDataApi: function () {
+			dispatch(allDataApi());
+		},
+	};
+};
 
-export default connect(mapStatetoProps, null)(AddEditAssignment);
+export default connect(mapStatetoProps, mapDispatchtoProps)(AddEditAssignment);

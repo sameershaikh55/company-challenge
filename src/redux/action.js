@@ -1,4 +1,4 @@
-import { ALL_DATA, CHALLENGE_VIEW } from "./type";
+import { ALL_DATA, CHALLENGE_VIEW, DRAG_DROP_HANDLE } from "./type";
 
 // IMPORTING FIREBASE
 import { database } from "../firebase";
@@ -20,6 +20,14 @@ export const allDataApi = () => {
 			}));
 			dispatch(allDataFunc(mapingData));
 		});
+	};
+};
+
+// DRAG AND DROP DATA CHANGING
+export const dragDropChangeHandle = (data) => {
+	return {
+		type: DRAG_DROP_HANDLE,
+		payload: data,
 	};
 };
 

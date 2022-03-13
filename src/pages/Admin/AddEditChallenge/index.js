@@ -8,7 +8,6 @@ import { useHistory } from "react-router-dom";
 import { storingRoute } from "../../../utils/storingRoute";
 import { generateID } from "../../../utils/generatingID";
 import { filterActiveClient } from "../../../utils/filterActiveClient";
-import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { challengePreview } from "../../../redux/action";
@@ -17,8 +16,9 @@ import { database } from "../../../firebase";
 import { dateTime } from "../../../utils/gettingTime";
 import Popup from "../../../components/Popup";
 import UserChallenge from "../../User/Challenge";
+import { allDataApi } from "../../../redux/action";
 
-const AddEditChallenge = ({ allData, challengePreview }) => {
+const AddEditChallenge = ({ allData, challengePreview, allDataApi }) => {
 	const history = useHistory();
 
 	// GETTING PARAMS
@@ -130,6 +130,7 @@ const AddEditChallenge = ({ allData, challengePreview }) => {
 		}
 
 		history.goBack();
+		allDataApi();
 	};
 
 	// CLIENT DELETE FUNCTION
@@ -146,6 +147,7 @@ const AddEditChallenge = ({ allData, challengePreview }) => {
 		});
 
 		history.goBack();
+		allDataApi();
 	};
 
 	// DELETE POPUP
@@ -322,6 +324,9 @@ const mapStatetoProps = (state) => {
 };
 const mapDispatchtoProps = (dispatch) => {
 	return {
+		allDataApi: function () {
+			dispatch(allDataApi());
+		},
 		challengePreview: function (data) {
 			dispatch(challengePreview(data));
 		},

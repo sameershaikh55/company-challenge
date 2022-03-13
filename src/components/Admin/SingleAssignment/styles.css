@@ -31,7 +31,7 @@
 	border-radius: 6px;
 }
 
-.single__assignment .single__assignment__left div h4:nth-child(1) {
+.single__assignment .single__assignment__left .single__assignment__left_h41 {
 	color: #bababa;
 	font-size: 25px;
 	font-weight: 700;

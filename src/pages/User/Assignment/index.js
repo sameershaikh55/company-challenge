@@ -73,7 +73,7 @@ const Assignment = ({ inpChange, viewScreen, setViewScreen, allData }) => {
 
 			<div className="user__assignment">
 				<div className="user__assignment__header">
-					<img src={clientIcon} alt="" />
+					<img src={activeClient[0].logo} alt="" />
 					<div className="user__btn__container">
 						<button onClick={() => setPopUp(true)}>Media</button>
 						<button onClick={complete}>Complete</button>
@@ -100,13 +100,13 @@ const Assignment = ({ inpChange, viewScreen, setViewScreen, allData }) => {
 					<div className="user__assignment__body__right">
 						<div className="user__assignment__body__right__inner">
 							<div className="user__assignment__body__right__inner__img">
-								<img
-									className="w-100"
-									src={
-										(viewScreen && activeClient[0].logo) || activeClient[0].logo
-									}
-									alt=""
-								/>
+								{viewScreen && inpChange.media !== "" ? (
+									<img src={inpChange.media} alt="" />
+								) : (
+									(activeClientAssignment && (
+										<img src={activeClientAssignment[0].media} alt="" />
+									)) || <img src={activeClient[0].logo} alt="" />
+								)}
 							</div>
 							<br />
 							<p>AsignmentQuestion</p>

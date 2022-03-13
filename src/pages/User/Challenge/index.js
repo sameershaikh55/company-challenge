@@ -90,17 +90,21 @@ const Challenge = ({
 								)}
 							</li>
 							<li>
-								{activeClient && (
-									<button
-										onClick={() =>
+								<button
+									onClick={() => {
+										if (activeClient) {
 											history.push(
 												`/assignments_view/${activeClient[0].id}/${activeClientChallenges[0].challenge_id}`
-											)
+											);
+										} else {
+											history.push(
+												`/assignments_view/${findingUrlData[0].id}/${findingUrlDataChallenge[0].challenge_id}`
+											);
 										}
-									>
-										Start
-									</button>
-								)}
+									}}
+								>
+									Start
+								</button>
 							</li>
 							<li>
 								<button onClick={() => setPopUp(true)}>

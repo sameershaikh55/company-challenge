@@ -1,4 +1,4 @@
-import { ALL_DATA, CHALLENGE_VIEW } from "./type";
+import { ALL_DATA, CHALLENGE_VIEW, DRAG_DROP_HANDLE } from "./type";
 
 const initialState = {
 	allData: [],
@@ -11,7 +11,13 @@ const allDataRed = (state = initialState, action) => {
 			return {
 				...state,
 				allData: action.payload,
-				activeClient: action.payload[0],
+			};
+		case DRAG_DROP_HANDLE:
+			return {
+				...state,
+				allData: state.allData.map((item) =>
+					item.id === action.payload.id ? (item = action.payload) : item
+				),
 			};
 		case CHALLENGE_VIEW:
 			localStorage.setItem("challengePreview", JSON.stringify(action.payload));

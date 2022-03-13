@@ -48,6 +48,9 @@ function App({ allData, allDataApi }) {
 			],
 			page: AdminAddEditAssignment,
 		},
+	];
+
+	const publicUrls = [
 		{
 			route: ["/assignments_view/:client_id/:challenge_id"],
 			page: UserDashboard,
@@ -100,6 +103,12 @@ function App({ allData, allDataApi }) {
 							<Route exact path={item} component={UserChallenge} key={i} />
 						);
 					})}
+
+				{publicUrls.map((item, i) => {
+					return (
+						<Route key={i} exact path={item.route} component={item.page} />
+					);
+				})}
 			</Switch>
 		</div>
 	);

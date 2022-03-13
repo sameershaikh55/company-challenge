@@ -19,8 +19,9 @@ import { storage, database } from "../../../firebase";
 import { dateTime } from "../../../utils/gettingTime";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
+import { allDataApi } from "../../../redux/action";
 
-const AddEditClient = ({ allData }) => {
+const AddEditClient = ({ allData, allDataApi }) => {
 	const { client_id } = useParams();
 	const history = useHistory();
 
@@ -93,12 +94,14 @@ const AddEditClient = ({ allData }) => {
 		}
 
 		history.goBack();
+		allDataApi();
 	};
 
 	// CLIENT DELETE FUNCTION
 	const deleteClient = async () => {
 		await deleteDoc(doc(database, "clients", client_id));
 		history.push("/dashboard");
+		allDataApi();
 	};
 
 	// DELETE POPUP
@@ -198,5 +201,12 @@ const mapStatetoProps = (state) => {
 		allData: state.allDataRed.allData,
 	};
 };
+const mapDispatchtoProps = (dispatch) => {
+	return {
+		allDataApi: function () {
+			dispatch(allDataApi());
+		},
+	};
+};
 
-export default connect(mapStatetoProps, null)(AddEditClient);
+export default connect(mapStatetoProps, mapDispatchtoProps)(AddEditClient);

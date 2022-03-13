@@ -70,7 +70,7 @@ const Dashboard = ({ allData }) => {
 				<img
 					onClick={() => history.goBack()}
 					className="client_img pointer"
-					src={clientIcon}
+					src={activeClient[0].logo}
 					alt=""
 				/>
 				<div className="assignment_right">

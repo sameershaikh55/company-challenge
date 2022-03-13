@@ -81,7 +81,18 @@
 }
 
 .user__assignment__body__right__inner__img {
+	background: #ebebeb;
+	padding: 2rem;
 	border-radius: 6px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.user__assignment__body__right__inner__img img {
+	max-width: 200px;
+	width: 100%;
 }
 
 @media screen and (max-width: 992px) {
