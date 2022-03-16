@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
+import { AuthContext } from "./Authentication";
 
 // This is a React Router v6 app
 import { Switch, Route } from "react-router-dom";
@@ -24,6 +25,10 @@ import { allDataApi } from "./redux/action";
 import Loader from "./components/Loader";
 
 function App({ allData, allDataApi }) {
+	const { user } = useContext(AuthContext);
+	console.log(user);
+	console.log(allData);
+
 	const routes = [
 		{
 			route: ["/", "/dashboard", "/dashboard/:client_id"],
@@ -62,8 +67,10 @@ function App({ allData, allDataApi }) {
 	];
 
 	useEffect(() => {
-		allDataApi();
-	}, []);
+		if (user) {
+			allDataApi();
+		}
+	}, [user]);
 
 	const fetchingChallengeRoutes = allData
 		.map((item) => {
@@ -76,7 +83,7 @@ function App({ allData, allDataApi }) {
 		.flat(10);
 
 	// LOADER
-	if (!allData.length) {
+	if (!allData.length && user) {
 		return <Loader />;
 	}
 
