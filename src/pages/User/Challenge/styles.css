@@ -31,14 +31,15 @@
 }
 
 .user__challenge__inner .user__challenge__header ul li:nth-child(1) button {
-	background: #ce5252;
+	background: transparent;
 	border: 6px;
 	height: 38px;
 	border: none;
 	padding: 0rem 1.2rem;
 	border-radius: 6px;
-	color: #fff;
+	color: #000;
 	cursor: pointer;
+	text-decoration: underline;
 }
 
 .user__challenge__inner .user__challenge__header ul li:nth-child(2) button {
@@ -72,6 +73,7 @@
 .user__challenge__body {
 	max-height: calc(100vh - 360px);
 	overflow-y: auto;
+	white-space: pre-line;
 }
 
 .user__challenge__body::-webkit-scrollbar {

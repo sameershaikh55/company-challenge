@@ -30,6 +30,7 @@ const Assignments = ({ allData, allDataApi, dragDropChangeHandle }) => {
 	}, [history]);
 
 	const [popUp, setPopUp] = useState(false);
+	const [uploadedFilename, setUploadedFilename] = useState();
 	const [uploadedFileData, setUploadedFileData] = useState();
 
 	// FILTER TO GET ACTIVE CLIENT
@@ -46,7 +47,7 @@ const Assignments = ({ allData, allDataApi, dragDropChangeHandle }) => {
 	const fileUploadToDatabase = async (uploadedFileData) => {
 		// MAKING SEND ARRAY
 		let assignments = [];
-		for (let i = 1; i < uploadedFileData[0].length - 1; i++) {
+		for (let i = 1; i < uploadedFileData.length; i++) {
 			assignments.push({
 				assignment_title: uploadedFileData[i][0],
 				assignment_subtitle: uploadedFileData[i][1],
@@ -100,6 +101,7 @@ const Assignments = ({ allData, allDataApi, dragDropChangeHandle }) => {
 	);
 
 	function fileUpload(file) {
+		setUploadedFilename(file);
 		readXlsxFile(file).then((rows) => {
 			setUploadedFileData(rows);
 		});
@@ -152,6 +154,31 @@ const Assignments = ({ allData, allDataApi, dragDropChangeHandle }) => {
 
 	return (
 		<Layout>
+			<style jsx>{`
+				.custom-file-input-upload::before {
+					content: "${(uploadedFilename && uploadedFilename.name) ||
+					"Select file (.xlsx)"}";
+					display: inline-block;
+					background-color: #e9edf2;
+					outline: none;
+					white-space: nowrap;
+					-webkit-user-select: none;
+					cursor: pointer;
+					font-size: 14px;
+					color: #000;
+					border-radius: 6px;
+					width: 100%;
+					height: 38px;
+					border: none;
+					cursor: pointer;
+					text-align: center;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					font-weight: 500;
+				}
+			`}</style>
+
 			{popUp && (
 				<Popup
 					title="Upload Assignments"

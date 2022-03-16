@@ -86,7 +86,7 @@ const Challenge = ({
 						<ul>
 							<li>
 								{activeClient && (
-									<button onClick={() => setViewScreen(false)}>Back</button>
+									<button onClick={() => setViewScreen(false)}>← Back</button>
 								)}
 							</li>
 							<li>

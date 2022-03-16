@@ -32,6 +32,11 @@
 	align-items: center;
 }
 
+.single__Challenge__header__right {
+	display: flex;
+	gap: 0.4rem;
+}
+
 .single__challenge__body__number {
 	margin-left: 8px;
 	background-color: rgba(0, 0, 0, 0.089);

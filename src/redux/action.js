@@ -1,4 +1,4 @@
-import { ALL_DATA, CHALLENGE_VIEW, DRAG_DROP_HANDLE } from "./type";
+import { ALL_DATA, DRAG_DROP_HANDLE } from "./type";
 
 // IMPORTING FIREBASE
 import { database } from "../firebase";
@@ -27,14 +27,6 @@ export const allDataApi = () => {
 export const dragDropChangeHandle = (data) => {
 	return {
 		type: DRAG_DROP_HANDLE,
-		payload: data,
-	};
-};
-
-// ACTIVE CLIENT DATA
-export const challengePreview = (data) => {
-	return {
-		type: CHALLENGE_VIEW,
 		payload: data,
 	};
 };

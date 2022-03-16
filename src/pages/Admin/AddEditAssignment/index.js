@@ -39,6 +39,7 @@ const AddEditAssignment = ({ allData, allDataApi }) => {
 		video_url: "",
 	});
 	const [popUp, setPopUp] = useState(false);
+	const [imgLoader, setImgLoader] = useState(false);
 	const [viewScreen, setViewScreen] = useState(false);
 
 	// FILTER TO GET ACTIVE CLIENT
@@ -97,6 +98,8 @@ const AddEditAssignment = ({ allData, allDataApi }) => {
 
 	// IMAGE UPLOAD TO FIREBASE
 	const uploadFiles = (file) => {
+		setImgLoader(true);
+
 		if (!file) return;
 		const sotrageRef = ref(storage, `assignments/${file.name}`);
 		const uploadTask = uploadBytesResumable(sotrageRef, file);
@@ -107,6 +110,7 @@ const AddEditAssignment = ({ allData, allDataApi }) => {
 			(error) => console.log(error),
 			() => {
 				getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+					setImgLoader(false);
 					setInpChange((item) => {
 						return { ...item, media: downloadURL };
 					});
@@ -318,15 +322,34 @@ const AddEditAssignment = ({ allData, allDataApi }) => {
 					</div>
 
 					<div className="add_edit_assignment__body_row_four">
-						<div className="col-2">
-							<input
-								className="custom-file-input"
-								type="file"
-								onChange={handleChange}
-								name="media"
-							/>
-							<br />
-							<p>JPEG, PNG, GIF - (800 x 600px)</p>
+						<div className="col-2 add_edit_assignment__body_row_four__right_inp">
+							{(imgLoader && (
+								<img
+									className="loader_img"
+									src={
+										"https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Loader.gif/480px-Loader.gif"
+									}
+									alt="loader"
+								/>
+							)) || (
+								<img
+									src={
+										(inpChange.media && inpChange.media) ||
+										"https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg"
+									}
+									alt="client"
+								/>
+							)}
+							<div>
+								<input
+									className="custom-file-input"
+									type="file"
+									onChange={handleChange}
+									name="media"
+								/>
+								<br />
+								<p>JPEG, PNG, GIF - (800 x 600px)</p>
+							</div>
 						</div>
 						<div className="col-8">
 							<label htmlFor="Video URL">Video URL</label>

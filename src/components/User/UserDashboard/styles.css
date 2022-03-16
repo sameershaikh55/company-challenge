@@ -15,10 +15,6 @@
 .single__assignment__user__inner p {
 	font-weight: 600;
 	margin-top: 0.8rem;
-	display: -webkit-box;
-	-webkit-line-clamp: 2;
-	-webkit-box-orient: vertical;
-	overflow: hidden;
 }
 
 .single__assignment__user__inner ul li {
@@ -54,18 +50,25 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 10px;
 }
 
 .single__assignment__user__image img {
 	width: 100%;
 	height: 100%;
-	object-fit: contain;
+	border-radius: 8px;
+	object-fit: cover;
+	opacity: 50%;
 }
 
 .password__assignment .inp_container {
 	position: relative;
 	height: 100%;
+}
+
+.password__assignment__top {
+	display: flex;
+	width: 100%;
+	gap: 0.8rem;
 }
 
 .password__assignment .inp_container .error_message {

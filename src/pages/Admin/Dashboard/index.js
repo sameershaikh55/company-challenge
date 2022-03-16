@@ -123,7 +123,11 @@ const Dashboard = ({ allData }) => {
 					<div className="dashboard__challenges__inner">
 						<div className="dashboard__challenges__header">
 							<Link to={`/client/${client_id && activeClient[0].id}`}>
-								→ Edit client (<span>KPN</span>)
+								{client_id && (
+									<span>
+										→ Edit client (<span>{activeClient[0].client_name}</span>)
+									</span>
+								)}
 							</Link>
 							<button
 								onClick={() =>
@@ -148,7 +152,9 @@ const Dashboard = ({ allData }) => {
 												key={i}
 											/>
 										);
-									})) || <div className="no_data_container">No data</div>}
+									})) || (
+									<div className="no_data_container">Select first a client</div>
+								)}
 							</div>
 						</div>
 					</div>

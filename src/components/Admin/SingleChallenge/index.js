@@ -11,9 +11,16 @@ const SingleChallenge = ({ item, activeClientId }) => {
 			<div className="single__challenge__inner">
 				<div className="single__challenge__header">
 					<h4>{challenge_name}</h4>
-					<Link to={`/challenge/${activeClientId}/${challenge_id}`}>
-						<img src={edit} alt="" />
-					</Link>
+					<div className="single__Challenge__header__right">
+						{/* <Link
+							to={`/challenge/${activeClientId}/${challenge_id}?view_mode=true`}
+						>
+							<img src={edit} alt="" />
+						</Link> */}
+						<Link to={`/challenge/${activeClientId}/${challenge_id}`}>
+							<img src={edit} alt="" />
+						</Link>
+					</div>
 				</div>
 
 				<ul>

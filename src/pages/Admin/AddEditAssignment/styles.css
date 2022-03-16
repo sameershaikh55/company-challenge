@@ -169,7 +169,7 @@ textarea {
 }
 
 .add_edit_assignment__body_row_four p {
-	font-size: 14px;
+	font-size: 10px;
 	font-weight: 500;
 }
 
@@ -177,11 +177,18 @@ textarea {
 	position: relative;
 }
 
-.add_edit_assignment__body_row_four div img {
-	position: absolute;
-	top: 55%;
-	right: 10px;
-	transform: translateY(-50%);
+.add_edit_assignment__body_row_four img {
+	max-height: 50px;
+	width: 70px;
+	border: 1px solid #000;
+	border-radius: 6px;
+	object-fit: cover;
+}
+
+.add_edit_assignment__body_row_four__right_inp {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
 }
 
 .add_edit_assignment__body_row_two,

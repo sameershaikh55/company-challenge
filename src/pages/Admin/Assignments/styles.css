@@ -161,27 +161,7 @@
 .custom-file-input-upload::-webkit-file-upload-button {
 	visibility: hidden;
 }
-.custom-file-input-upload::before {
-	content: "Select file (.xlsx)";
-	display: inline-block;
-	background-color: #e9edf2;
-	outline: none;
-	white-space: nowrap;
-	-webkit-user-select: none;
-	cursor: pointer;
-	font-size: 14px;
-	color: #000;
-	border-radius: 6px;
-	width: 100%;
-	height: 38px;
-	border: none;
-	cursor: pointer;
-	text-align: center;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-weight: 500;
-}
+
 .custom-file-input-upload:hover::before {
 	border-color: none;
 }

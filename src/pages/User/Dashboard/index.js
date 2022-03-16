@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./styles.css";
-import clientIcon from "../../../assets/images/clientIcon.svg";
 import info from "../../../assets/images/info.svg";
 import UserDashboard from "../../../components/User/UserDashboard";
 import Popup from "../../../components/Popup";
@@ -34,19 +33,11 @@ const Dashboard = ({ allData }) => {
 	const children2 = (
 		<div className="support__instruction__assignment">
 			<p className="support__instruction__assignment__header">
-				Afdeling HR:{" "}
-				{activeClientChallenges && activeClientChallenges[0].challenge_contact}
-				<br />
-				Mail naar:{" "}
-				{activeClientChallenges && activeClientChallenges[0].challenge_title}
+				{activeClientChallenges && activeClientChallenges[0].challenge_support}
 			</p>
 			<br />
-			<p>
-				{activeClientChallenges && activeClientChallenges[0].challenge_info}
-			</p>
 			<p className="support__instruction__assignment__body">
-				{activeClientChallenges &&
-					activeClientChallenges[0].challenge_description}
+				{activeClientChallenges && activeClientChallenges[0].challenge_info}
 			</p>
 		</div>
 	);
@@ -59,11 +50,7 @@ const Dashboard = ({ allData }) => {
 	return (
 		<div className="user__dashboard">
 			{popUp3 && (
-				<Popup
-					title={activeClientChallenges[0].challenge_support}
-					setPopUp={setPopUp3}
-					children={children2}
-				/>
+				<Popup title="Support" setPopUp={setPopUp3} children={children2} />
 			)}
 
 			<div className="user__dashboard__header">

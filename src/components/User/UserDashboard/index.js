@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import info from "../../../assets/images/info.svg";
 import Popup from "../../Popup";
 import "./styles.css";
-import clientIcon from "../../../assets/images/clientIcon.svg";
 
 const SingleAssignment = ({ activeClient, activeClientChallenges, item }) => {
 	const history = useHistory();
@@ -38,19 +37,21 @@ const SingleAssignment = ({ activeClient, activeClientChallenges, item }) => {
 
 	const children = (
 		<div className="password__assignment">
-			<img onClick={() => setPopUp2(true)} src={info} alt="" />
-			<div className="inp_container">
-				<input
-					value={passInpHandle}
-					onChange={(e) => setPassInpHandle(e.target.value)}
-					type="text"
-					placeholder="Password"
-				/>
-				{passSubmit === "wrong" && passInpHandle !== "" ? (
-					<p className="error_message">wrong password</p>
-				) : (
-					""
-				)}
+			<div className="password__assignment__top">
+				<div className="inp_container">
+					<input
+						value={passInpHandle}
+						onChange={(e) => setPassInpHandle(e.target.value)}
+						type="text"
+						placeholder="Password"
+					/>
+					{passSubmit === "wrong" && passInpHandle !== "" ? (
+						<p className="error_message">wrong password</p>
+					) : (
+						""
+					)}
+				</div>
+				<img onClick={() => setPopUp2(true)} src={info} alt="" />
 			</div>
 			<button onClick={passwordSubmit}>Start</button>
 		</div>
@@ -67,6 +68,17 @@ const SingleAssignment = ({ activeClient, activeClientChallenges, item }) => {
 
 	return (
 		<>
+			<style jsx>{`
+				.line-limit-1 {
+					display: -webkit-box;
+					-webkit-line-clamp: 1;
+					text-overflow: ellipsis;
+					overflow: hidden;
+					width: 100%;
+					-webkit-box-orient: vertical;
+				}
+			`}</style>
+
 			{popUp && (
 				<Popup title="Password" setPopUp={setPopUp} children={children} />
 			)}
@@ -84,7 +96,7 @@ const SingleAssignment = ({ activeClient, activeClientChallenges, item }) => {
 						<img src={(media === "" && activeClient[0].logo) || media} alt="" />
 					</div>
 
-					<p>{assignment_title}</p>
+					<p className="line-limit-1">{assignment_title}</p>
 
 					<ul>
 						<li>{assignment_subtitle}</li>

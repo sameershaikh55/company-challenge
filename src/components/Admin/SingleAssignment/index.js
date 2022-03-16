@@ -17,7 +17,9 @@ const SingleAssignment = ({
 		<div className="single__assignment">
 			<div className="single__assignment__left">
 				<div>
-					<span {...providerProp}>=</span>
+					<span className="dragger" {...providerProp}>
+						=
+					</span>
 					<h4 className="single__assignment__left_h41">{index + 1}</h4>
 					<h4>{assignment_title}</h4>
 				</div>

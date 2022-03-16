@@ -90,7 +90,7 @@ const Assignment = ({ inpChange, viewScreen, setViewScreen, allData }) => {
 										activeClientAssignment[0].assignment_title)}
 							</h2>
 
-							<div>
+							<div className="user__assignment__body__left__inner__description">
 								{(viewScreen && inpChange.assignment_description) ||
 									(activeClientAssignment &&
 										activeClientAssignment[0].assignment_description)}
@@ -108,8 +108,8 @@ const Assignment = ({ inpChange, viewScreen, setViewScreen, allData }) => {
 									)) || <img src={activeClient[0].logo} alt="" />
 								)}
 							</div>
-							<br />
-							<p>AsignmentQuestion</p>
+							{/* <br /> */}
+							{/* <p>AsignmentQuestion</p> */}
 							<br />
 							<p>
 								{(viewScreen && inpChange.assignment) ||

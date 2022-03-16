@@ -10,7 +10,6 @@ import { generateID } from "../../../utils/generatingID";
 import { filterActiveClient } from "../../../utils/filterActiveClient";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
-import { challengePreview } from "../../../redux/action";
 import { doc, updateDoc } from "firebase/firestore";
 import { database } from "../../../firebase";
 import { dateTime } from "../../../utils/gettingTime";
@@ -18,7 +17,7 @@ import Popup from "../../../components/Popup";
 import UserChallenge from "../../User/Challenge";
 import { allDataApi } from "../../../redux/action";
 
-const AddEditChallenge = ({ allData, challengePreview, allDataApi }) => {
+const AddEditChallenge = ({ allData, allDataApi }) => {
 	const history = useHistory();
 
 	// GETTING PARAMS
@@ -53,12 +52,6 @@ const AddEditChallenge = ({ allData, challengePreview, allDataApi }) => {
 		);
 
 	useEffect(() => {
-		challengePreview({
-			picture: activeClient.length && activeClient[0].logo,
-			title: inpChange.challenge_title,
-			description: inpChange.challenge_description,
-		});
-
 		if (activeClientChallenges.length && inpChange.challenge_name === "") {
 			// CHALLENGES DATA
 			const addingChallengeData = (key) => {
@@ -82,7 +75,6 @@ const AddEditChallenge = ({ allData, challengePreview, allDataApi }) => {
 		activeClientChallenges,
 		activeClientChallenges.length,
 		allData,
-		challengePreview,
 	]);
 
 	// HANDLE CHANGE FOR INPUTS
@@ -326,9 +318,6 @@ const mapDispatchtoProps = (dispatch) => {
 	return {
 		allDataApi: function () {
 			dispatch(allDataApi());
-		},
-		challengePreview: function (data) {
-			dispatch(challengePreview(data));
 		},
 	};
 };
