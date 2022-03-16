@@ -266,7 +266,7 @@ const Assignments = ({ allData, allDataApi, dragDropChangeHandle }) => {
 									}}
 									className="assignment__list__inner"
 								>
-									{activeClientChallenges[0].assignments.length &&
+									{(activeClientChallenges[0].assignments.length &&
 										activeClientChallenges[0].assignments.map((item, i) => (
 											<Draggable
 												key={item.assignment_id}
@@ -289,7 +289,8 @@ const Assignments = ({ allData, allDataApi, dragDropChangeHandle }) => {
 													</div>
 												)}
 											</Draggable>
-										))}
+										))) ||
+										"No data"}
 									{provider.placeholder}
 								</div>
 							)}

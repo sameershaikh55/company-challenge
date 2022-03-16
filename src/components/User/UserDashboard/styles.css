@@ -14,6 +14,7 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	max-height: 332px;
 }
 
 .single__assignment__user__inner p {
