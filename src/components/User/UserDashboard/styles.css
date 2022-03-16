@@ -9,7 +9,11 @@
 	border-radius: 8px;
 	min-height: 1px;
 	height: 100%;
-	max-height: 300px;
+	min-height: 1px;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 .single__assignment__user__inner p {
@@ -57,7 +61,7 @@
 	height: 100%;
 	border-radius: 8px;
 	object-fit: cover;
-	opacity: 50%;
+	/* opacity: 0.5; */
 }
 
 .password__assignment .inp_container {

@@ -63,14 +63,7 @@ const Challenge = ({
 	return (
 		<>
 			{popUp && (
-				<Popup
-					title={
-						(inpChange && inpChange.challenge_support) ||
-						findingUrlDataChallenge[0].challenge_support
-					}
-					setPopUp={setPopUp}
-					children={children}
-				/>
+				<Popup title="Support" setPopUp={setPopUp} children={children} />
 			)}
 
 			<div className="user__challenge">

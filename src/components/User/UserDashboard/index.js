@@ -69,9 +69,9 @@ const SingleAssignment = ({ activeClient, activeClientChallenges, item }) => {
 	return (
 		<>
 			<style jsx>{`
-				.line-limit-1 {
+				.line-limit-2 {
 					display: -webkit-box;
-					-webkit-line-clamp: 1;
+					-webkit-line-clamp: 2;
 					text-overflow: ellipsis;
 					overflow: hidden;
 					width: 100%;
@@ -92,17 +92,26 @@ const SingleAssignment = ({ activeClient, activeClientChallenges, item }) => {
 
 			<div className="single__assignment__user">
 				<div className="single__assignment__user__inner">
-					<div className="single__assignment__user__image">
-						<img src={(media === "" && activeClient[0].logo) || media} alt="" />
+					<div>
+						<div
+							style={{ opacity: (media === "" && "0.5") || "1" }}
+							className="single__assignment__user__image"
+						>
+							<img
+								src={(media === "" && activeClient[0].logo) || media}
+								alt=""
+							/>
+						</div>
+						<p className="line-limit-2">{assignment_title}</p>
 					</div>
 
-					<p className="line-limit-1">{assignment_title}</p>
+					<div>
+						<ul>
+							<li>{assignment_subtitle}</li>
+						</ul>
 
-					<ul>
-						<li>{assignment_subtitle}</li>
-					</ul>
-
-					<button onClick={assignmentStart}>Start</button>
+						<button onClick={assignmentStart}>Start</button>
+					</div>
 				</div>
 			</div>
 		</>
