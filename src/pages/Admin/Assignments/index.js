@@ -205,7 +205,7 @@ const Assignments = ({ allData, allDataApi, dragDropChangeHandle }) => {
 						<li>
 							<button onClick={() => setPopUp(true)}>Upload Assignments</button>
 						</li>
-						<li>
+						<li className="assignment__export__file">
 							<ExportExcelTable
 								clientName={activeClient[0].client_name}
 								challengeName={activeClientChallenges[0].challenge_name}

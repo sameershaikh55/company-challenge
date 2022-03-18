@@ -7,6 +7,7 @@ import search from "../../../assets/images/search.svg";
 import cross from "../../../assets/images/cross.svg";
 import SingleClient from "../../../components/Admin/SingleClient";
 import SingleChallenge from "../../../components/Admin/SingleChallenge";
+import selectIcon from "../../../assets/images/select-icon.svg";
 import { Link, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { storingRoute } from "../../../utils/storingRoute";
@@ -84,7 +85,7 @@ const Dashboard = ({ allData }) => {
 
 						<div className="dashboard__clients__header">
 							<h2>Clients</h2>
-							<div>
+							<div className="dashboard__clients__header__search">
 								{(searchActive && (
 									<div className="inp_container">
 										<input
@@ -120,43 +121,53 @@ const Dashboard = ({ allData }) => {
 					</div>
 				</div>
 				<div className="dashboard__challenges">
-					<div className="dashboard__challenges__inner">
-						<div className="dashboard__challenges__header">
-							<Link to={`/client/${client_id && activeClient[0].id}`}>
-								{client_id && (
+					<div
+						style={{
+							display: (!client_id && "flex") || "",
+							justifyContent: (!client_id && "center") || "",
+							alignItems: (!client_id && "center") || "",
+						}}
+						className="dashboard__challenges__inner"
+					>
+						{client_id && (
+							<div className="dashboard__challenges__header">
+								<Link to={`/client/${client_id && activeClient[0].id}`}>
 									<span>
-										→ Edit client (<span>{activeClient[0].client_name}</span>)
+										→ Edit client (
+										<span className="bold">{activeClient[0].client_name}</span>)
 									</span>
-								)}
-							</Link>
-							<button
-								onClick={() =>
-									history.push(`/challenge/${client_id && activeClient[0].id}`)
-								}
-							>
-								<img src={plus} alt="" /> <span>Add challenge</span>
-							</button>
-						</div>
-
-						<div className="dashboard__challenges__body">
-							<h1>Challenges</h1>
-							<br />
-							<div className="dashboard__challenges__body__inner">
-								{(client_id &&
-									activeClient[0].challenges.length &&
-									activeClient[0].challenges.map((item, i) => {
-										return (
-											<SingleChallenge
-												item={item}
-												activeClientId={activeClient[0].id}
-												key={i}
-											/>
-										);
-									})) || (
-									<div className="no_data_container">Select first a client</div>
-								)}
+								</Link>
+								<button
+									onClick={() =>
+										history.push(
+											`/challenge/${client_id && activeClient[0].id}`
+										)
+									}
+								>
+									<img src={plus} alt="" /> <span>Add challenge</span>
+								</button>
 							</div>
-						</div>
+						)}
+
+						{(client_id && (
+							<div className="dashboard__challenges__body">
+								<h1>Challenges</h1>
+								<br />
+								<div className="dashboard__challenges__body__inner">
+									{(client_id &&
+										activeClient[0].challenges.length &&
+										activeClient[0].challenges.map((item, i) => {
+											return (
+												<SingleChallenge
+													item={item}
+													activeClientId={activeClient[0].id}
+													key={i}
+												/>
+											);
+										})) || <div className="no_data_container">No data</div>}
+								</div>
+							</div>
+						)) || <img className="select-icon" src={selectIcon} alt="" />}
 					</div>
 				</div>
 			</div>

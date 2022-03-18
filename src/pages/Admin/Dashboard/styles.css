@@ -127,6 +127,10 @@
 }
 
 .dashboard__challenges__header a span {
+	font-weight: 400;
+}
+
+.dashboard__challenges__header a span .bold {
 	font-weight: 800;
 }
 
@@ -188,6 +192,16 @@
 	padding-right: calc(var(--bs-gutter-x) * 0.5);
 	padding-left: calc(var(--bs-gutter-x) * 0.5);
 	margin-top: var(--bs-gutter-y);
+}
+
+.select-icon {
+	max-width: 250px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.dashboard__clients__header__search {
+	display: none;
 }
 
 @media screen and (max-width: 992px) {

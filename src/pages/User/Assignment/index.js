@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./styles.css";
-import clientIcon from "../../../assets/images/clientIcon.svg";
 import { useHistory } from "react-router-dom";
 import { storingRoute } from "../../../utils/storingRoute";
 import Popup from "../../../components/Popup";
@@ -75,7 +74,9 @@ const Assignment = ({ inpChange, viewScreen, setViewScreen, allData }) => {
 				<div className="user__assignment__header">
 					<img src={activeClient[0].logo} alt="" />
 					<div className="user__btn__container">
-						<button onClick={() => setPopUp(true)}>Media</button>
+						{activeClientAssignment[0].video_url && (
+							<button onClick={() => setPopUp(true)}>Media</button>
+						)}
 						<button onClick={complete}>Complete</button>
 					</div>
 				</div>
