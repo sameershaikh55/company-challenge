@@ -53,10 +53,10 @@ const Challenge = ({
 				{(inpChange && inpChange.challenge_info) ||
 					findingUrlDataChallenge[0].challenge_info}
 			</p>
-			<p className="support__instruction__assignment__body">
+			{/* <p className="support__instruction__assignment__body">
 				{(inpChange && inpChange.challenge_description) ||
 					findingUrlDataChallenge[0].challenge_description}
-			</p>
+			</p> */}
 		</div>
 	);
 

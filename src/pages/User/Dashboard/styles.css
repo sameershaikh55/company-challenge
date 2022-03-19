@@ -130,6 +130,7 @@
 
 .support__instruction__assignment .support__instruction__assignment__header {
 	font-weight: 600;
+	white-space: pre-line;
 }
 
 .support__instruction__assignment .support__instruction__assignment__body {

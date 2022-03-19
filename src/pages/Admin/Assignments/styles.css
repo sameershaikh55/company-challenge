@@ -169,6 +169,10 @@
 	background-color: #e9edf2;
 }
 
+.assignment__export__file {
+	display: none;
+}
+
 @media screen and (max-width: 992px) {
 	.assignment {
 		padding: 18px;

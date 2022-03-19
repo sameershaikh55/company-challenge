@@ -60,9 +60,9 @@ const SingleAssignment = ({ activeClient, activeClientChallenges, item }) => {
 
 	const children1 = (
 		<div className="password__instruction__assignment">
-			<p>NL: {activeClientChallenges[0].challenge_password_instruction}</p>
-			<br />
-			<p>EN: {activeClientChallenges[0].challenge_password_instruction}</p>
+			<p>{activeClientChallenges[0].challenge_password_instruction}</p>
+			{/* <br /> */}
+			{/* <p>EN: {activeClientChallenges[0].challenge_password_instruction}</p> */}
 		</div>
 	);
 

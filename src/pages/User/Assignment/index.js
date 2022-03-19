@@ -104,7 +104,7 @@ const Assignment = ({ inpChange, viewScreen, setViewScreen, allData }) => {
 								{viewScreen && inpChange.media !== "" ? (
 									<img src={inpChange.media} alt="" />
 								) : (
-									(activeClientAssignment && (
+									(activeClientAssignment[0].media && (
 										<img src={activeClientAssignment[0].media} alt="" />
 									)) || <img src={activeClient[0].logo} alt="" />
 								)}

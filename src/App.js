@@ -26,8 +26,6 @@ import Loader from "./components/Loader";
 
 function App({ allData, allDataApi }) {
 	const { user } = useContext(AuthContext);
-	console.log(user);
-	console.log(allData);
 
 	const routes = [
 		{
