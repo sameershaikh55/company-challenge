@@ -55,11 +55,11 @@ const Dashboard = ({ allData }) => {
 	);
 
 	// CLIENT ID PUSHING
-	useEffect(() => {
-		if (!client_id && filteredData.length) {
-			history.push(`dashboard/${filteredData[0].id}`);
-		}
-	}, [allData]);
+	// useEffect(() => {
+	// 	if (!client_id && filteredData.length) {
+	// 		history.push(`/dashboard/${filteredData[0].id}`);
+	// 	}
+	// }, [allData]);
 
 	// INACTIVE SEARCH
 	const inActiveSearch = () => {

@@ -93,15 +93,15 @@ const AddEditClient = ({ allData, allDataApi }) => {
 			});
 		}
 
-		history.goBack();
 		allDataApi();
+		history.push("/dashboard");
 	};
 
 	// CLIENT DELETE FUNCTION
 	const deleteClient = async () => {
 		await deleteDoc(doc(database, "clients", client_id));
-		history.push("/dashboard");
 		allDataApi();
+		history.push("/dashboard");
 	};
 
 	// DELETE POPUP
