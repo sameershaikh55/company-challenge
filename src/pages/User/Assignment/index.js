@@ -74,9 +74,11 @@ const Assignment = ({ inpChange, viewScreen, setViewScreen, allData }) => {
 				<div className="user__assignment__header">
 					<img src={activeClient[0].logo} alt="" />
 					<div className="user__btn__container">
-						{activeClientAssignment[0].video_url && (
-							<button onClick={() => setPopUp(true)}>Media</button>
-						)}
+						{activeClientAssignment &&
+							activeClientAssignment.length &&
+							activeClientAssignment[0].video_url && (
+								<button onClick={() => setPopUp(true)}>Media</button>
+							)}
 						<button onClick={complete}>Complete</button>
 					</div>
 				</div>
@@ -104,9 +106,11 @@ const Assignment = ({ inpChange, viewScreen, setViewScreen, allData }) => {
 								{viewScreen && inpChange.media !== "" ? (
 									<img src={inpChange.media} alt="" />
 								) : (
-									(activeClientAssignment[0].media && (
-										<img src={activeClientAssignment[0].media} alt="" />
-									)) || <img src={activeClient[0].logo} alt="" />
+									(activeClientAssignment &&
+										activeClientAssignment.length &&
+										activeClientAssignment[0].media && (
+											<img src={activeClientAssignment[0].media} alt="" />
+										)) || <img src={activeClient[0].logo} alt="" />
 								)}
 							</div>
 							{/* <br /> */}
