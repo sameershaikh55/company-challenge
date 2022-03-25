@@ -65,9 +65,9 @@ function App({ allData, allDataApi }) {
 	];
 
 	useEffect(() => {
-		if (user) {
-			allDataApi();
-		}
+		// if (user) {
+		allDataApi();
+		// }
 	}, [user]);
 
 	const fetchingChallengeRoutes = allData
@@ -80,29 +80,11 @@ function App({ allData, allDataApi }) {
 		})
 		.flat(10);
 
-	// LOADER
-	if (!allData.length && user) {
-		return <Loader />;
-	}
-
 	return (
 		<div className="app">
 			<Switch>
-				{/* ADMIN */}
-				<Route exact path="/login" component={AdminLogin} />
-
-				{routes.map((item, i) => {
-					return (
-						<ProtectedRoute
-							key={i}
-							exact
-							path={item.route}
-							component={item.page}
-						/>
-					);
-				})}
-
-				{fetchingChallengeRoutes.length &&
+				{allData.length &&
+					fetchingChallengeRoutes.length &&
 					fetchingChallengeRoutes.map((item, i) => {
 						return (
 							<Route exact path={item} component={UserChallenge} key={i} />
@@ -114,6 +96,24 @@ function App({ allData, allDataApi }) {
 						<Route key={i} exact path={item.route} component={item.page} />
 					);
 				})}
+
+				{(allData.length && (
+					<>
+						{/* ADMIN */}
+						<Route exact path="/login" component={AdminLogin} />
+
+						{routes.map((item, i) => {
+							return (
+								<ProtectedRoute
+									key={i}
+									exact
+									path={item.route}
+									component={item.page}
+								/>
+							);
+						})}
+					</>
+				)) || <Loader />}
 			</Switch>
 		</div>
 	);
