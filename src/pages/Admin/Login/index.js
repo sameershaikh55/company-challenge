@@ -25,8 +25,6 @@ const Login = () => {
 		formState: { errors },
 	} = useForm();
 
-	console.log(errors);
-
 	const onSubmit = (data) => {
 		setLoginLoading(true);
 

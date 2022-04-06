@@ -17,7 +17,7 @@ const Challenge = ({
 	const location = useLocation().pathname.split("/")[1];
 	const [popUp, setPopUp] = useState(false);
 	const history = useHistory();
-
+	
 	useEffect(() => {
 		storingRoute(history);
 	}, [history]);
@@ -51,7 +51,8 @@ const Challenge = ({
 			<br />
 			<p>
 				{(inpChange && inpChange.challenge_info) ||
-					findingUrlDataChallenge[0].challenge_info}
+					(findingUrlDataChallenge[0] &&
+						findingUrlDataChallenge[0].challenge_info)}
 			</p>
 			{/* <p className="support__instruction__assignment__body">
 				{(inpChange && inpChange.challenge_description) ||

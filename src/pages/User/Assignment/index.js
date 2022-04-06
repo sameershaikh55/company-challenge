@@ -8,7 +8,13 @@ import Loader from "../../../components/Loader";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 
-const Assignment = ({ inpChange, viewScreen, setViewScreen, allData }) => {
+const Assignment = ({
+	inpChange,
+	viewScreen,
+	setViewScreen,
+	allData,
+	activeClientChallengesView,
+}) => {
 	const history = useHistory();
 
 	// URL PARAMS
@@ -74,7 +80,11 @@ const Assignment = ({ inpChange, viewScreen, setViewScreen, allData }) => {
 				<div className="user__assignment__header">
 					<div className="user__assignment__header__logo">
 						<img src={activeClient[0].logo} alt="" />
-						<h2>{activeClientChallenges[0].challenge_title}</h2>
+						<h2>
+							{(activeClientChallengesView &&
+								activeClientChallengesView[0].challenge_title) ||
+								activeClientChallenges[0].challenge_title}
+						</h2>
 					</div>
 					<div className="user__btn__container">
 						{activeClientAssignment &&

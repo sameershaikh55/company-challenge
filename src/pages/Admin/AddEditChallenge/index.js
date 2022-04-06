@@ -16,6 +16,7 @@ import { dateTime } from "../../../utils/gettingTime";
 import Popup from "../../../components/Popup";
 import UserChallenge from "../../User/Challenge";
 import { allDataApi } from "../../../redux/action";
+import TextEditor from "../../../components/TextEditor";
 
 const AddEditChallenge = ({ allData, allDataApi }) => {
 	const history = useHistory();
@@ -216,6 +217,8 @@ const AddEditChallenge = ({ allData, allDataApi }) => {
 						</li>
 					</ul>
 				</div>
+
+				{/* <TextEditor /> */}
 
 				<div className="add_edit_challenge__body">
 					<div className="add_edit_challenge__body_row_one">

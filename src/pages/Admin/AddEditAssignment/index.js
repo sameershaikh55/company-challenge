@@ -107,7 +107,7 @@ const AddEditAssignment = ({ allData, allDataApi }) => {
 		uploadTask.on(
 			"state_changed",
 			(snapshot) => {},
-			(error) => console.log(error),
+			(error) => console.error(error),
 			() => {
 				getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
 					setImgLoader(false);
@@ -223,6 +223,7 @@ const AddEditAssignment = ({ allData, allDataApi }) => {
 				inpChange={inpChange}
 				setViewScreen={setViewScreen}
 				viewScreen={viewScreen}
+				activeClientChallengesView={activeClientChallenges}
 			/>
 		);
 	}
