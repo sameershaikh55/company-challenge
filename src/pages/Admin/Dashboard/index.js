@@ -72,6 +72,13 @@ const Dashboard = ({ allData }) => {
 		return <Loader />;
 	}
 
+	client_id &&
+		activeClient[0].challenges.sort(
+			(date1, date2) =>
+				new Date(date2.challenge_created_at) -
+				new Date(date1.challenge_created_at)
+		);
+
 	return (
 		<Layout>
 			<div className="dashboard">

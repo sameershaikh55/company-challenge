@@ -80,11 +80,15 @@ function App({ allData, allDataApi }) {
 		})
 		.flat(10);
 
+	// LOADER
+	if (!allData.length) {
+		return <Loader />;
+	}
+
 	return (
 		<div className="app">
 			<Switch>
-				{allData.length &&
-					fetchingChallengeRoutes.length &&
+				{fetchingChallengeRoutes.length &&
 					fetchingChallengeRoutes.map((item, i) => {
 						return (
 							<Route exact path={item} component={UserChallenge} key={i} />
@@ -97,23 +101,19 @@ function App({ allData, allDataApi }) {
 					);
 				})}
 
-				{(allData.length && (
-					<>
-						{/* ADMIN */}
-						<Route exact path="/login" component={AdminLogin} />
+				{/* ADMIN */}
+				<Route exact path="/login" component={AdminLogin} />
 
-						{routes.map((item, i) => {
-							return (
-								<ProtectedRoute
-									key={i}
-									exact
-									path={item.route}
-									component={item.page}
-								/>
-							);
-						})}
-					</>
-				)) || <Loader />}
+				{routes.map((item, i) => {
+					return (
+						<ProtectedRoute
+							key={i}
+							exact
+							path={item.route}
+							component={item.page}
+						/>
+					);
+				})}
 			</Switch>
 		</div>
 	);

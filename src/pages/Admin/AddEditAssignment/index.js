@@ -129,6 +129,7 @@ const AddEditAssignment = ({ allData, allDataApi }) => {
 					content.challenge_id === activeClientChallenges[0].challenge_id
 						? (content = {
 								...activeClientChallenges[0],
+								challenge_created_at: dateTime(),
 								assignments: activeClientChallenges[0].assignments.map(
 									(content2) =>
 										content2.assignment_id ===
@@ -153,6 +154,7 @@ const AddEditAssignment = ({ allData, allDataApi }) => {
 					content.challenge_id === activeClientChallenges[0].challenge_id
 						? (content = {
 								...activeClientChallenges[0],
+								challenge_created_at: dateTime(),
 								assignments: [
 									...activeClientChallenges[0].assignments,
 									{

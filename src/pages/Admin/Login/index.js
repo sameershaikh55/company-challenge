@@ -25,6 +25,8 @@ const Login = () => {
 		formState: { errors },
 	} = useForm();
 
+	console.log(errors);
+
 	const onSubmit = (data) => {
 		setLoginLoading(true);
 
@@ -73,11 +75,11 @@ const Login = () => {
 								<label htmlFor="Username">Username</label>
 								<br />
 								<input
+									type="text"
 									disabled={(loginLoading && true) || false}
 									className={`${
 										errors.email && errors.email.message && "error_field"
 									}`}
-									type="text"
 									{...register("email", {
 										required: "Required*",
 										pattern: {
