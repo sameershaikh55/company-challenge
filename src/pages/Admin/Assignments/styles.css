@@ -67,9 +67,11 @@
 	font-size: 14px;
 	color: #fff;
 	border-radius: 6px;
-	padding: 0rem 0.6rem;
+	padding: 0rem 0.5rem;
 	border: none;
 	cursor: pointer;
+	height: 40px;
+	width: 40px;
 }
 
 .assignment__title {
@@ -104,6 +106,12 @@
 	overflow-y: auto;
 	overflow-x: hidden;
 	padding-right: 1rem;
+}
+
+.user__assignment__header__logo {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
 }
 
 .assignment__list__inner::-webkit-scrollbar {

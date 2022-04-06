@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import edit from "../../../assets/images/edit.svg";
+import copy from "copy-to-clipboard";
 import "./styles.css";
 
 const SingleChallenge = ({ item, activeClientId }) => {
+	const [copyState, setCopyState] = useState(false);
 	const { challenge_name, challenge_title, challenge_url, challenge_id } = item;
 
 	return (
@@ -30,8 +32,25 @@ const SingleChallenge = ({ item, activeClientId }) => {
 				<div className="single__challenge__body">
 					<div>
 						<span className="single__challenge__body__url">URL</span>
-						<span className="single__challenge__body__number">
+						<span
+							onMouseOver={() => setCopyState("copy")}
+							onMouseOut={() => setCopyState(false)}
+							onClick={() => {
+								copy(`/${challenge_url}`);
+								setCopyState("copied");
+							}}
+							className="single__challenge__body__number"
+						>
 							/{challenge_url}
+							{copyState && (
+								<div
+									data-aos="zoom-in"
+									className="single__challenge__body__copytext"
+								>
+									{copyState === "copy" && "copy"}
+									{copyState === "copied" && "copied!"}
+								</div>
+							)}
 						</span>
 					</div>
 					<Link to={`/assignments/${activeClientId}/${challenge_id}`}>

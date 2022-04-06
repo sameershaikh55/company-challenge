@@ -54,12 +54,15 @@ const Dashboard = ({ allData }) => {
 			)}
 
 			<div className="user__dashboard__header">
-				<img
-					onClick={() => history.goBack()}
-					className="client_img pointer"
-					src={activeClient[0].logo}
-					alt=""
-				/>
+				<div className="user__dashboard__header__logo">
+					<img
+						onClick={() => history.goBack()}
+						className="client_img pointer"
+						src={activeClient[0].logo}
+						alt=""
+					/>
+					<h2>{activeClientChallenges[0].challenge_title}</h2>
+				</div>
 				<div className="assignment_right">
 					<h2>Assignments</h2>
 					<button onClick={() => setPopUp3(true)}>

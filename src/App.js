@@ -24,6 +24,10 @@ import { connect } from "react-redux";
 import { allDataApi } from "./redux/action";
 import Loader from "./components/Loader";
 
+// IMPORTING ANIMATIONS
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 function App({ allData, allDataApi }) {
 	const { user } = useContext(AuthContext);
 
@@ -65,6 +69,10 @@ function App({ allData, allDataApi }) {
 	];
 
 	useEffect(() => {
+		AOS.init({
+			once: true,
+		});
+
 		// if (user) {
 		allDataApi();
 		// }

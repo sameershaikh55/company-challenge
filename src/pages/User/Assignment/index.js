@@ -72,7 +72,10 @@ const Assignment = ({ inpChange, viewScreen, setViewScreen, allData }) => {
 
 			<div className="user__assignment">
 				<div className="user__assignment__header">
-					<img src={activeClient[0].logo} alt="" />
+					<div className="user__assignment__header__logo">
+						<img src={activeClient[0].logo} alt="" />
+						<h2>{activeClientChallenges[0].challenge_title}</h2>
+					</div>
 					<div className="user__btn__container">
 						{activeClientAssignment &&
 							activeClientAssignment.length &&

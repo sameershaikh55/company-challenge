@@ -41,7 +41,7 @@ const SingleAssignment = ({ activeClient, activeClientChallenges, item }) => {
 				<div className="inp_container">
 					<input
 						value={passInpHandle}
-						onChange={(e) => setPassInpHandle(e.target.value)}
+						onChange={(e) => setPassInpHandle(e.target.value.toLowerCase())}
 						type="text"
 						placeholder="Password"
 					/>

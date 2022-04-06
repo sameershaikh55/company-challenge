@@ -137,7 +137,9 @@ const AddEditAssignment = ({ allData, allDataApi }) => {
 											? {
 													...activeClientAssignment[0],
 													...inpChange,
-													challenge_created_at: dateTime(),
+													assignment_password:
+														inpChange.assignment_password.toLowerCase(),
+													assignment_created_at: dateTime(),
 											  }
 											: content2
 								),
@@ -159,6 +161,8 @@ const AddEditAssignment = ({ allData, allDataApi }) => {
 									...activeClientChallenges[0].assignments,
 									{
 										...inpChange,
+										assignment_password:
+											inpChange.assignment_password.toLowerCase(),
 										assignment_id: generateID(25),
 										assignment_created_at: dateTime(),
 									},

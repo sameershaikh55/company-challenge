@@ -90,6 +90,12 @@
 	white-space: pre-line;
 }
 
+.user__dashboard__header__logo {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
 .user__assignment__body__right__inner p::-webkit-scrollbar,
 .user__assignment__body__left__inner__description::-webkit-scrollbar {
 	width: 7px;
