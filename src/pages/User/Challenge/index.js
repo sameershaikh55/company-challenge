@@ -44,10 +44,12 @@ const Challenge = ({
 					findingUrlDataChallenge[0].challenge_support}
 			</p>
 			<br />
-			{/* <p className="support__instruction__assignment__body">
+			<p className="support__instruction__assignment__body">
 				{(inpChange && inpChange.challenge_info) ||
-					findingUrlDataChallenge[0].challenge_info}
-			</p> */}
+					(findingUrlDataChallenge &&
+						"challenge_info" in findingUrlDataChallenge[0] &&
+						findingUrlDataChallenge[0].challenge_info)}
+			</p>
 		</div>
 	);
 
@@ -61,7 +63,8 @@ const Challenge = ({
 				style={{
 					background:
 						(inpChange && inpChange.challenge_background_color) ||
-						("challenge_background_color" in findingUrlDataChallenge[0] &&
+						(findingUrlDataChallenge &&
+							"challenge_background_color" in findingUrlDataChallenge[0] &&
 							findingUrlDataChallenge[0].challenge_background_color),
 				}}
 				className="user__challenge"

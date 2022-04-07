@@ -79,6 +79,7 @@ const Assignment = ({
 			<div
 				style={{
 					background:
+						activeClientChallenges &&
 						"challenge_background_color" in activeClientChallenges[0] &&
 						activeClientChallenges[0].challenge_background_color,
 				}}

@@ -126,18 +126,28 @@
 }
 
 .support__instruction__assignment {
-	padding: 1.2rem 0rem;
+	max-height: 400px;
+	overflow: auto;
+	/* padding: 1.2rem 0rem; */
+}
+
+.support__instruction__assignment::-webkit-scrollbar {
+	width: 7px;
+}
+.support__instruction__assignment::-webkit-scrollbar-track {
+	background: #e2e6eb;
+}
+.support__instruction__assignment::-webkit-scrollbar-thumb {
+	background: #1c395c;
+	border-radius: 10px;
 }
 
 .support__instruction__assignment .support__instruction__assignment__header {
-	font-weight: 600;
 	white-space: pre-line;
 }
 
 .support__instruction__assignment .support__instruction__assignment__body {
 	margin-top: 0.6rem;
-	max-height: 300px;
-	overflow: auto;
 }
 
 .support__instruction__assignment
