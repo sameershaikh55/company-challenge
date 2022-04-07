@@ -1,5 +1,6 @@
 .user__challenge {
-	padding: 1.2rem 1rem;
+	padding: 1.2rem 1.4rem;
+	height: 100vh;
 }
 
 .user__challenge__inner {

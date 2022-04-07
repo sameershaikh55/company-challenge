@@ -19,6 +19,7 @@
 body {
 	background-color: #f4f4f4;
 	overflow-y: hidden;
+	text-rendering: optimizeSpeed;
 }
 
 /* Remove default margin */
@@ -44,12 +45,6 @@ ol[role="list"] {
 /* Set core root defaults */
 html:focus-within {
 	scroll-behavior: smooth;
-}
-
-/* Set core body defaults */
-body {
-	min-height: 100vh;
-	text-rendering: optimizeSpeed;
 }
 
 /* A elements that don't have a class get default styles */
@@ -102,7 +97,6 @@ button:disabled {
 .app {
 	max-width: 1900px;
 	margin: 0 auto;
-	padding: 0rem 0.4rem;
 }
 
 .layout {

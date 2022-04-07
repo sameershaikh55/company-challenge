@@ -76,7 +76,14 @@ const Assignment = ({
 		<>
 			{popUp && <Popup title="" setPopUp={setPopUp} children={children} />}
 
-			<div className="user__assignment">
+			<div
+				style={{
+					background:
+						"challenge_background_color" in activeClientChallenges[0] &&
+						activeClientChallenges[0].challenge_background_color,
+				}}
+				className="user__assignment"
+			>
 				<div className="user__assignment__header">
 					<div className="user__assignment__header__logo">
 						<img src={activeClient[0].logo} alt="" />

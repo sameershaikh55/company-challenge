@@ -51,23 +51,21 @@ const Challenge = ({
 		</div>
 	);
 
-	// useEffect(() => {
-	// 	if (location === "challenge") {
-	// 		document.body.style.background =
-	// 			(inpChange && inpChange.challenge_background_color) ||
-	// 			findingUrlDataChallenge.challenge_background_color;
-	// 	} else {
-	// 		document.body.style.background = "#f4f4f4";
-	// 	}
-	// }, []);
-
 	return (
 		<>
 			{popUp && (
 				<Popup title="Support" setPopUp={setPopUp} children={children} />
 			)}
 
-			<div className="user__challenge">
+			<div
+				style={{
+					background:
+						(inpChange && inpChange.challenge_background_color) ||
+						("challenge_background_color" in findingUrlDataChallenge[0] &&
+							findingUrlDataChallenge[0].challenge_background_color),
+				}}
+				className="user__challenge"
+			>
 				<div className="user__challenge__inner">
 					<div className="user__challenge__header">
 						<img

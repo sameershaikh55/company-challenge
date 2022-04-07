@@ -48,7 +48,14 @@ const Dashboard = ({ allData }) => {
 	}
 
 	return (
-		<div className="user__dashboard">
+		<div
+			style={{
+				background:
+					"challenge_background_color" in activeClientChallenges[0] &&
+					activeClientChallenges[0].challenge_background_color,
+			}}
+			className="user__dashboard"
+		>
 			{popUp3 && (
 				<Popup title="Support" setPopUp={setPopUp3} children={children2} />
 			)}

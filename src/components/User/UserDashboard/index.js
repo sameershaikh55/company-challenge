@@ -40,6 +40,7 @@ const SingleAssignment = ({ activeClient, activeClientChallenges, item }) => {
 			<div className="password__assignment__top">
 				<div className="inp_container">
 					<input
+						autoFocus
 						value={passInpHandle}
 						onChange={(e) => setPassInpHandle(e.target.value.toLowerCase())}
 						type="text"
