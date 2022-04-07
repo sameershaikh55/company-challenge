@@ -105,7 +105,7 @@ textarea {
 
 .add_edit_challenge__body_row_one div {
 	flex: 0 0 auto;
-	width: 33.33333333333333333333%;
+	width: 25%;
 }
 
 .add_edit_challenge__body_row_two div {
@@ -131,6 +131,15 @@ textarea {
 	border: none;
 	border-radius: 6px;
 	padding: 1rem;
+}
+
+.add_edit_challenge__body_row_one div input[type="color"] {
+	padding: 0rem;
+	cursor: pointer;
+	background-color: #fff;
+	margin-top: 0rem;
+	height: 44px;
+	border-radius: 6px;
 }
 
 .add_edit_challenge__body_row_two,

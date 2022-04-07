@@ -224,6 +224,9 @@
 		flex-direction: column;
 		align-items: unset;
 	}
+	.dashboard__challenges {
+		padding-bottom: 1rem;
+	}
 }
 
 @media screen and (max-width: 575px) {

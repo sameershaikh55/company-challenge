@@ -17,7 +17,7 @@ const Challenge = ({
 	const location = useLocation().pathname.split("/")[1];
 	const [popUp, setPopUp] = useState(false);
 	const history = useHistory();
-	
+
 	useEffect(() => {
 		storingRoute(history);
 	}, [history]);
@@ -40,26 +40,26 @@ const Challenge = ({
 	const children = (
 		<div className="support__instruction__assignment">
 			<p className="support__instruction__assignment__header">
-				Afdeling HR:{" "}
-				{(inpChange && inpChange.challenge_contact) ||
-					findingUrlDataChallenge[0].challenge_contact}
-				<br />
-				Mail naar:{" "}
-				{(inpChange && inpChange.challenge_title) ||
-					findingUrlDataChallenge[0].challenge_title}
+				{(inpChange && inpChange.challenge_support) ||
+					findingUrlDataChallenge[0].challenge_support}
 			</p>
 			<br />
-			<p>
-				{(inpChange && inpChange.challenge_info) ||
-					(findingUrlDataChallenge[0] &&
-						findingUrlDataChallenge[0].challenge_info)}
-			</p>
 			{/* <p className="support__instruction__assignment__body">
-				{(inpChange && inpChange.challenge_description) ||
-					findingUrlDataChallenge[0].challenge_description}
+				{(inpChange && inpChange.challenge_info) ||
+					findingUrlDataChallenge[0].challenge_info}
 			</p> */}
 		</div>
 	);
+
+	// useEffect(() => {
+	// 	if (location === "challenge") {
+	// 		document.body.style.background =
+	// 			(inpChange && inpChange.challenge_background_color) ||
+	// 			findingUrlDataChallenge.challenge_background_color;
+	// 	} else {
+	// 		document.body.style.background = "#f4f4f4";
+	// 	}
+	// }, []);
 
 	return (
 		<>

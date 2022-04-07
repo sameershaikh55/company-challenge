@@ -35,10 +35,10 @@ const Dashboard = ({ allData }) => {
 			<p className="support__instruction__assignment__header">
 				{activeClientChallenges && activeClientChallenges[0].challenge_support}
 			</p>
-			<br />
+			{/* <br />
 			<p className="support__instruction__assignment__body">
 				{activeClientChallenges && activeClientChallenges[0].challenge_info}
-			</p>
+			</p> */}
 		</div>
 	);
 

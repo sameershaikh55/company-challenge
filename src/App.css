@@ -119,3 +119,9 @@ button:disabled {
 		padding: 0rem 0.5rem;
 	}
 }
+
+@media screen and (max-width: 768px) {
+	body {
+		overflow-y: auto;
+	}
+}

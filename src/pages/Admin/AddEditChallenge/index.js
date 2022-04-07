@@ -38,6 +38,7 @@ const AddEditChallenge = ({ allData, allDataApi }) => {
 		challenge_password_instruction: "",
 		challenge_support: "",
 		challenge_title: "",
+		challenge_background_color: "#f4f4f4",
 	});
 	const [popUp, setPopUp] = useState(false);
 	const [viewScreen, setViewScreen] = useState(false);
@@ -69,6 +70,9 @@ const AddEditChallenge = ({ allData, allDataApi }) => {
 				),
 				challenge_support: addingChallengeData("challenge_support"),
 				challenge_title: addingChallengeData("challenge_title"),
+				challenge_background_color: addingChallengeData(
+					"challenge_background_color"
+				),
 			});
 		}
 	}, [
@@ -250,6 +254,16 @@ const AddEditChallenge = ({ allData, allDataApi }) => {
 								onChange={handleChange}
 								name="challenge_contact"
 								type="text"
+							/>
+						</div>
+						<div>
+							<label htmlFor="Contact">Background Color</label>
+							<br />
+							<input
+								value={inpChange.challenge_background_color}
+								onChange={handleChange}
+								name="challenge_background_color"
+								type="color"
 							/>
 						</div>
 					</div>
