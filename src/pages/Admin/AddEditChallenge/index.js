@@ -316,14 +316,6 @@ const AddEditChallenge = ({ allData, allDataApi }) => {
 						<div className="add_edit_challenge__body_row_two_col">
 							<label htmlFor="Description">Description</label>
 							<br />
-							{/* <textarea
-								value={inpChange.challenge_description}
-								onChange={handleChange}
-								name="challenge_description"
-								cols="30"
-								rows="10"
-							></textarea> */}
-
 							<TextEditor
 								name="challenge_description"
 								editorContent={inpChange.challenge_description}
@@ -333,14 +325,6 @@ const AddEditChallenge = ({ allData, allDataApi }) => {
 						<div className="add_edit_challenge__body_row_two_col">
 							<label htmlFor="PasswordInstruction">PasswordInstruction</label>
 							<br />
-							{/* <textarea
-								value={inpChange.challenge_password_instruction}
-								onChange={handleChange}
-								name="challenge_password_instruction"
-								cols="30"
-								rows="10"
-							></textarea> */}
-
 							<TextEditor
 								name="challenge_password_instruction"
 								editorContent={inpChange.challenge_password_instruction}
@@ -353,14 +337,6 @@ const AddEditChallenge = ({ allData, allDataApi }) => {
 						<div className="add_edit_challenge__body_row_three_col">
 							<label htmlFor="Support">Support</label>
 							<br />
-							{/* <textarea
-								value={inpChange.challenge_support}
-								onChange={handleChange}
-								name="challenge_support"
-								cols="30"
-								rows="10"
-							></textarea> */}
-
 							<TextEditor
 								name="challenge_support"
 								editorContent={inpChange.challenge_support}
@@ -373,14 +349,6 @@ const AddEditChallenge = ({ allData, allDataApi }) => {
 						<div className="add_edit_challenge__body_row_four_col">
 							<label htmlFor="Info">Info</label>
 							<br />
-							{/* <textarea
-								value={inpChange.challenge_info}
-								onChange={handleChange}
-								name="challenge_info"
-								cols="30"
-								rows="10"
-							></textarea> */}
-
 							<TextEditor
 								name="challenge_info"
 								editorContent={inpChange.challenge_info}

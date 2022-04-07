@@ -6,11 +6,12 @@ import eye from "../../../assets/images/eye.svg";
 import placeholderUpload from "../../../assets/images/placeholder-upload.svg";
 import Popup from "../../../components/Popup";
 import AssignmentView from "../../User/Assignment";
+import Loader from "../../../components/Loader";
+import TextEditor from "../../../components/TextEditor";
 import { useHistory } from "react-router-dom";
 import { storingRoute } from "../../../utils/storingRoute";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
-import Loader from "../../../components/Loader";
 import { filterActiveClient } from "../../../utils/filterActiveClient";
 import { doc, updateDoc } from "firebase/firestore";
 import { database, storage } from "../../../firebase";
@@ -18,6 +19,13 @@ import { dateTime } from "../../../utils/gettingTime";
 import { generateID } from "../../../utils/generatingID";
 import { ref, getDownloadURL, uploadBytesResumable } from "@firebase/storage";
 import { allDataApi } from "../../../redux/action";
+import draftToHtml from "draftjs-to-html";
+import {
+	ContentState,
+	convertFromHTML,
+	convertToRaw,
+	EditorState,
+} from "draft-js";
 
 const AddEditAssignment = ({ allData, allDataApi }) => {
 	const history = useHistory();
@@ -71,9 +79,18 @@ const AddEditAssignment = ({ allData, allDataApi }) => {
 				return activeClientAssignment[0][key];
 			};
 
+			// EDITOR'S HTML INTO EDITOR OBJECT FORMAT
+			const htmlIntoEditor = (key) => {
+				return EditorState.createWithContent(
+					ContentState.createFromBlockArray(
+						convertFromHTML(addingAssignmentData(key))
+					)
+				);
+			};
+
 			setInpChange({
-				assignment: addingAssignmentData("assignment"),
-				assignment_description: addingAssignmentData("assignment_description"),
+				assignment: htmlIntoEditor("assignment"),
+				assignment_description: htmlIntoEditor("assignment_description"),
 				assignment_password: addingAssignmentData("assignment_password"),
 				assignment_subtitle: addingAssignmentData("assignment_subtitle"),
 				assignment_title: addingAssignmentData("assignment_title"),
@@ -95,6 +112,13 @@ const AddEditAssignment = ({ allData, allDataApi }) => {
 			const file = e.target.files[0];
 			uploadFiles(file);
 		}
+	};
+
+	// HANDLE CHANGE FOR EDITORS
+	const handleChangeEditor = (name, value) => {
+		setInpChange((item) => {
+			return { ...item, [name]: value };
+		});
 	};
 
 	// IMAGE UPLOAD TO FIREBASE
@@ -121,6 +145,11 @@ const AddEditAssignment = ({ allData, allDataApi }) => {
 	};
 
 	const handleSubmit = async () => {
+		// CONVERTING EDITOR OBJECT INTO HTML
+		const convertIntoHtml = (value) => {
+			return draftToHtml(convertToRaw(value.getCurrentContent()));
+		};
+
 		if (assignment_id) {
 			// FIREBASE UPDATE FUNCTION
 			await updateDoc(doc(database, "clients", client_id), {
@@ -138,6 +167,10 @@ const AddEditAssignment = ({ allData, allDataApi }) => {
 											? {
 													...activeClientAssignment[0],
 													...inpChange,
+													assignment: convertIntoHtml(inpChange.assignment),
+													assignment_description: convertIntoHtml(
+														inpChange.assignment_description
+													),
 													assignment_password:
 														inpChange.assignment_password.toLowerCase(),
 													assignment_created_at: dateTime(),
@@ -162,6 +195,10 @@ const AddEditAssignment = ({ allData, allDataApi }) => {
 									...activeClientChallenges[0].assignments,
 									{
 										...inpChange,
+										assignment: convertIntoHtml(inpChange.assignment),
+										assignment_description: convertIntoHtml(
+											inpChange.assignment_description
+										),
 										assignment_password:
 											inpChange.assignment_password.toLowerCase(),
 										assignment_id: generateID(25),
@@ -302,30 +339,26 @@ const AddEditAssignment = ({ allData, allDataApi }) => {
 					</div>
 
 					<div className="add_edit_assignment__body_row_two">
-						<div>
+						<div className="add_edit_assignment__body_row_two_col">
 							<label htmlFor="Description">Description</label>
 							<br />
-							<textarea
-								onChange={handleChange}
-								value={inpChange.assignment_description}
+							<TextEditor
 								name="assignment_description"
-								cols="30"
-								rows="10"
-							></textarea>
+								editorContent={inpChange.assignment_description}
+								handleChangeEditor={handleChangeEditor}
+							/>
 						</div>
 					</div>
 
 					<div className="add_edit_assignment__body_row_three">
-						<div>
+						<div className="add_edit_assignment__body_row_three_col">
 							<label htmlFor="Asignment">Assignment</label>
 							<br />
-							<textarea
-								onChange={handleChange}
-								value={inpChange.assignment}
+							<TextEditor
 								name="assignment"
-								cols="30"
-								rows="10"
-							></textarea>
+								editorContent={inpChange.assignment}
+								handleChangeEditor={handleChangeEditor}
+							/>
 						</div>
 					</div>
 

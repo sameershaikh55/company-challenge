@@ -9,6 +9,8 @@ import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import { filterActiveClient } from "../../../utils/filterActiveClient";
 import Loader from "../../../components/Loader";
+import draftToHtml from "draftjs-to-html";
+import { convertToRaw } from "draft-js";
 
 const Dashboard = ({ allData }) => {
 	const { client_id, challenge_id } = useParams();
@@ -32,13 +34,22 @@ const Dashboard = ({ allData }) => {
 
 	const children2 = (
 		<div className="support__instruction__assignment">
-			<p className="support__instruction__assignment__header">
-				{activeClientChallenges && activeClientChallenges[0].challenge_support}
-			</p>
+			<p
+				dangerouslySetInnerHTML={{
+					__html:
+						activeClientChallenges &&
+						activeClientChallenges[0].challenge_support,
+				}}
+				className="support__instruction__assignment__header"
+			/>
 			<br />
-			<p className="support__instruction__assignment__body">
-				{activeClientChallenges && activeClientChallenges[0].challenge_info}
-			</p>
+			<p
+				dangerouslySetInnerHTML={{
+					__html:
+						activeClientChallenges && activeClientChallenges[0].challenge_info,
+				}}
+				className="support__instruction__assignment__body"
+			/>
 		</div>
 	);
 

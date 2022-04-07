@@ -7,6 +7,8 @@ import { filterActiveClient } from "../../../utils/filterActiveClient";
 import Loader from "../../../components/Loader";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
+import draftToHtml from "draftjs-to-html";
+import { convertToRaw } from "draft-js";
 
 const Assignment = ({
 	inpChange,
@@ -25,6 +27,14 @@ const Assignment = ({
 	}, [history]);
 
 	const [popUp, setPopUp] = useState(false);
+
+	// CONVERTING EDITOR OBJECT INTO HTML
+	const convertIntoHtml = (value) => {
+		return (
+			(viewScreen && draftToHtml(convertToRaw(value.getCurrentContent()))) ||
+			value
+		);
+	};
 
 	// FILTER TO GET ACTIVE CLIENT
 	const activeClient = filterActiveClient(allData, client_id, "id");
@@ -114,11 +124,16 @@ const Assignment = ({
 										activeClientAssignment[0].assignment_title)}
 							</h2>
 
-							<div className="user__assignment__body__left__inner__description">
-								{(viewScreen && inpChange.assignment_description) ||
-									(activeClientAssignment &&
-										activeClientAssignment[0].assignment_description)}
-							</div>
+							<div
+								dangerouslySetInnerHTML={{
+									__html: convertIntoHtml(
+										(viewScreen && inpChange.assignment_description) ||
+											(activeClientAssignment &&
+												activeClientAssignment[0].assignment_description)
+									),
+								}}
+								className="user__assignment__body__left__inner__description"
+							/>
 						</div>
 					</div>
 					<div className="user__assignment__body__right">
@@ -137,11 +152,15 @@ const Assignment = ({
 							{/* <br /> */}
 							{/* <p>AsignmentQuestion</p> */}
 							<br />
-							<p>
-								{(viewScreen && inpChange.assignment) ||
-									(activeClientAssignment &&
-										activeClientAssignment[0].assignment)}
-							</p>
+							<p
+								dangerouslySetInnerHTML={{
+									__html: convertIntoHtml(
+										(viewScreen && inpChange.assignment) ||
+											(activeClientAssignment &&
+												activeClientAssignment[0].assignment)
+									),
+								}}
+							/>
 						</div>
 					</div>
 				</div>
