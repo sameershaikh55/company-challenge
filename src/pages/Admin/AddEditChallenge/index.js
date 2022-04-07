@@ -17,6 +17,13 @@ import Popup from "../../../components/Popup";
 import UserChallenge from "../../User/Challenge";
 import { allDataApi } from "../../../redux/action";
 import TextEditor from "../../../components/TextEditor";
+import {
+	EditorState,
+	ContentState,
+	convertToRaw,
+	convertFromHTML,
+} from "draft-js";
+import draftToHtml from "draftjs-to-html";
 
 const AddEditChallenge = ({ allData, allDataApi }) => {
 	const history = useHistory();
@@ -30,13 +37,15 @@ const AddEditChallenge = ({ allData, allDataApi }) => {
 	}, [history]);
 
 	// STATES
+	let editorState = EditorState.createEmpty();
+
 	const [inpChange, setInpChange] = useState({
 		challenge_contact: "",
-		challenge_description: "",
-		challenge_info: "",
+		challenge_description: editorState,
+		challenge_info: editorState,
 		challenge_name: "",
-		challenge_password_instruction: "",
-		challenge_support: "",
+		challenge_password_instruction: editorState,
+		challenge_support: editorState,
 		challenge_title: "",
 		challenge_background_color: "#f4f4f4",
 	});
@@ -60,15 +69,24 @@ const AddEditChallenge = ({ allData, allDataApi }) => {
 				return activeClientChallenges[0][key];
 			};
 
+			// EDITOR'S HTML INTO EDITOR OBJECT FORMAT
+			const htmlIntoEditor = (key) => {
+				return EditorState.createWithContent(
+					ContentState.createFromBlockArray(
+						convertFromHTML(addingChallengeData(key))
+					)
+				);
+			};
+
 			setInpChange({
 				challenge_contact: addingChallengeData("challenge_contact"),
-				challenge_description: addingChallengeData("challenge_description"),
-				challenge_info: addingChallengeData("challenge_info"),
+				challenge_description: htmlIntoEditor("challenge_description"),
+				challenge_info: htmlIntoEditor("challenge_info"),
 				challenge_name: addingChallengeData("challenge_name"),
-				challenge_password_instruction: addingChallengeData(
+				challenge_password_instruction: htmlIntoEditor(
 					"challenge_password_instruction"
 				),
-				challenge_support: addingChallengeData("challenge_support"),
+				challenge_support: htmlIntoEditor("challenge_support"),
 				challenge_title: addingChallengeData("challenge_title"),
 				challenge_background_color: addingChallengeData(
 					"challenge_background_color"
@@ -91,8 +109,20 @@ const AddEditChallenge = ({ allData, allDataApi }) => {
 		});
 	};
 
+	// HANDLE CHANGE FOR EDITORS
+	const handleChangeEditor = (name, value) => {
+		setInpChange((item) => {
+			return { ...item, [name]: value };
+		});
+	};
+
 	// FORM SUBMIT
 	const handleSubmit = async () => {
+		// CONVERTING EDITOR OBJECT INTO HTML
+		const convertIntoHtml = (value) => {
+			return draftToHtml(convertToRaw(value.getCurrentContent()));
+		};
+
 		if (challenge_id) {
 			// FIREBASE UPDATE FUNCTION
 			await updateDoc(doc(database, "clients", client_id), {
@@ -103,6 +133,14 @@ const AddEditChallenge = ({ allData, allDataApi }) => {
 						? (content = {
 								...activeClientChallenges[0],
 								...inpChange,
+								challenge_description: convertIntoHtml(
+									inpChange.challenge_description
+								),
+								challenge_info: convertIntoHtml(inpChange.challenge_info),
+								challenge_password_instruction: convertIntoHtml(
+									inpChange.challenge_password_instruction
+								),
+								challenge_support: convertIntoHtml(inpChange.challenge_support),
 								challenge_created_at: dateTime(),
 						  })
 						: content
@@ -118,6 +156,14 @@ const AddEditChallenge = ({ allData, allDataApi }) => {
 					{
 						...inpChange,
 						assignments: [],
+						challenge_description: convertIntoHtml(
+							inpChange.challenge_description
+						),
+						challenge_info: convertIntoHtml(inpChange.challenge_info),
+						challenge_password_instruction: convertIntoHtml(
+							inpChange.challenge_password_instruction
+						),
+						challenge_support: convertIntoHtml(inpChange.challenge_support),
 						challenge_id: generateID(20),
 						challenge_created_at: dateTime(),
 						challenge_url: generateID(7),
@@ -222,8 +268,6 @@ const AddEditChallenge = ({ allData, allDataApi }) => {
 					</ul>
 				</div>
 
-				{/* <TextEditor /> */}
-
 				<div className="add_edit_challenge__body">
 					<div className="add_edit_challenge__body_row_one">
 						<div>
@@ -269,55 +313,79 @@ const AddEditChallenge = ({ allData, allDataApi }) => {
 					</div>
 
 					<div className="add_edit_challenge__body_row_two">
-						<div>
+						<div className="add_edit_challenge__body_row_two_col">
 							<label htmlFor="Description">Description</label>
 							<br />
-							<textarea
+							{/* <textarea
 								value={inpChange.challenge_description}
 								onChange={handleChange}
 								name="challenge_description"
 								cols="30"
 								rows="10"
-							></textarea>
+							></textarea> */}
+
+							<TextEditor
+								name="challenge_description"
+								editorContent={inpChange.challenge_description}
+								handleChangeEditor={handleChangeEditor}
+							/>
 						</div>
-						<div>
+						<div className="add_edit_challenge__body_row_two_col">
 							<label htmlFor="PasswordInstruction">PasswordInstruction</label>
 							<br />
-							<textarea
+							{/* <textarea
 								value={inpChange.challenge_password_instruction}
 								onChange={handleChange}
 								name="challenge_password_instruction"
 								cols="30"
 								rows="10"
-							></textarea>
+							></textarea> */}
+
+							<TextEditor
+								name="challenge_password_instruction"
+								editorContent={inpChange.challenge_password_instruction}
+								handleChangeEditor={handleChangeEditor}
+							/>
 						</div>
 					</div>
 
 					<div className="add_edit_challenge__body_row_three">
-						<div>
+						<div className="add_edit_challenge__body_row_three_col">
 							<label htmlFor="Support">Support</label>
 							<br />
-							<textarea
+							{/* <textarea
 								value={inpChange.challenge_support}
 								onChange={handleChange}
 								name="challenge_support"
 								cols="30"
 								rows="10"
-							></textarea>
+							></textarea> */}
+
+							<TextEditor
+								name="challenge_support"
+								editorContent={inpChange.challenge_support}
+								handleChangeEditor={handleChangeEditor}
+							/>
 						</div>
 					</div>
 
 					<div className="add_edit_challenge__body_row_four">
-						<div>
+						<div className="add_edit_challenge__body_row_four_col">
 							<label htmlFor="Info">Info</label>
 							<br />
-							<textarea
+							{/* <textarea
 								value={inpChange.challenge_info}
 								onChange={handleChange}
 								name="challenge_info"
 								cols="30"
 								rows="10"
-							></textarea>
+							></textarea> */}
+
+							<TextEditor
+								name="challenge_info"
+								editorContent={inpChange.challenge_info}
+								handleChangeEditor={handleChangeEditor}
+							/>
 						</div>
 					</div>
 				</div>

@@ -20,6 +20,7 @@ import { dateTime } from "../../../utils/gettingTime";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { allDataApi } from "../../../redux/action";
+import placeholderUpload from "../../../assets/images/placeholder-upload.svg";
 
 const AddEditClient = ({ allData, allDataApi }) => {
 	const { client_id } = useParams();
@@ -173,10 +174,7 @@ const AddEditClient = ({ allData, allDataApi }) => {
 						/>
 					)) || (
 						<img
-							src={
-								(uploadedImage && uploadedImage) ||
-								"https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg"
-							}
+							src={(uploadedImage && uploadedImage) || placeholderUpload}
 							alt="client"
 						/>
 					)}

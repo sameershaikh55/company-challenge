@@ -10,6 +10,19 @@ textarea {
 	overflow: auto;
 	box-shadow: 1px 2px 4px #1f1d5936;
 }
+
+.add_edit_challenge::-webkit-scrollbar {
+	width: 7px;
+	height: 4px;
+}
+.add_edit_challenge::-webkit-scrollbar-track {
+	background: #e2e6eb;
+}
+.add_edit_challenge::-webkit-scrollbar-thumb {
+	background: #1c395c;
+	border-radius: 10px;
+}
+
 .add_edit_challenge {
 	background: #ffffff;
 	border-radius: 10px;
@@ -23,28 +36,28 @@ textarea {
 	justify-content: space-between;
 }
 
-.add_edit_challenge ul {
+.add_edit_challenge .add_edit_challenge__header ul {
 	display: flex;
 	align-items: center;
 	list-style: none;
 	gap: 1rem;
 }
 
-.add_edit_challenge ul li:nth-last-child(1) {
+.add_edit_challenge .add_edit_challenge__header ul li:nth-last-child(1) {
 	margin: 0px;
 }
 
-.add_edit_challenge ul li button {
+.add_edit_challenge .add_edit_challenge__header ul li button {
 	height: 40px;
 }
 
-.add_edit_challenge ul li:nth-child(1) button {
+.add_edit_challenge .add_edit_challenge__header ul li:nth-child(1) button {
 	background: transparent;
 	border: none;
 	text-decoration: underline;
 }
 
-.add_edit_challenge ul li:nth-child(2) button {
+.add_edit_challenge .add_edit_challenge__header ul li:nth-child(2) button {
 	background: #22ad7a;
 	border-radius: 6px;
 	border: none;
@@ -52,7 +65,7 @@ textarea {
 	color: #fff;
 }
 
-.add_edit_challenge ul li:nth-child(3) button {
+.add_edit_challenge .add_edit_challenge__header ul li:nth-child(3) button {
 	background: #ce5252;
 	border-radius: 6px;
 	border: none;
@@ -60,7 +73,7 @@ textarea {
 	color: #fff;
 }
 
-.add_edit_challenge ul li:nth-child(4) button {
+.add_edit_challenge .add_edit_challenge__header ul li:nth-child(4) button {
 	background-color: #d2e7ef;
 	font-size: 14px;
 	color: #fff;
@@ -108,9 +121,14 @@ textarea {
 	width: 25%;
 }
 
-.add_edit_challenge__body_row_two div {
+.add_edit_challenge__body_row_two div.add_edit_challenge__body_row_two_col {
 	flex: 0 0 auto;
 	width: 50%;
+}
+
+.add_edit_challenge__body_row_three div.add_edit_challenge__body_row_three_col {
+	flex: 0 0 auto;
+	width: 100%;
 }
 
 .add_edit_challenge__body_row_one div label,
@@ -187,14 +205,17 @@ textarea {
 		height: 100%;
 		width: 100%;
 	}
-	.add_edit_challenge__body_row_one div,
-	.add_edit_challenge__body_row_two div {
+	.add_edit_challenge__body_row_one div {
 		width: 100%;
 	}
 	.add_edit_challenge__body_row_two,
 	.add_edit_challenge__body_row_three,
 	.add_edit_challenge__body_row_four {
 		margin-top: 0rem;
+	}
+	.add_edit_challenge__body_row_two div.add_edit_challenge__body_row_two_col {
+		flex: 0 0 auto;
+		width: 100%;
 	}
 }
 

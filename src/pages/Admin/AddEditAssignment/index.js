@@ -3,6 +3,7 @@ import "./styles.css";
 import Layout from "../../../layout";
 import deleteIcon from "../../../assets/images/delete.svg";
 import eye from "../../../assets/images/eye.svg";
+import placeholderUpload from "../../../assets/images/placeholder-upload.svg";
 import Popup from "../../../components/Popup";
 import AssignmentView from "../../User/Assignment";
 import { useHistory } from "react-router-dom";
@@ -341,8 +342,7 @@ const AddEditAssignment = ({ allData, allDataApi }) => {
 							)) || (
 								<img
 									src={
-										(inpChange.media && inpChange.media) ||
-										"https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg"
+										(inpChange.media && inpChange.media) || placeholderUpload
 									}
 									alt="client"
 								/>

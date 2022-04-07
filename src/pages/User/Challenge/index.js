@@ -6,6 +6,8 @@ import { storingRoute } from "../../../utils/storingRoute";
 import Popup from "../../../components/Popup";
 import { useLocation } from "react-router-dom";
 import { connect } from "react-redux";
+import { convertToRaw } from "draft-js";
+import draftToHtml from "draftjs-to-html";
 
 const Challenge = ({
 	activeClient,
@@ -21,6 +23,14 @@ const Challenge = ({
 	useEffect(() => {
 		storingRoute(history);
 	}, [history]);
+
+	// CONVERTING EDITOR OBJECT INTO HTML
+	const convertIntoHtml = (value) => {
+		return (
+			(inpChange && draftToHtml(convertToRaw(value.getCurrentContent()))) ||
+			value
+		);
+	};
 
 	const findingUrlData =
 		!activeClient &&
@@ -39,17 +49,27 @@ const Challenge = ({
 
 	const children = (
 		<div className="support__instruction__assignment">
-			<p className="support__instruction__assignment__header">
-				{(inpChange && inpChange.challenge_support) ||
-					findingUrlDataChallenge[0].challenge_support}
-			</p>
+			<p
+				dangerouslySetInnerHTML={{
+					__html: convertIntoHtml(
+						(inpChange && inpChange.challenge_support) ||
+							findingUrlDataChallenge[0].challenge_support
+					),
+				}}
+				className="support__instruction__assignment__header"
+			/>
 			<br />
-			<p className="support__instruction__assignment__body">
-				{(inpChange && inpChange.challenge_info) ||
-					(findingUrlDataChallenge &&
-						"challenge_info" in findingUrlDataChallenge[0] &&
-						findingUrlDataChallenge[0].challenge_info)}
-			</p>
+			<p
+				dangerouslySetInnerHTML={{
+					__html: convertIntoHtml(
+						(inpChange && inpChange.challenge_info) ||
+							(findingUrlDataChallenge &&
+								"challenge_info" in findingUrlDataChallenge[0] &&
+								findingUrlDataChallenge[0].challenge_info)
+					),
+				}}
+				className="support__instruction__assignment__body"
+			/>
 		</div>
 	);
 
@@ -114,10 +134,15 @@ const Challenge = ({
 							findingUrlDataChallenge[0].challenge_title}
 					</h3>
 
-					<div className="user__challenge__body">
-						{(inpChange && inpChange.challenge_description) ||
-							findingUrlDataChallenge[0].challenge_description}
-					</div>
+					<div
+						dangerouslySetInnerHTML={{
+							__html: convertIntoHtml(
+								(inpChange && inpChange.challenge_description) ||
+									findingUrlDataChallenge[0].challenge_description
+							),
+						}}
+						className="user__challenge__body"
+					/>
 				</div>
 			</div>
 		</>

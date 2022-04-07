@@ -1,6 +1,41 @@
 .editor_container {
-	min-height: 300px;
 	padding: 10px;
 	background-color: #e9edf2;
 	border-radius: 6px;
+	margin-top: 0.2rem;
+}
+
+.rdw-editor-main {
+	min-height: 200px;
+	max-height: 200px;
+}
+
+.rdw-image-modal,
+.rdw-emoji-modal,
+.rdw-embedded-modal,
+.rdw-link-modal {
+	right: 0%;
+	left: auto;
+}
+
+.rdw-embedded-modal {
+	height: 194px;
+}
+
+.rdw-link-modal {
+	height: 238px;
+}
+
+.rdw-editor-main::-webkit-scrollbar,
+.rdw-dropdown-optionwrapper::-webkit-scrollbar {
+	width: 5px;
+}
+.rdw-editor-main::-webkit-scrollbar-track,
+.rdw-dropdown-optionwrapper::-webkit-scrollbar-track {
+	background: #e2e6eb;
+}
+.rdw-editor-main::-webkit-scrollbar-thumb,
+.rdw-dropdown-optionwrapper::-webkit-scrollbar-thumb {
+	background: #1c395c;
+	border-radius: 10px;
 }

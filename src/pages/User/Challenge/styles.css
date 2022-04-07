@@ -75,6 +75,7 @@
 	max-height: calc(100vh - 360px);
 	overflow-y: auto;
 	white-space: pre-line;
+	padding-right: 1rem;
 }
 
 .user__challenge__body::-webkit-scrollbar {
