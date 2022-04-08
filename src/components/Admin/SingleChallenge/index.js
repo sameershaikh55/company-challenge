@@ -36,7 +36,7 @@ const SingleChallenge = ({ item, activeClientId }) => {
 							onMouseOver={() => setCopyState("copy")}
 							onMouseOut={() => setCopyState(false)}
 							onClick={() => {
-								copy(`/${challenge_url}`);
+								copy(`https://app.companychallenges.com/${challenge_url}`);
 								setCopyState("copied");
 							}}
 							className="single__challenge__body__number"
