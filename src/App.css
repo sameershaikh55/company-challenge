@@ -95,7 +95,7 @@ button:disabled {
 }
 
 .app {
-	max-width: 1900px;
+	/* max-width: 1900px; */
 	margin: 0 auto;
 }
 
