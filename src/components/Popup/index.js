@@ -2,9 +2,9 @@ import React from "react";
 import "./styles.css";
 import cross from "../../assets/images/cross.svg";
 
-const Popup = ({ title, setPopUp, children }) => {
+const Popup = ({ title, setPopUp, children, bgColor }) => {
 	return (
-		<div className="popup">
+		<div style={{ background: (bgColor && bgColor) || "" }} className="popup">
 			<div className="popup__inner">
 				<div className="popup__header">
 					<p>{title}</p>

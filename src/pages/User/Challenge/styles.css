@@ -78,6 +78,14 @@
 	padding-right: 1rem;
 }
 
+.user__challenge .user__challenge__body ul {
+	list-style: inside !important;
+}
+
+.user__challenge .user__challenge__body ol {
+	list-style: inside decimal !important;
+}
+
 .user__challenge__body::-webkit-scrollbar {
 	width: 7px;
 }

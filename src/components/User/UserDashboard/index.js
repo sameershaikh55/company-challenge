@@ -44,7 +44,7 @@ const SingleAssignment = ({ activeClient, activeClientChallenges, item }) => {
 						value={passInpHandle}
 						onChange={(e) => setPassInpHandle(e.target.value.toLowerCase())}
 						type="text"
-						placeholder="Password"
+						placeholder="Secret code"
 					/>
 					{passSubmit === "wrong" && passInpHandle !== "" ? (
 						<p className="error_message">wrong password</p>
@@ -61,7 +61,11 @@ const SingleAssignment = ({ activeClient, activeClientChallenges, item }) => {
 
 	const children1 = (
 		<div className="password__instruction__assignment">
-			<p>{activeClientChallenges[0].challenge_password_instruction}</p>
+			<p
+				dangerouslySetInnerHTML={{
+					__html: activeClientChallenges[0].challenge_password_instruction,
+				}}
+			></p>
 			{/* <br /> */}
 			{/* <p>EN: {activeClientChallenges[0].challenge_password_instruction}</p> */}
 		</div>
@@ -81,13 +85,27 @@ const SingleAssignment = ({ activeClient, activeClientChallenges, item }) => {
 			`}</style>
 
 			{popUp && (
-				<Popup title="Password" setPopUp={setPopUp} children={children} />
+				<Popup
+					title="Secret code"
+					setPopUp={setPopUp}
+					children={children}
+					bgColor={
+						activeClientChallenges &&
+						"challenge_background_color" in activeClientChallenges[0] &&
+						activeClientChallenges[0].challenge_background_color
+					}
+				/>
 			)}
 			{popUp2 && (
 				<Popup
-					title="Password Instruction"
+					title="Secret code Instruction"
 					setPopUp={setPopUp2}
 					children={children1}
+					bgColor={
+						activeClientChallenges &&
+						"challenge_background_color" in activeClientChallenges[0] &&
+						activeClientChallenges[0].challenge_background_color
+					}
 				/>
 			)}
 
