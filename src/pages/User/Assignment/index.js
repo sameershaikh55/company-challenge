@@ -84,14 +84,31 @@ const Assignment = ({
 
 	return (
 		<>
-			{popUp && <Popup title="" setPopUp={setPopUp} children={children} />}
+			{popUp && (
+				<Popup
+					title=""
+					setPopUp={setPopUp}
+					children={children}
+					bgColor={
+						(activeClientChallengesView &&
+							"challenge_background_color" in activeClientChallengesView[0] &&
+							activeClientChallengesView[0].challenge_background_color) ||
+						(activeClientChallenges &&
+							"challenge_background_color" in activeClientChallenges[0] &&
+							activeClientChallenges[0].challenge_background_color)
+					}
+				/>
+			)}
 
 			<div
 				style={{
 					background:
-						activeClientChallenges &&
-						"challenge_background_color" in activeClientChallenges[0] &&
-						activeClientChallenges[0].challenge_background_color,
+						(activeClientChallengesView &&
+							"challenge_background_color" in activeClientChallengesView[0] &&
+							activeClientChallengesView[0].challenge_background_color) ||
+						(activeClientChallenges &&
+							"challenge_background_color" in activeClientChallenges[0] &&
+							activeClientChallenges[0].challenge_background_color),
 				}}
 				className="user__assignment"
 			>
@@ -110,6 +127,9 @@ const Assignment = ({
 							activeClientAssignment[0].video_url && (
 								<button onClick={() => setPopUp(true)}>Media</button>
 							)}
+						{viewScreen && inpChange.video_url && (
+							<button onClick={() => setPopUp(true)}>Media</button>
+						)}
 						<button onClick={complete}>Complete</button>
 					</div>
 				</div>
@@ -153,6 +173,7 @@ const Assignment = ({
 							{/* <p>AsignmentQuestion</p> */}
 							<br />
 							<p
+							className="user__assignment__body__right__inner__description"
 								dangerouslySetInnerHTML={{
 									__html: convertIntoHtml(
 										(viewScreen && inpChange.assignment) ||

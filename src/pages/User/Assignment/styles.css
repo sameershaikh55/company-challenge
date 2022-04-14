@@ -74,8 +74,9 @@
 	box-shadow: 0px 1px 4px #1f1d5921;
 }
 
-.user__assignment__body__right__inner p {
-	max-height: calc(100vh - 478px);
+.user__assignment__body__right__inner
+	p.user__assignment__body__right__inner__description {
+	max-height: calc(100vh - 520px);
 	overflow-y: auto;
 	padding-right: 0.2rem;
 	white-space: pre-line;
@@ -94,15 +95,18 @@
 	gap: 1rem;
 }
 
-.user__assignment__body__right__inner p::-webkit-scrollbar,
+.user__assignment__body__right__inner
+	p.user__assignment__body__right__inner__description::-webkit-scrollbar,
 .user__assignment__body__left__inner__description::-webkit-scrollbar {
 	width: 7px;
 }
-.user__assignment__body__right__inner p::-webkit-scrollbar-track,
+.user__assignment__body__right__inner
+	p.user__assignment__body__right__inner__description::-webkit-scrollbar-track,
 .user__assignment__body__left__inner__description::-webkit-scrollbar-track {
 	background: #e2e6eb;
 }
-.user__assignment__body__right__inner p::-webkit-scrollbar-thumb,
+.user__assignment__body__right__inner
+	p.user__assignment__body__right__inner__description::-webkit-scrollbar-thumb,
 .user__assignment__body__left__inner__description::-webkit-scrollbar-thumb {
 	background: #1c395c;
 	border-radius: 10px;
@@ -116,11 +120,17 @@
 	background: #ebebeb;
 	border-radius: 6px;
 	max-height: 325px;
+	height: 100%;
+	width: 100%;
 }
 
 .user__assignment__body__right__inner__img img {
 	object-fit: contain;
 	border-radius: 6px;
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+	object-position: top;
 }
 
 @media screen and (max-width: 992px) {
@@ -149,6 +159,16 @@
 		height: 34px;
 		padding: 0rem 0.8rem;
 		font-size: 14px;
+		width: 100%;
+	}
+	.user__assignment__header .user__btn__container button:nth-child(2) {
+		margin-left: 0px;
+		font-size: 14px;
+	}
+	.user__btn__container {
+		display: flex;
+		flex-direction: column;
+		gap: 0.6rem;
 	}
 	.user__assignment__header img {
 		height: 60px;
@@ -156,5 +176,13 @@
 	}
 	.user__assignment__header {
 		gap: 0.5rem;
+		align-items: stretch;
+	}
+	.user__assignment__body__right__inner
+		p.user__assignment__body__right__inner__description {
+			max-height: 300px;
+	}
+	.user__assignment__body__left__inner, .user__assignment__body__right__inner {
+		height: fit-content;
 	}
 }

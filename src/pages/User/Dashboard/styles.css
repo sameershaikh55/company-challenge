@@ -59,7 +59,7 @@
 	margin-top: calc(var(--bs-gutter-y) * -1);
 	margin-right: calc(var(--bs-gutter-x) * -0.5);
 	margin-left: calc(var(--bs-gutter-x) * -0.5);
-	height: calc(100vh - 110px);
+	max-height: calc(100vh - 110px);
 	overflow-y: auto;
 	padding-bottom: 1rem;
 }

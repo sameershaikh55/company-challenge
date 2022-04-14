@@ -297,7 +297,7 @@ textarea {
 		width: 100%;
 	}
 	.add_edit_assignment__body_row_one div,
-	.add_edit_assignment__body_row_two div,
+	.add_edit_assignment__body_row_two div.add_edit_assignment__body_row_two_col,
 	.add_edit_assignment__body_row_four .col-2,
 	.add_edit_assignment__body_row_four .col-8 {
 		width: 100%;
@@ -310,4 +310,7 @@ textarea {
 }
 
 @media screen and (max-width: 575px) {
+	.add_edit_assignment__body_row_four div div {
+		width: 120px;
+	}
 }
