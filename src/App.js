@@ -95,6 +95,18 @@ function App({ allData, allDataApi }) {
 
 	return (
 		<div className="app">
+			{/* INLINE STYLES */}
+			<style jsx>{`
+				.line-limit-1 {
+					display: -webkit-box;
+					-webkit-line-clamp: 1;
+					text-overflow: ellipsis;
+					overflow: hidden;
+					width: 100%;
+					-webkit-box-orient: vertical;
+				}
+			`}</style>
+
 			<Switch>
 				{fetchingChallengeRoutes.length &&
 					fetchingChallengeRoutes.map((item, i) => {

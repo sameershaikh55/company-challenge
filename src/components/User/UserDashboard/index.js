@@ -47,7 +47,7 @@ const SingleAssignment = ({ activeClient, activeClientChallenges, item }) => {
 						placeholder="Secret code"
 					/>
 					{passSubmit === "wrong" && passInpHandle !== "" ? (
-						<p className="error_message">wrong password</p>
+						<p className="error_message">wrong secret code</p>
 					) : (
 						""
 					)}
@@ -73,17 +73,6 @@ const SingleAssignment = ({ activeClient, activeClientChallenges, item }) => {
 
 	return (
 		<>
-			<style jsx>{`
-				.line-limit-2 {
-					display: -webkit-box;
-					-webkit-line-clamp: 2;
-					text-overflow: ellipsis;
-					overflow: hidden;
-					width: 100%;
-					-webkit-box-orient: vertical;
-				}
-			`}</style>
-
 			{popUp && (
 				<Popup
 					title="Secret code"

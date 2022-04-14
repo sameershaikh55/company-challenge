@@ -220,4 +220,7 @@ textarea {
 }
 
 @media screen and (max-width: 575px) {
+	.add_edit_challenge__header h2 {
+		font-size: 22px;
+	}
 }

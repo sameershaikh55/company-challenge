@@ -20,7 +20,7 @@ const SingleClient = ({ item }) => {
 			<div className="client__left">
 				<img src={logo} alt="" />
 				<div className="client__left__text">
-					<h3>{client_name}</h3>
+					<h3 className="line-limit-1">{client_name}</h3>
 					<p>{challenges.length} challenges</p>
 				</div>
 			</div>

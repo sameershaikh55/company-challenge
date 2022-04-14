@@ -21,11 +21,11 @@ const SingleAssignment = ({
 						=
 					</span>
 					<h4 className="single__assignment__left_h41">{index + 1}</h4>
-					<h4>{assignment_title}</h4>
+					<h4 className="line-limit-1">{assignment_title}</h4>
 				</div>
 
 				<ul>
-					<li>{assignment_subtitle}</li>
+					<li className="line-limit-1">{assignment_subtitle}</li>
 				</ul>
 			</div>
 

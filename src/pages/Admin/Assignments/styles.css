@@ -204,5 +204,25 @@
 @media screen and (max-width: 575px) {
 	.assignment__list__inner {
 		height: calc(100vh - 400px);
+		padding-bottom: 0.5rem;
+	}
+	.assignment__header {
+		align-items: end;
+		gap: 0.5rem;
+	}
+	.assignment__title {
+		gap: 0.5rem;
+	}
+	.assignment__title p {
+		font-size: 14px;
+	}
+	/* .user__assignment__header {
+		flex-direction: column;
+	} */
+	.user__assignment__header__logo {
+		gap: 0.6rem;
+	}
+	.user__assignment__header__logo h2 {
+		font-size: 18px;
 	}
 }

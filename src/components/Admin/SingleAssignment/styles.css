@@ -71,4 +71,11 @@
 }
 
 @media screen and (max-width: 575px) {
+	.single__assignment {
+		flex-direction: column;
+		align-items: end;
+	}
+	.single__assignment .single__assignment__left div {
+		gap: 0.5rem;
+	}
 }

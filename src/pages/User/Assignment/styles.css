@@ -12,9 +12,7 @@
 	padding: 0.5rem;
 	height: 70px;
 	width: 70px;
-	background-color: #fff;
 	border-radius: 8px;
-	box-shadow: 1px 1px 4px #1f1d5921;
 }
 
 .user__assignment__header .user__btn__container button:nth-child(1) {
@@ -117,15 +115,11 @@
 .user__assignment__body__right__inner__img {
 	background: #ebebeb;
 	border-radius: 6px;
-	max-height: 280px;
-	height: 100%;
-	width: 100%;
+	max-height: 325px;
 }
 
 .user__assignment__body__right__inner__img img {
-	height: 100%;
-	width: 100%;
-	object-fit: cover;
+	object-fit: contain;
 	border-radius: 6px;
 }
 
@@ -151,4 +145,16 @@
 }
 
 @media screen and (max-width: 575px) {
+	.user__assignment__header .user__btn__container button:nth-child(1) {
+		height: 34px;
+		padding: 0rem 0.8rem;
+		font-size: 14px;
+	}
+	.user__assignment__header img {
+		height: 60px;
+		width: 60px;
+	}
+	.user__assignment__header {
+		gap: 0.5rem;
+	}
 }

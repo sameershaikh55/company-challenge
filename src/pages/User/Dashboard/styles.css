@@ -19,12 +19,11 @@
 	height: 110px;
 }
 
-.user__dashboard__header .client_img {
+/* .user__dashboard__header .client_img {
 	box-shadow: 1px 2px 6px #e1e1ef;
-}
+} */
 
 .user__dashboard__header img {
-	background: #fff;
 	border-radius: 6px;
 	padding: 0.5rem;
 	height: 70px;
@@ -162,4 +161,20 @@
 	.support__instruction__assignment__body::-webkit-scrollbar-thumb {
 	background: #1c395c;
 	border-radius: 10px;
+}
+
+@media screen and (max-width: 575px) {
+	.user__dashboard__header .assignment_right h2 {
+		display: none;
+	}
+	.user__dashboard__header__logo h2 {
+		font-size: 18px;
+	}
+	.user__dashboard__header img {
+		height: 60px;
+		width: 60px;
+	}
+	.user__dashboard__header__logo {
+		gap: 0.6rem;
+	}
 }

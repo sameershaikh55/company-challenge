@@ -175,4 +175,7 @@
 }
 
 @media screen and (max-width: 575px) {
+	.client__information__header h2 {
+		font-size: 22px;
+	}
 }

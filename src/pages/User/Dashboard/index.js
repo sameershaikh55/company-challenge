@@ -9,8 +9,6 @@ import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import { filterActiveClient } from "../../../utils/filterActiveClient";
 import Loader from "../../../components/Loader";
-import draftToHtml from "draftjs-to-html";
-import { convertToRaw } from "draft-js";
 
 const Dashboard = ({ allData }) => {
 	const { client_id, challenge_id } = useParams();
@@ -69,7 +67,16 @@ const Dashboard = ({ allData }) => {
 			className="user__dashboard"
 		>
 			{popUp3 && (
-				<Popup title="Support" setPopUp={setPopUp3} children={children2} />
+				<Popup
+					title="Support"
+					setPopUp={setPopUp3}
+					children={children2}
+					bgColor={
+						activeClientChallenges &&
+						"challenge_background_color" in activeClientChallenges[0] &&
+						activeClientChallenges[0].challenge_background_color
+					}
+				/>
 			)}
 
 			<div className="user__dashboard__header">

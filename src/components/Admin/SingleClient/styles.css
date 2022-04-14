@@ -39,3 +39,31 @@
 	color: #555555;
 	font-size: 14px;
 }
+
+@media screen and (max-width: 575px) {
+	.client__left .client__left__text {
+		margin-left: 0.8rem;
+		padding-right: 0.4rem;
+	}
+	.single__challenge__header h4 {
+		padding-right: 0.4rem;
+	}
+	.single__challenge__body__url,
+	.single__challenge__body__number,
+	.single__challenge__body a,
+	.single__challenge ul li,
+	.dashboard__challenges__header a span {
+		font-size: 14px;
+	}
+	.dashboard__challenges__body h1 {
+		padding-bottom: 5px;
+	}
+	.client__left h3 {
+		margin-top: 4px;
+		font-size: 16px;
+	}
+	.client__left p {
+		margin-top: 3px;
+		font-size: 13px;
+	}
+}

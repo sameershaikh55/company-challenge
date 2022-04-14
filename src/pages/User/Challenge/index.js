@@ -76,7 +76,15 @@ const Challenge = ({
 	return (
 		<>
 			{popUp && (
-				<Popup title="Support" setPopUp={setPopUp} children={children} />
+				<Popup
+					title="Support"
+					setPopUp={setPopUp}
+					children={children}
+					bgColor={
+						(inpChange && inpChange.challenge_background_color) ||
+						findingUrlDataChallenge[0].challenge_background_color
+					}
+				/>
 			)}
 
 			<div
