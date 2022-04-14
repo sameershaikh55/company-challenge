@@ -14,7 +14,7 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	max-height: 332px;
+	max-height: 350px;
 }
 
 .single__assignment__user__inner p {
@@ -50,7 +50,7 @@
 
 .single__assignment__user__image {
 	background: #ebebeb;
-	height: 160px;
+	height: 195px;
 	border-radius: 8px;
 	display: flex;
 	justify-content: center;
