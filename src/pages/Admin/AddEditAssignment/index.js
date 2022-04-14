@@ -20,12 +20,8 @@ import { generateID } from "../../../utils/generatingID";
 import { ref, getDownloadURL, uploadBytesResumable } from "@firebase/storage";
 import { allDataApi } from "../../../redux/action";
 import draftToHtml from "draftjs-to-html";
-import {
-	ContentState,
-	convertFromHTML,
-	convertToRaw,
-	EditorState,
-} from "draft-js";
+import htmlToDraft from "html-to-draftjs";
+import { ContentState, convertToRaw, EditorState } from "draft-js";
 
 const AddEditAssignment = ({ allData, allDataApi }) => {
 	const history = useHistory();
@@ -81,11 +77,15 @@ const AddEditAssignment = ({ allData, allDataApi }) => {
 
 			// EDITOR'S HTML INTO EDITOR OBJECT FORMAT
 			const htmlIntoEditor = (key) => {
-				return EditorState.createWithContent(
-					ContentState.createFromBlockArray(
-						convertFromHTML(addingAssignmentData(key))
-					)
+				const blocksFromHtml = htmlToDraft(addingAssignmentData(key));
+				const { contentBlocks, entityMap } = blocksFromHtml;
+				const contentState = ContentState.createFromBlockArray(
+					contentBlocks,
+					entityMap
 				);
+				const editorState = EditorState.createWithContent(contentState);
+
+				return editorState;
 			};
 
 			setInpChange({

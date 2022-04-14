@@ -5,6 +5,10 @@
 	margin-top: 0.2rem;
 }
 
+.editor_container * {
+	font-family: inherit;
+}
+
 .rdw-editor-main {
 	min-height: 200px;
 	max-height: 200px;

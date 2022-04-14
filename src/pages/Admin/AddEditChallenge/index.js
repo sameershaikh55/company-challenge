@@ -17,13 +17,9 @@ import Popup from "../../../components/Popup";
 import UserChallenge from "../../User/Challenge";
 import { allDataApi } from "../../../redux/action";
 import TextEditor from "../../../components/TextEditor";
-import {
-	EditorState,
-	ContentState,
-	convertToRaw,
-	convertFromHTML,
-} from "draft-js";
+import { EditorState, ContentState, convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
+import htmlToDraft from "html-to-draftjs";
 
 const AddEditChallenge = ({ allData, allDataApi }) => {
 	const history = useHistory();
@@ -71,11 +67,15 @@ const AddEditChallenge = ({ allData, allDataApi }) => {
 
 			// EDITOR'S HTML INTO EDITOR OBJECT FORMAT
 			const htmlIntoEditor = (key) => {
-				return EditorState.createWithContent(
-					ContentState.createFromBlockArray(
-						convertFromHTML(addingChallengeData(key))
-					)
+				const blocksFromHtml = htmlToDraft(addingChallengeData(key));
+				const { contentBlocks, entityMap } = blocksFromHtml;
+				const contentState = ContentState.createFromBlockArray(
+					contentBlocks,
+					entityMap
 				);
+				const editorState = EditorState.createWithContent(contentState);
+
+				return editorState;
 			};
 
 			setInpChange({
