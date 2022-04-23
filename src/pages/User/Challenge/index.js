@@ -8,6 +8,7 @@ import { useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 import { convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
+import Footer from "../../../layout/Footer";
 
 const Challenge = ({
 	activeClient,
@@ -151,6 +152,7 @@ const Challenge = ({
 						}}
 						className="user__challenge__body"
 					/>
+					<Footer />
 				</div>
 			</div>
 		</>

@@ -9,8 +9,11 @@ import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import { filterActiveClient } from "../../../utils/filterActiveClient";
 import Loader from "../../../components/Loader";
+import Footer from "../../../layout/Footer";
 
 const Dashboard = ({ allData }) => {
+	const hostname = window.location.hostname;
+
 	const { client_id, challenge_id } = useParams();
 
 	const [popUp3, setPopUp3] = useState(false);
@@ -56,6 +59,9 @@ const Dashboard = ({ allData }) => {
 		return <Loader />;
 	}
 
+	console.log(activeClient, "activeClient");
+	console.log(activeClientChallenges, "activeClientChallenges");
+
 	return (
 		<div
 			style={{
@@ -82,7 +88,9 @@ const Dashboard = ({ allData }) => {
 			<div className="user__dashboard__header">
 				<div className="user__dashboard__header__logo">
 					<img
-						onClick={() => history.goBack()}
+						onClick={() =>
+							(window.location.href = `https://app.companychallenges.com/${activeClientChallenges[0].challenge_url}`)
+						}
 						className="client_img pointer"
 						src={activeClient[0].logo}
 						alt=""
@@ -90,7 +98,7 @@ const Dashboard = ({ allData }) => {
 					<h2>{activeClientChallenges[0].challenge_title}</h2>
 				</div>
 				<div className="assignment_right">
-					<h2>Assignments</h2>
+					{/* <h2>Assignments</h2> */}
 					<button onClick={() => setPopUp3(true)}>
 						<img src={info} alt="" />
 					</button>
@@ -110,6 +118,7 @@ const Dashboard = ({ allData }) => {
 					})}
 				</div>
 			</div>
+			<Footer />
 		</div>
 	);
 };

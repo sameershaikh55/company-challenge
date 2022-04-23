@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import draftToHtml from "draftjs-to-html";
 import { convertToRaw } from "draft-js";
+import Footer from "../../../layout/Footer";
 
 const Assignment = ({
 	inpChange,
@@ -114,7 +115,12 @@ const Assignment = ({
 			>
 				<div className="user__assignment__header">
 					<div className="user__assignment__header__logo">
-						<img src={activeClient[0].logo} alt="" />
+						<img
+							onClick={() => history.goBack()}
+							className="pointer"
+							src={activeClient[0].logo}
+							alt=""
+						/>
 						<h2>
 							{(activeClientChallengesView &&
 								activeClientChallengesView[0].challenge_title) ||
@@ -173,7 +179,7 @@ const Assignment = ({
 							{/* <p>AsignmentQuestion</p> */}
 							<br />
 							<p
-							className="user__assignment__body__right__inner__description"
+								className="user__assignment__body__right__inner__description"
 								dangerouslySetInnerHTML={{
 									__html: convertIntoHtml(
 										(viewScreen && inpChange.assignment) ||
@@ -184,6 +190,7 @@ const Assignment = ({
 							/>
 						</div>
 					</div>
+					<Footer assignment_view />
 				</div>
 			</div>
 		</>

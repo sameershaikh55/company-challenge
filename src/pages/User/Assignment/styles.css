@@ -180,9 +180,10 @@
 	}
 	.user__assignment__body__right__inner
 		p.user__assignment__body__right__inner__description {
-			max-height: 300px;
+		max-height: 300px;
 	}
-	.user__assignment__body__left__inner, .user__assignment__body__right__inner {
+	.user__assignment__body__left__inner,
+	.user__assignment__body__right__inner {
 		height: fit-content;
 	}
 }
