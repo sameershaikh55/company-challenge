@@ -1,5 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { AuthContext } from "./Authentication";
+import ReactGA from "react-ga";
+import { withRouter } from "react-router-dom";
 
 // This is a React Router v6 app
 import { Switch, Route } from "react-router-dom";
@@ -29,127 +31,130 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 function App({ allData, allDataApi }) {
-	const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
-	const routes = [
-		{
-			route: ["/", "/dashboard", "/dashboard/:client_id"],
-			page: AdminDashboard,
-		},
-		{
-			route: ["/client", "/client/:client_id"],
-			page: AdminAddEditClient,
-		},
-		{
-			route: "/assignments/:client_id/:challenge_id",
-			page: AdminAssignments,
-		},
-		{
-			route: ["/challenge/:client_id", "/challenge/:client_id/:challenge_id"],
-			page: AdminAddEditChallenge,
-		},
-		{
-			route: [
-				"/assignment/:client_id/:challenge_id",
-				"/assignment/:client_id/:challenge_id/:assignment_id",
-			],
-			page: AdminAddEditAssignment,
-		},
-	];
+  const routes = [
+    {
+      route: ["/", "/dashboard", "/dashboard/:client_id"],
+      page: AdminDashboard,
+    },
+    {
+      route: ["/client", "/client/:client_id"],
+      page: AdminAddEditClient,
+    },
+    {
+      route: "/assignments/:client_id/:challenge_id",
+      page: AdminAssignments,
+    },
+    {
+      route: ["/challenge/:client_id", "/challenge/:client_id/:challenge_id"],
+      page: AdminAddEditChallenge,
+    },
+    {
+      route: [
+        "/assignment/:client_id/:challenge_id",
+        "/assignment/:client_id/:challenge_id/:assignment_id",
+      ],
+      page: AdminAddEditAssignment,
+    },
+  ];
 
-	const publicUrls = [
-		{
-			route: ["/assignments_view/:client_id/:challenge_id"],
-			page: UserDashboard,
-		},
-		{
-			route: ["/assignment_view/:client_id/:challenge_id/:assignment_id"],
-			page: UseerAssignment,
-		},
-	];
+  const publicUrls = [
+    {
+      route: ["/assignments_view/:client_id/:challenge_id"],
+      page: UserDashboard,
+    },
+    {
+      route: ["/assignment_view/:client_id/:challenge_id/:assignment_id"],
+      page: UseerAssignment,
+    },
+  ];
 
-	useEffect(() => {
-		AOS.init({
-			once: true,
-		});
+  useEffect(() => {
+    ReactGA.initialize("UA-133712799-23");
+    // ReactGA.pageview(window.location.pathname + window.location.search);
 
-		// if (user) {
-		allDataApi();
-		// }
-	}, [user]);
+    AOS.init({
+      once: true,
+    });
 
-	const fetchingChallengeRoutes = allData
-		.map((item) => {
-			const fetchingChallenges = item.challenges.map((item2) => {
-				return `/${item2.challenge_url}`;
-			});
+    // if (user) {
+    allDataApi();
+    // }
+  }, [user]);
 
-			return fetchingChallenges;
-		})
-		.flat(10);
+  const fetchingChallengeRoutes = allData
+    .map((item) => {
+      const fetchingChallenges = item.challenges.map((item2) => {
+        return `/${item2.challenge_url}`;
+      });
 
-	// LOADER
-	if (!allData.length) {
-		return <Loader />;
-	}
+      return fetchingChallenges;
+    })
+    .flat(10);
 
-	return (
-		<div className="app">
-			{/* INLINE STYLES */}
-			<style jsx>{`
-				.line-limit-1 {
-					display: -webkit-box;
-					-webkit-line-clamp: 1;
-					text-overflow: ellipsis;
-					overflow: hidden;
-					width: 100%;
-					-webkit-box-orient: vertical;
-				}
-			`}</style>
+  // LOADER
+  if (!allData.length) {
+    return <Loader />;
+  }
 
-			<Switch>
-				{fetchingChallengeRoutes.length &&
-					fetchingChallengeRoutes.map((item, i) => {
-						return (
-							<Route exact path={item} component={UserChallenge} key={i} />
-						);
-					})}
+  return (
+    <div className="app">
+      {/* INLINE STYLES */}
+      <style jsx>{`
+        .line-limit-1 {
+          display: -webkit-box;
+          -webkit-line-clamp: 1;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          width: 100%;
+          -webkit-box-orient: vertical;
+        }
+      `}</style>
 
-				{publicUrls.map((item, i) => {
-					return (
-						<Route key={i} exact path={item.route} component={item.page} />
-					);
-				})}
+      <Switch>
+        {fetchingChallengeRoutes.length &&
+          fetchingChallengeRoutes.map((item, i) => {
+            return (
+              <Route exact path={item} component={UserChallenge} key={i} />
+            );
+          })}
 
-				{/* ADMIN */}
-				<Route exact path="/login" component={AdminLogin} />
+        {publicUrls.map((item, i) => {
+          return (
+            <Route key={i} exact path={item.route} component={item.page} />
+          );
+        })}
 
-				{routes.map((item, i) => {
-					return (
-						<ProtectedRoute
-							key={i}
-							exact
-							path={item.route}
-							component={item.page}
-						/>
-					);
-				})}
-			</Switch>
-		</div>
-	);
+        {/* ADMIN */}
+        <Route exact path="/login" component={AdminLogin} />
+
+        {routes.map((item, i) => {
+          return (
+            <ProtectedRoute
+              key={i}
+              exact
+              path={item.route}
+              component={item.page}
+            />
+          );
+        })}
+      </Switch>
+    </div>
+  );
 }
 
 const mapStatetoProps = (state) => {
-	return {
-		allData: state.allDataRed.allData,
-	};
+  return {
+    allData: state.allDataRed.allData,
+  };
 };
 const mapDispatchtoProps = (dispatch) => {
-	return {
-		allDataApi: function () {
-			dispatch(allDataApi());
-		},
-	};
+  return {
+    allDataApi: function () {
+      dispatch(allDataApi());
+    },
+  };
 };
 
-export default connect(mapStatetoProps, mapDispatchtoProps)(App);
+export default connect(mapStatetoProps, mapDispatchtoProps)(withRouter(App));

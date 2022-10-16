@@ -1,9 +1,10 @@
 .footer {
-	font-size: 12px;
-	padding: 10px 0px;
+  font-size: 12px;
+  padding: 6px 0;
+  color: #00000087;
 }
 
 .minus_padding {
-	padding: 1px 0px;
-	font-size: 12px;
+  margin-top: 7px;
+  color: #00000087;
 }

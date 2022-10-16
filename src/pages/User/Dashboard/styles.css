@@ -1,22 +1,26 @@
 .no_data_container {
-	height: calc(100vh - 340px);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: 1.2rem;
+  height: calc(100vh - 340px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
 }
 
 .user__dashboard {
-	padding: 0rem 1rem;
-	height: 100vh;
+  padding: 0.8rem 1rem;
+  height: 100vh;
 }
 
 .user__dashboard__header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	width: 100%;
-	height: 110px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 84px;
+  background: white;
+  border-radius: 6px;
+  padding: 7px;
+  margin-bottom: 13px;
 }
 
 /* .user__dashboard__header .client_img {
@@ -24,157 +28,159 @@
 } */
 
 .user__dashboard__header img {
-	border-radius: 6px;
-	padding: 0.5rem;
-	height: 70px;
-	width: 70px;
+  border-radius: 6px;
+  padding: 0.5rem;
+  height: 70px;
+  width: 70px;
 }
 
 .user__dashboard__header .assignment_right {
-	display: flex;
-	align-items: center;
-	gap: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 10px;
 }
 
 .user__dashboard__header button {
-	background: #ffc65a;
-	height: 46px;
-	width: 46px;
-	border-radius: 6px;
-	border: none;
-	cursor: pointer;
+  background: #ffc65a;
+  height: 46px;
+  width: 46px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
 }
 
 .user__dashboard__header button img {
-	background: #ffc65a;
-	height: 46px;
-	width: 46px;
+  background: #ffc65a;
+  height: 46px;
+  width: 46px;
 }
 
 .user__dashboard__body__inner {
-	--bs-gutter-x: 1rem;
-	--bs-gutter-y: 1rem;
-	display: flex;
-	flex-wrap: wrap;
-	margin-top: calc(var(--bs-gutter-y) * -1);
-	margin-right: calc(var(--bs-gutter-x) * -0.5);
-	margin-left: calc(var(--bs-gutter-x) * -0.5);
-	max-height: calc(100vh - 125px);
-	overflow-y: auto;
-	padding-bottom: 1rem;
+  --bs-gutter-x: 1rem;
+  --bs-gutter-y: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(var(--bs-gutter-y) * -0);
+  margin-right: calc(var(--bs-gutter-x) * -0.5);
+  margin-left: calc(var(--bs-gutter-x) * -0.5);
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+  padding-bottom: 1rem;
 }
 
 .user__dashboard__body__inner::-webkit-scrollbar {
-	width: 7px;
+  width: 7px;
 }
 .user__dashboard__body__inner::-webkit-scrollbar-track {
-	background: #e2e6eb;
+  background: #e2e6eb;
 }
 .user__dashboard__body__inner::-webkit-scrollbar-thumb {
-	background: #1c395c;
-	border-radius: 10px;
+  background: #1c395c;
+  border-radius: 10px;
 }
 
 .user__dashboard__body__inner > * {
-	flex-shrink: 0;
-	width: 100%;
-	max-width: 100%;
-	padding-right: calc(var(--bs-gutter-x) * 0.5);
-	padding-left: calc(var(--bs-gutter-x) * 0.5);
-	margin-top: var(--bs-gutter-y);
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 100%;
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  margin-top: 0;
+  margin-bottom: var(--bs-gutter-y);
 }
 
 .password__assignment {
-	display: flex;
-	flex-direction: column;
-	align-items: start;
-	justify-content: center;
-	gap: 1.4rem;
-	padding: 1.2rem 0rem;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: 1.4rem;
+  padding: 1.2rem 0rem;
 }
 
 .password__assignment input {
-	width: 100%;
-	background-color: #e9edf2;
-	height: 40px;
-	border: none;
-	border-radius: 6px;
-	padding: 1rem;
+  width: 100%;
+  background-color: #e9edf2;
+  height: 40px;
+  border: none;
+  border-radius: 6px;
+  padding: 1rem;
 }
 
 .password__assignment img {
-	padding: 0.4rem;
-	background-color: #ffc65a;
-	border-radius: 6px;
-	height: 40px;
-	cursor: pointer;
+  padding: 0.4rem;
+  background-color: #ffc65a;
+  border-radius: 6px;
+  height: 40px;
+  cursor: pointer;
 }
 
 .password__assignment button {
-	background: #22ad7a;
-	border-radius: 6px;
-	height: 38px;
-	padding: 0rem 1.6rem;
-	color: #fff;
-	border: none;
-	font-weight: 600;
+  background: #22ad7a;
+  border-radius: 6px;
+  height: 38px;
+  padding: 0rem 1.6rem;
+  color: #fff;
+  border: none;
+  font-weight: 600;
 }
 
 .password__instruction__assignment {
-	padding: 1.5rem 0rem;
+  padding: 1.5rem 0rem;
 }
 
 .support__instruction__assignment {
-	max-height: 400px;
-	overflow: auto;
-	/* padding: 1.2rem 0rem; */
+  max-height: 400px;
+  overflow: auto;
+  /* padding: 1.2rem 0rem; */
 }
 
 .support__instruction__assignment::-webkit-scrollbar {
-	width: 7px;
+  width: 7px;
 }
 .support__instruction__assignment::-webkit-scrollbar-track {
-	background: #e2e6eb;
+  background: #e2e6eb;
 }
 .support__instruction__assignment::-webkit-scrollbar-thumb {
-	background: #1c395c;
-	border-radius: 10px;
+  background: #1c395c;
+  border-radius: 10px;
 }
 
 .support__instruction__assignment .support__instruction__assignment__header {
-	white-space: pre-line;
+  white-space: pre-line;
 }
 
 .support__instruction__assignment .support__instruction__assignment__body {
-	margin-top: 0.6rem;
+  margin-top: 0.6rem;
 }
 
 .support__instruction__assignment
-	.support__instruction__assignment__body::-webkit-scrollbar {
-	width: 7px;
+  .support__instruction__assignment__body::-webkit-scrollbar {
+  width: 7px;
 }
 .support__instruction__assignment
-	.support__instruction__assignment__body::-webkit-scrollbar-track {
-	background: #e2e6eb;
+  .support__instruction__assignment__body::-webkit-scrollbar-track {
+  background: #e2e6eb;
 }
 .support__instruction__assignment
-	.support__instruction__assignment__body::-webkit-scrollbar-thumb {
-	background: #1c395c;
-	border-radius: 10px;
+  .support__instruction__assignment__body::-webkit-scrollbar-thumb {
+  background: #1c395c;
+  border-radius: 10px;
 }
 
 @media screen and (max-width: 575px) {
-	.user__dashboard__header .assignment_right h2 {
-		display: none;
-	}
-	.user__dashboard__header__logo h2 {
-		font-size: 18px;
-	}
-	.user__dashboard__header img {
-		height: 60px;
-		width: 60px;
-	}
-	.user__dashboard__header__logo {
-		gap: 0.6rem;
-	}
+  .user__dashboard__header .assignment_right h2 {
+    display: none;
+  }
+  .user__dashboard__header__logo h2 {
+    font-size: 18px;
+  }
+  .user__dashboard__header img {
+    height: 60px;
+    width: 60px;
+  }
+  .user__dashboard__header__logo {
+    gap: 0.6rem;
+  }
 }
