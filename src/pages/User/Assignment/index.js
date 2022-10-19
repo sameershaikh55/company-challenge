@@ -81,7 +81,15 @@ const Assignment = ({
   }
 
   useEffect(() => {
-    ReactGA.pageview(window.location.pathname + window.location.search);
+    if (
+      activeClient.length &&
+      activeClientChallenges.length &&
+      activeClientAssignment.length
+    ) {
+      ReactGA.pageview(
+        `/assignment_view/${activeClient[0].client_name}/${activeClientChallenges[0].challenge_name}/${activeClientAssignment[0].assignment_title}`
+      );
+    }
   }, []);
 
   // LOADER

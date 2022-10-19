@@ -178,8 +178,9 @@
   }
   .user__btn__container {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     gap: 0.6rem;
+    align-items: center;
   }
   .user__assignment__header img {
     height: 60px;

@@ -77,8 +77,10 @@ const Challenge = ({
   );
 
   useEffect(() => {
-    if (findingUrlData.length) {
-      ReactGA.pageview(`/challenge_view/${findingUrlData[0].id}/${location}`);
+    if (findingUrlData.length && findingUrlDataChallenge.length) {
+      ReactGA.pageview(
+        `/challenge_view/${findingUrlData[0].client_name}/${findingUrlDataChallenge[0].challenge_name}`
+      );
     }
   }, []);
 

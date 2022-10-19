@@ -13,7 +13,7 @@ const Footer = ({ assignment_view }) => {
       >
         Ⓒ
       </a>
-      copyright {year}
+      Company Challenges {year}
     </div>
   );
 };
