@@ -57,7 +57,11 @@ const Dashboard = ({ allData }) => {
   );
 
   useEffect(() => {
-    ReactGA.pageview(window.location.pathname + window.location.search);
+    if (activeClient.length && activeClientChallenges.length) {
+      ReactGA.pageview(
+        `/assignments_view/${activeClient[0].client_name}/${activeClientChallenges[0].challenge_name}`
+      );
+    }
   }, []);
 
   // LOADER
